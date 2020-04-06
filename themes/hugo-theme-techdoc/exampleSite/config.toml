@@ -1,4 +1,4 @@
-baseURL = "https://cyberblack28.gitlab.io/hugo"
+baseURL = "https://cyberblack28.github.io/hugo/docs/"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
