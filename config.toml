@@ -2,7 +2,7 @@ baseURL = "https://cyberblack28.github.io/hugo/"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
-title = "Hugo Techdoc Theme"
+title = "Cyberblack.net"
 theme = "hugo-theme-techdoc"
 publishDir = "docs"
 
@@ -21,7 +21,7 @@ enableMissingTranslationPlaceholders = false
     # Souce Code repository section
     description = "put your description"
     github_repository = "https://github.com/thingsym/hugo-theme-techdoc"
-    version = "0.7.0"
+    version = ""
 
     # Documentation repository section
     # documentation repository (set edit link to documentation repository)
@@ -77,3 +77,4 @@ enableMissingTranslationPlaceholders = false
     startLevel = 2
     endLevel = 4
     ordered = false
+
