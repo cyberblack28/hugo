@@ -1,0 +1,820 @@
+---
+title: "Exercise1 File & Directory"
+date: 2017-10-17T15:26:15Z
+draft: false
+weight: 10
+description: "calling custom Shortcodes into your content files."
+---
+
+## 1.pwd,ls,cdコマンド演習
+
+### 1.現在のディレクトリ（カレントディレクトリ）を表示するコマンドを実行してください。
+
+```
+$ pwd
+/home/student
+```
+<details>
+  <summary>
+    Visible text
+  </summary>
+  Hidden text; seen after clicking that accordion arrow
+</details>
+
+### 2.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
+
+```
+$ cd
+```
+
+```
+$ cd ~
+```
+
+```
+$ cd /home/student
+```
+
+### 3.カレントディレクトリを確認するコマンドを実行してください。
+
+```
+$ pwd
+/home/student
+```
+
+### 4.カレントディレクトリをルートディレクトリに変更してください。
+
+```
+$ cd /
+```
+
+### 5.カレントディレクトリを確認するコマンドを実行してください。
+
+```
+$ pwd
+/
+```
+
+### 6.ルートディレクトリの直下に保存されているディレクトリやファイルを表示してください。
+
+```
+$ ls /
+bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+boot  etc  lib   media  opt  root  sbin  sys  usr
+```
+
+```
+//カレントディレクトリが「/」の場合は「ls」だけでも確認できます。
+$ ls
+bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+boot  etc  lib   media  opt  root  sbin  sys  usr
+```
+
+### 7.ルートディレクトリの直下にあるbinというディレクトリ内容を、現在のカレントディレクトリを変更せずに表示してください。
+
+```
+$ ls /bin
+  VGAuthService                        glxgears                       nl-neightbl-list                         sg_unmap
+  WebKitWebDriver                      glxinfo                        nl-pktloc-lookup                         sg_verify
+  X                                    glxinfo64                      nl-qdisc-add                             sg_vpd
+  Xorg                                 gneqn                          nl-qdisc-delete                          sg_wr_mode
+  Xvnc                                 gnome-boxes                    nl-qdisc-list                            sg_write_buffer
+  Xwayland                             gnome-calculator               nl-route-add                             sg_write_long
+ '['                                   gnome-characters               nl-route-delete                          sg_write_same
+  ac                                   gnome-control-center           nl-route-get                             sg_write_verify
+  aconnect                             gnome-disk-image-mounter       nl-route-list                            sg_write_x
+  addr2line                            gnome-disks                    nl-rule-list                             sg_xcopy
+  alias                                gnome-font-viewer              nl-tctree-list                           sg_zone
+  alsaloop                             gnome-help                     nl-util-addr                             sginfo
+  alsamixer                            gnome-keyring                  nm                                       sgm_dd
+  alsatplg                             gnome-keyring-3                nm-connection-editor                     sgp_dd
+  alsaunmute                           gnome-keyring-daemon           nm-online                                sh
+  amidi                                gnome-logs                     nmcli                                    sha1hmac
+  amixer                               gnome-screenshot               nmtui                                    sha1sum
+  amuFormat.sh                         gnome-session                  nmtui-connect                            sha224hmac
+  anaconda-cleanup                     gnome-session-custom-session   nmtui-edit                               sha224sum
+  anaconda-disable-nm-ibft-plugin      gnome-session-inhibit          nmtui-hostname                           sha256hmac
+  analog                               gnome-session-quit             nohup                                    sha256sum
+  aplay                                gnome-session-selector         notify-send                              sha384hmac
+  aplaymidi                            gnome-shell                    nproc                                    sha384sum
+  appstream-compose                    gnome-shell-extension-prefs    nroff                                    sha512hmac
+  appstream-util                       gnome-shell-extension-tool     nsenter                                  sha512sum
+  apropos                              gnome-shell-perf-tool          nslookup                                 showconsolefont
+  ar                                   gnome-software                 nsupdate                                 showkey
+  arch                                 gnome-system-monitor           numad                                    showrgb
+  arecord                              gnome-terminal                 numfmt                                   shred
+  arecordmidi                          gnome-text-editor              objcopy                                  shuf
+  arpaname                             gnome-thumbnail-font           objdump                                  sim_lsmplugin
+  as                                   gnroff                         od                                       simc_lsmplugin
+  aseqdump                             gpasswd                        oddjob_request                           size
+  aseqnet                              gpg                            open                                     skill
+  aserver                              gpg-agent                      openssl                                  slabtop
+  aspell                               gpg-connect-agent              openvt                                   sleep
+  at                                   gpg-error                      orc-bugreport                            sliceprint
+  atq                                  gpg-zip                        orca                                     slirp4netns
+  atrm                                 gpg2                           os-prober                                sndfile-resample
+  attr                                 gpgconf                        osinfo-db-export                         snice
+  audit2allow                          gpgparsemail                   osinfo-db-import                         soelim
+  audit2why                            gpgsm                          osinfo-db-path                           sort
+  aulast                               gpgsplit                       osinfo-db-validate                       sotruss
+  aulastlog                            gpgv                           osinfo-detect                            soundstretch
+  ausyscall                            gpgv2                          osinfo-install-script                    speak-ng
+  authselect                           gpic                           osinfo-query                             speaker-test
+  auvirt                               gpio-event-mon                 ostree                                   speech-dispatcher
+  awk                                  gpio-hammer                    over                                     spell
+  axfer                                gprof                          p11-kit                                  spice-vdagent
+  b2sum                                gr2fonttest                    pacat                                    split
+  baobab                               grep                           pacmd                                    sprof
+  base32                               grilo-test-ui-0.3              pactl                                    sqlite3
+  base64                               grl-inspect-0.3                padsp                                    sscg
+  basename                             grl-launch-0.3                 padsp-32                                 ssh
+  bash                                 groff                          pam-panel-icon                           ssh-add
+  bashbug                              grops                          pamon                                    ssh-agent
+  bashbug-64                           grotty                         panelctl                                 ssh-copy-id
+  batch                                groups                         pango-list                               ssh-keygen
+  bc                                   grub2-editenv                  pango-view                               ssh-keyscan
+  bccmd                                grub2-file                     paperconf                                sss_ssh_authorizedkeys
+  bdftopcf                             grub2-fstest                   paplay                                   sss_ssh_knownhostsproxy
+  bg                                   grub2-glue-efi                 paps                                     start-pulseaudio-x11
+  blkiomon                             grub2-kbdcomp                  parec                                    startx
+  blkparse                             grub2-menulst2cfg              parecord                                 stat
+  blkrawverify                         grub2-mkfont                   passwd                                   states
+  blktrace                             grub2-mkimage                  paste                                    stdbuf
+  bluemoon                             grub2-mklayout                 pasuspender                              strace
+  bluetooth-sendto                     grub2-mknetdir                 pathchk                                  strace-log-merge
+  bluetoothctl                         grub2-mkpasswd-pbkdf2          pax11publish                             strings
+  bno_plot.py                          grub2-mkrelpath                pbm2ppa                                  strip
+  boltctl                              grub2-mkrescue                 pbmtpg                                   stty
+  bond2team                            grub2-mkstandalone             pchrt                                    su
+  bootctl                              grub2-script-check             pdf2dsc                                  sudo
+  brltty                               grub2-syslinux2cfg             pdf2ps                                   sudoedit
+  brltty-atb                           gs                             pdfdetach                                sudoreplay
+  brltty-config                        gsettings                      pdffonts                                 sum
+  brltty-ctb                           gsettings-data-convert         pdfimages                                sushi
+  brltty-ktb                           gsf-office-thumbnailer         pdfinfo                                  symlinks
+  brltty-lsinc                         gsnd                           pdfseparate                              sync
+  brltty-trtxt                         gsoelim                        pdfsig                                   systemctl
+  brltty-ttb                           gst-inspect-1.0                pdftocairo                               systemd-analyze
+  brltty-tune                          gst-launch-1.0                 pdftohtml                                systemd-ask-password
+  broadwayd                            gst-stats-1.0                  pdftoppm                                 systemd-cat
+  brotli                               gst-typefind-1.0               pdftops                                  systemd-cgls
+  btattach                             gtar                           pdftotext                                systemd-cgtop
+  btmon                                gtbl                           pdfunite                                 systemd-delta
+  btrace                               gtf                            peekfd                                   systemd-detect-virt
+  btrecord                             gtk-launch                     perl                                     systemd-escape
+  btreplay                             gtk-query-immodules-2.0-64     perl5.26.3                               systemd-firstboot
+  btt                                  gtk-query-immodules-3.0-64     perldoc                                  systemd-hwdb
+  buildah                              gtk-update-icon-cache          pflags                                   systemd-inhibit
+  bunzip2                              gtroff                         pgrep                                    systemd-machine-id-setup
+  busctl                               gunzip                         pic                                      systemd-mount
+  bwrap                                gupnp-dlna-info-2.0            piconv                                   systemd-notify
+  bzcat                                gupnp-dlna-ls-profiles-2.0     pidof                                    systemd-nspawn
+  bzcmp                                gzexe                          pigz                                     systemd-path
+  bzdiff                               gzip                           pinentry                                 systemd-resolve
+  bzegrep                              hash                           pinentry-curses                          systemd-run
+  bzfgrep                              hciattach                      pinentry-gtk                             systemd-socket-activate
+  bzgrep                               hciconfig                      pinentry-gtk-2                           systemd-stdio-bridge
+  bzip2                                hcidump                        pinfo                                    systemd-sysusers
+  bzip2recover                         hcitool                        ping                                     systemd-tmpfiles
+  bzless                               head                           pinky                                    systemd-tty-ask-password-agent
+  bzmore                               hex2hcd                        pip-3                                    systemd-umount
+  c++filt                              hexdump                        pip-3.6                                  tabs
+  ca-legacy                            host                           pip3                                     tac
+  cairo-sphinx                         hostid                         pip3.6                                   tail
+  cal                                  hostname                       pipewire                                 tar
+  calibrate_ppa                        hostnamectl                    pitchplay                                taskset
+  canberra-boot                        hunspell                       pkaction                                 tbl
+  canberra-gtk-play                    i386                           pkcheck                                  teamd
+  cancel                               ibdev2netdev                   pkcon                                    teamdctl
+  cancel.cups                          ibus                           pkexec                                   teamnl
+  captoinfo                            ibus-daemon                    pkg-config                               tee
+  cat                                  ibus-setup                     pkgconf                                  test
+  catchsegv                            iceauth                        pkill                                    test_ppa
+  catman                               iconv                          pkla-admin-identities                    testlibraw
+  cd                                   id                             pkla-check-authorization                 tgz
+  cd-convert                           idiag-socket-details           pkmon                                    tic
+  cd-create-profile                    idn                            pkttyagent                               time
+  cd-drive                             iecset                         pldd                                     timedatectl
+  cd-fix-profile                       iio_event_monitor              plistutil                                timeout
+  cd-iccdump                           iio_generic_buffer             plymouth                                 tload
+  cd-info                              info                           pmap                                     tmon
+  cd-it8                               infocmp                        pnm2ppa                                  toe
+  cd-paranoia                          infotocap                      pod2man                                  top
+  cd-read                              install                        pod2text                                 totem
+  cdda-player                          instperf                       pod2usage                                totem-video-thumbnailer
+  celtdec051                           ionice                         podman                                   touch
+  celtenc051                           ipcalc                         post-grohtml                             tpm2_activatecredential
+  centrino-decode                      ipcmk                          powernow-k8-decode                       tpm2_certify
+  chacl                                ipcrm                          ppdc                                     tpm2_create
+  chage                                ipcs                           ppdhtml                                  tpm2_createpolicy
+  chardetect                           iptc                           ppdi                                     tpm2_createprimary
+  chattr                               isdv4-serial-inputattach       ppdmerge                                 tpm2_dictionarylockout
+  chcat                                iso-info                       ppdpo                                    tpm2_encryptdecrypt
+  chcon                                iso-read                       pr                                       tpm2_evictcontrol
+  checkmodule                          isodebug                       pre-grohtml                              tpm2_getcap
+  checkpolicy                          isodump                        precat                                   tpm2_getmanufec
+  cheese                               isoinfo                        preconv                                  tpm2_getpubak
+  chfn                                 isosize                        preunzip                                 tpm2_getpubek
+  chgrp                                isovfy                         prezip                                   tpm2_getrandom
+  chmem                                ispell                         prezip-bin                               tpm2_hash
+  chmod                                itstool                        printenv                                 tpm2_hmac
+  chown                                jimsh                          printf                                   tpm2_listpersistent
+  chrome-gnome-shell                   jobs                           prlimit                                  tpm2_load
+  chronyc                              join                           prtstat                                  tpm2_loadexternal
+  chrt                                 jose                           ps                                       tpm2_makecredential
+  chsh                                 journalctl                     ps2ascii                                 tpm2_nvdefine
+  chvt                                 json_reformat                  ps2epsi                                  tpm2_nvlist
+  ciptool                              json_verify                    ps2pdf                                   tpm2_nvread
+  cksum                                kbd_mode                       ps2pdf12                                 tpm2_nvreadlock
+  clear                                kbdinfo                        ps2pdf13                                 tpm2_nvrelease
+  clevis                               kbdrate                        ps2pdf14                                 tpm2_nvwrite
+  clevis-decrypt                       kbxutil                        ps2pdfwr                                 tpm2_pcrevent
+  clevis-decrypt-sss                   kdumpctl                       ps2ps                                    tpm2_pcrextend
+  clevis-decrypt-tang                  kernel-install                 ps2ps2                                   tpm2_pcrlist
+  clevis-decrypt-tpm2                  keyctl                         psfaddtable                              tpm2_quote
+  clevis-encrypt-sss                   kill                           psfgettable                              tpm2_rc_decode
+  clevis-encrypt-tang                  killall                        psfstriptable                            tpm2_readpublic
+  clevis-encrypt-tpm2                  kmod                           psfxtable                                tpm2_rsadecrypt
+  clevis-luks-bind                     kvm_stat                       pslog                                    tpm2_rsaencrypt
+  clevis-luks-unbind                   l2ping                         pstree                                   tpm2_send
+  clevis-luks-unlock                   l2test                         pstree.x11                               tpm2_sign
+  cmp                                  last                           ptaskset                                 tpm2_startup
+  cockpit-bridge                       lastb                          ptx                                      tpm2_takeownership
+  col                                  lastcomm                       pulseaudio                               tpm2_unseal
+  colcrt                               lastlog                        pwd                                      tpm2_verifysignature
+  colormgr                             lchfn                          pwdx                                     tput
+  colrm                                lchsh                          pwmake                                   tr
+  column                               ld                             pwscore                                  tracepath
+  comm                                 ld.bfd                         pydoc-3                                  tracker
+  command                              ld.gold                        pydoc3                                   tree
+  compress                             ldd                            pydoc3.6                                 troff
+  consolehelper                        less                           python3                                  true
+  consolehelper-gtk                    lessecho                       python3.6                                truncate
+  coredumpctl                          lesskey                        python3.6m                               trust
+  cp                                   lesspipe.sh                    pyvenv-3                                 tset
+  cpio                                 lexgrog                        pyvenv-3.6                               tsort
+  cpupower                             libieee1284_test               qemu-ga                                  tty
+  cronnext                             libinput                       qemu-img                                 turbostat
+  crontab                              libtar                         qemu-io                                  type
+  csplit                               libwacom-list-local-devices    qemu-keymap                              tzselect
+  csslint-0.6                          link                           qemu-nbd                                 ucs2any
+  cups-calibrate                       linux-boot-prober              qemu-pr-helper                           udevadm
+  cupstestdsc                          linux32                        qmi-firmware-update                      udisksctl
+  cupstestppd                          linux64                        qmi-network                              ul
+  curl                                 liveinst                       qmicli                                   ulimit
+  cut                                  ln                             quota                                    ulockmgr_server
+  cvt                                  loadkeys                       quotasync                                umask
+  cvtsudoers                           loadunimap                     ranlib                                   umax_pp
+  date                                 locale                         rarian-example                           umount
+  db_archive                           localectl                      rarian-sk-config                         unalias
+  db_checkpoint                        localedef                      rarian-sk-extract                        uname
+  db_deadlock                          locate                         rarian-sk-gen-uuid                       uname26
+  db_dump                              logger                         rarian-sk-get-cl                         uncompress
+  db_dump185                           login                          rarian-sk-get-content-list               unexpand
+  db_hotbackup                         loginctl                       rarian-sk-get-extended-content-list      unicode_start
+  db_load                              logname                        rarian-sk-get-scripts                    unicode_stop
+  db_log_verify                        look                           rarian-sk-install                        uniq
+  db_printlog                          lp                             rarian-sk-migrate                        unix2dos
+  db_recover                           lp.cups                        rarian-sk-preinstall                     unix2mac
+  db_replicate                         lpoptions                      rarian-sk-rebuild                        unlink
+  db_stat                              lpq                            rarian-sk-update                         unlz4
+  db_tuner                             lpq.cups                       raw                                      unpigz
+  db_upgrade                           lpr                            rctest                                   unshare
+  db_verify                            lpr.cups                       read                                     unversioned-python
+  dbilogstrip                          lprm                           readelf                                  unxz
+  dbiprof                              lprm.cups                      readlink                                 unzip
+  dbus-binding-tool                    lpstat                         readmult                                 unzipsfx
+  dbus-cleanup-sockets                 lpstat.cups                    realpath                                 update-ca-trust
+  dbus-daemon                          ls                             recode-sr-latin                          update-crypto-policies
+  dbus-launch                          lsattr                         red                                      update-desktop-database
+  dbus-monitor                         lsblk                          rename                                   update-gtk-immodules
+  dbus-run-session                     lscpu                          renew-dummy-cert                         update-mime-database
+  dbus-send                            lsgpio                         renice                                   updatedb
+  dbus-test-tool                       lsiio                          report-cli                               upower
+  dbus-update-activation-environment   lsinitrd                       report-gtk                               uptime
+  dbus-uuidgen                         lsipc                          reporter-rhtsupport                      usb-devices
+  dc                                   lslocks                        reporter-upload                          usbhid-dump
+  dconf                                lslogins                       rescan-scsi-bus.sh                       userformat
+  dd                                   lsmcli                         reset                                    userinfo
+  deallocvt                            lsmd                           resizecons                               usermount
+  delv                                 lsmem                          resolvectl                               userpasswd
+  desktop-file-edit                    lsns                           rev                                      users
+  desktop-file-install                 lsof                           rfcomm                                   usleep
+  desktop-file-validate                lsscsi                         rm                                       utmpdump
+  detect_ppa                           lsusb                          rmdir                                    uuidgen
+  df                                   lsusb.py                       rnano                                    uuidparse
+  dfu-tool                             lua                            rngtest                                  uz
+  diff                                 luac                           rofiles-fuse                             vdir
+  diff3                                luksmeta                       rpcbind                                  vdo
+  diffpp                               lz                             rpcinfo                                  vdodmeventd
+  dig                                  lz4                            rpm                                      vdodumpconfig
+  dir                                  lz4c                           rpm2archive                              vdoforcerebuild
+  dircolors                            lz4cat                         rpm2cpio                                 vdoformat
+  dirmngr                              lzop                           rpmdb                                    vdoprepareupgrade
+  dirmngr-client                       mac2unix                       rpmkeys                                  vdoreadonly
+  dirname                              machinectl                     rpmquery                                 vdostats
+  dmesg                                make-dummy-cert                rpmverify                                verify_blkparse
+  dnf                                  makedb                         rsync                                    vi
+  dnf-3                                man                            rsyslog-recover-qi.pl                    view
+  dnsdomainname                        mandb                          run-parts                                vim
+  domainname                           manpath                        run-with-aspell                          vimdiff
+  dos2unix                             mapscrn                        runc                                     vimtutor
+  dracut                               mattrib                        runcon                                   vlock
+  driverless                           mbadblocks                     rvi                                      vm-support
+  du                                   mbim-network                   rview                                    vmhgfs-fuse
+  dumpiso                              mbimcli                        rvim                                     vmstat
+  dumpkeys                             mcat                           rxe_cfg                                  vmtoolsd
+  dvcont                               mcd                            sandbox                                  vmware-checkvm
+  dwp                                  mcheck                         sane-find-scanner                        vmware-guestproxycerttool
+  easy_install-3                       mclasserase                    satyr                                    vmware-hgfsclient
+  easy_install-3.6                     mcomp                          sbcdec                                   vmware-namespace-cmd
+  echo                                 mcookie                        sbcenc                                   vmware-rpctool
+  ed                                   mcopy                          sbcinfo                                  vmware-toolbox-cmd
+  edid-decode                          mcpp                           scanimage                                vmware-user
+  egrep                                md5sum                         scp                                      vmware-user-suid-wrapper
+  eject                                mdel                           scp-dbus-service                         vmware-vgauth-cmd
+  elfedit                              mdeltree                       script                                   vmware-vmblock-fuse
+  encguess                             mdir                           scriptreplay                             vmware-xferlogs
+  enchant-2                            mdu                            scrollkeeper-config                      vncconfig
+  enchant-lsmod-2                      mesg                           scrollkeeper-extract                     vncpasswd
+  enscript                             metacity                       scrollkeeper-gen-seriesid                vstp
+  env                                  metacity-message               scrollkeeper-get-cl                      w
+  envsubst                             mformat                        scrollkeeper-get-content-list            wait
+  eog                                  minfo                          scrollkeeper-get-extended-content-list   wall
+  eps2eps                              mkafmmap                       scrollkeeper-get-index-from-docpath      watch
+  eqn                                  mkdir                          scrollkeeper-get-toc-from-docpath        watchgnupg
+  escputil                             mkfifo                         scrollkeeper-get-toc-from-id             wavpack
+  espeak-ng                            mkfontdir                      scrollkeeper-install                     wc
+  eutp                                 mkfontscale                    scrollkeeper-preinstall                  wdctl
+  evince                               mkhybrid                       scrollkeeper-rebuilddb                   wget
+  evince-previewer                     mkinitrd                       scrollkeeper-uninstall                   whatis
+  evince-thumbnailer                   mkisofs                        scrollkeeper-update                      whereis
+  evmctl                               mkmanifest                     scsi-rescan                              which
+  ex                                   mknod                          scsi_logging_level                       whiptail
+  exempi                               mkrfc2734                      scsi_mandat                              who
+  exiv2                                mktemp                         scsi_readcap                             whoami
+  expand                               mlabel                         scsi_ready                               wnck-urgency-monitor
+  expr                                 mmc-tool                       scsi_satl                                word-list-compress
+  factor                               mmcli                          scsi_start                               write
+  fallocate                            mmd                            scsi_stop                                wvgain
+  false                                mmount                         scsi_temperature                         wvtag
+  fc                                   mmove                          sdiff                                    wvunpack
+  fc-cache                             modulemd-validator-v1          sdptool                                  x86_64
+  fc-cache-64                          monitor-sensor                 sealert                                  x86_64-redhat-linux-gnu-pkg-config
+  fc-cat                               more                           secon                                    x86_energy_perf_policy
+  fc-conflist                          mount                          secret-tool                              xargs
+  fc-list                              mountpoint                     sed                                      xauth
+  fc-match                             mousetweaks                    sedismod                                 xbrlapi
+  fc-pattern                           mpartition                     sedispol                                 xdg-desktop-icon
+  fc-query                             mpris-proxy                    semodule_expand                          xdg-desktop-menu
+  fc-scan                              mrd                            semodule_link                            xdg-email
+  fc-validate                          mren                           semodule_package                         xdg-icon-resource
+  fg                                   msgattrib                      semodule_unpackage                       xdg-mime
+  fgconsole                            msgcat                         sendiso                                  xdg-open
+  fgrep                                msgcmp                         seq                                      xdg-screensaver
+  file                                 msgcomm                        sessreg                                  xdg-settings
+  file-roller                          msgconv                        setarch                                  xdg-user-dir
+  fincore                              msgen                          setfacl                                  xdg-user-dirs-gtk-update
+  find                                 msgexec                        setfattr                                 xdg-user-dirs-update
+  findmnt                              msgfilter                      setfont                                  xdpyinfo
+  fips-finish-install                  msgfmt                         setkeycodes                              xdriinfo
+  fips-mode-setup                      msggrep                        setleds                                  xev
+  fipscheck                            msginit                        setmetamode                              xgamma
+  fipshmac                             msgmerge                       setpriv                                  xgettext
+  firefox                              msgunfmt                       setsid                                   xhost
+  firewall-cmd                         msguniq                        setterm                                  xinit
+  firewall-offline-cmd                 mshortname                     setup-nsssysinit                         xinput
+  flatpak                              mshowfat                       setup-nsssysinit.sh                      xkbcomp
+  flatpak-bisect                       mtools                         setvtrgb                                 xkill
+  flatpak-coredumpctl                  mtoolstest                     setxkbmap                                xlsatoms
+  flock                                mtype                          sftp                                     xlsclients
+  fmt                                  mutter                         sg                                       xlsfonts
+  fold                                 mv                             sg_bg_ctl                                xmlcatalog
+  fonttosfnt                           mxtar                          sg_compare_and_write                     xmllint
+  foomatic-rip                         mzip                           sg_copy_results                          xmlsec1
+  fprintd-delete                       namei                          sg_dd                                    xmlwf
+  fprintd-enroll                       nano                           sg_decode_sense                          xmodmap
+  fprintd-list                         nautilus                       sg_emc_trespass                          xorg-x11-fonts-update-dirs
+  fprintd-verify                       nautilus-autorun-software      sg_format                                xprop
+  free                                 nautilus-sendto                sg_get_config                            xrandr
+  fribidi                              nc                             sg_get_lba_status                        xrdb
+  funzip                               ncat                           sg_ident                                 xrefresh
+  fuse-overlayfs                       ndctl                          sg_inq                                   xset
+  fusermount                           ndptool                        sg_logs                                  xsetpointer
+  fwupdmgr                             nenscript                      sg_luns                                  xsetroot
+  g13                                  neqn                           sg_map                                   xsetwacom
+  gapplication                         netstat                        sg_map26                                 xsltproc
+  gatttool                             newgidmap                      sg_modes                                 xstdcmap
+  gawk                                 newgrp                         sg_opcodes                               xvinfo
+  gcalccmd                             newuidmap                      sg_persist                               xwininfo
+  gcm-calibrate                        nf-ct-add                      sg_prevent                               xxd
+  gcm-import                           nf-ct-list                     sg_raw                                   xz
+  gcm-inspect                          nf-exp-add                     sg_rbuf                                  xzcat
+  gcm-picker                           nf-exp-delete                  sg_rdac                                  xzcmp
+  gcm-viewer                           nf-exp-list                    sg_read                                  xzdec
+  gconf-merge-tree                     nf-log                         sg_read_attr                             xzdiff
+  gconftool-2                          nf-monitor                     sg_read_block_limits                     xzegrep
+  gcr-viewer                           nf-queue                       sg_read_buffer                           xzfgrep
+  gdbm_dump                            ngettext                       sg_read_long                             xzgrep
+  gdbm_load                            nice                           sg_readcap                               xzless
+  gdbmtool                             nisdomainname                  sg_reassign                              xzmore
+  gdbus                                nl                             sg_referrals                             yelp
+  gdk-pixbuf-query-loaders-64          nl-addr-add                    sg_rep_zones                             yelp-build
+  gdk-pixbuf-thumbnailer               nl-addr-delete                 sg_requests                              yelp-check
+  gdmflexiserver                       nl-addr-list                   sg_reset                                 yelp-new
+  gedit                                nl-class-add                   sg_reset_wp                              yes
+  gencat                               nl-class-delete                sg_rmsn                                  ypdomainname
+  genisoimage                          nl-class-list                  sg_rtpg                                  yum
+  genl-ctrl-list                       nl-classid-lookup              sg_safte                                 zcat
+  geqn                                 nl-cls-add                     sg_sanitize                              zcmp
+  getconf                              nl-cls-delete                  sg_sat_identify                          zdiff
+  getent                               nl-cls-list                    sg_sat_phy_event                         zegrep
+  getfacl                              nl-fib-lookup                  sg_sat_read_gplog                        zenity
+  getfattr                             nl-link-enslave                sg_sat_set_features                      zfgrep
+  getkeycodes                          nl-link-ifindex2name           sg_scan                                  zforce
+  getopt                               nl-link-list                   sg_seek                                  zgrep
+  getopts                              nl-link-name2ifindex           sg_senddiag                              zip
+  gettext                              nl-link-release                sg_ses                                   zipcloak
+  gettext.sh                           nl-link-set                    sg_ses_microcode                         zipgrep
+  ghostscript                          nl-link-stats                  sg_start                                 zipinfo
+  gio                                  nl-list-caches                 sg_stpg                                  zipnote
+  gio-querymodules-64                  nl-list-sockets                sg_stream_ctl                            zipsplit
+  gjs                                  nl-monitor                     sg_sync                                  zless
+  gjs-console                          nl-neigh-add                   sg_test_rwbuf                            zmore
+  gkbd-keyboard-display                nl-neigh-delete                sg_timestamp                             znew
+  glib-compile-schemas                 nl-neigh-list                  sg_turs                                  zsoelim
+```
+
+```
+//カレントディレクトリが「/」の場合は「/」無しでも確認できます。
+$ ls bin
+VGAuthService                        glxgears                       nl-neightbl-list                         sg_unmap
+WebKitWebDriver                      glxinfo                        nl-pktloc-lookup                         sg_verify
+X                                    glxinfo64                      nl-qdisc-add                             sg_vpd
+Xorg                                 gneqn                          nl-qdisc-delete                          sg_wr_mode
+Xvnc                                 gnome-boxes                    nl-qdisc-list                            sg_write_buffer
+Xwayland                             gnome-calculator               nl-route-add                             sg_write_long
+'['                                   gnome-characters               nl-route-delete                          sg_write_same
+ac                                   gnome-control-center           nl-route-get                             sg_write_verify
+aconnect                             gnome-disk-image-mounter       nl-route-list                            sg_write_x
+addr2line                            gnome-disks                    nl-rule-list                             sg_xcopy
+alias                                gnome-font-viewer              nl-tctree-list                           sg_zone
+alsaloop                             gnome-help                     nl-util-addr                             sginfo
+alsamixer                            gnome-keyring                  nm                                       sgm_dd
+alsatplg                             gnome-keyring-3                nm-connection-editor                     sgp_dd
+alsaunmute                           gnome-keyring-daemon           nm-online                                sh
+amidi                                gnome-logs                     nmcli                                    sha1hmac
+amixer                               gnome-screenshot               nmtui                                    sha1sum
+amuFormat.sh                         gnome-session                  nmtui-connect                            sha224hmac
+anaconda-cleanup                     gnome-session-custom-session   nmtui-edit                               sha224sum
+anaconda-disable-nm-ibft-plugin      gnome-session-inhibit          nmtui-hostname                           sha256hmac
+analog                               gnome-session-quit             nohup                                    sha256sum
+aplay                                gnome-session-selector         notify-send                              sha384hmac
+aplaymidi                            gnome-shell                    nproc                                    sha384sum
+appstream-compose                    gnome-shell-extension-prefs    nroff                                    sha512hmac
+appstream-util                       gnome-shell-extension-tool     nsenter                                  sha512sum
+apropos                              gnome-shell-perf-tool          nslookup                                 showconsolefont
+ar                                   gnome-software                 nsupdate                                 showkey
+arch                                 gnome-system-monitor           numad                                    showrgb
+arecord                              gnome-terminal                 numfmt                                   shred
+arecordmidi                          gnome-text-editor              objcopy                                  shuf
+arpaname                             gnome-thumbnail-font           objdump                                  sim_lsmplugin
+as                                   gnroff                         od                                       simc_lsmplugin
+aseqdump                             gpasswd                        oddjob_request                           size
+aseqnet                              gpg                            open                                     skill
+aserver                              gpg-agent                      openssl                                  slabtop
+aspell                               gpg-connect-agent              openvt                                   sleep
+at                                   gpg-error                      orc-bugreport                            sliceprint
+atq                                  gpg-zip                        orca                                     slirp4netns
+atrm                                 gpg2                           os-prober                                sndfile-resample
+attr                                 gpgconf                        osinfo-db-export                         snice
+audit2allow                          gpgparsemail                   osinfo-db-import                         soelim
+audit2why                            gpgsm                          osinfo-db-path                           sort
+aulast                               gpgsplit                       osinfo-db-validate                       sotruss
+aulastlog                            gpgv                           osinfo-detect                            soundstretch
+ausyscall                            gpgv2                          osinfo-install-script                    speak-ng
+authselect                           gpic                           osinfo-query                             speaker-test
+auvirt                               gpio-event-mon                 ostree                                   speech-dispatcher
+awk                                  gpio-hammer                    over                                     spell
+axfer                                gprof                          p11-kit                                  spice-vdagent
+b2sum                                gr2fonttest                    pacat                                    split
+baobab                               grep                           pacmd                                    sprof
+base32                               grilo-test-ui-0.3              pactl                                    sqlite3
+base64                               grl-inspect-0.3                padsp                                    sscg
+basename                             grl-launch-0.3                 padsp-32                                 ssh
+bash                                 groff                          pam-panel-icon                           ssh-add
+bashbug                              grops                          pamon                                    ssh-agent
+bashbug-64                           grotty                         panelctl                                 ssh-copy-id
+batch                                groups                         pango-list                               ssh-keygen
+bc                                   grub2-editenv                  pango-view                               ssh-keyscan
+bccmd                                grub2-file                     paperconf                                sss_ssh_authorizedkeys
+bdftopcf                             grub2-fstest                   paplay                                   sss_ssh_knownhostsproxy
+bg                                   grub2-glue-efi                 paps                                     start-pulseaudio-x11
+blkiomon                             grub2-kbdcomp                  parec                                    startx
+blkparse                             grub2-menulst2cfg              parecord                                 stat
+blkrawverify                         grub2-mkfont                   passwd                                   states
+blktrace                             grub2-mkimage                  paste                                    stdbuf
+bluemoon                             grub2-mklayout                 pasuspender                              strace
+bluetooth-sendto                     grub2-mknetdir                 pathchk                                  strace-log-merge
+bluetoothctl                         grub2-mkpasswd-pbkdf2          pax11publish                             strings
+bno_plot.py                          grub2-mkrelpath                pbm2ppa                                  strip
+boltctl                              grub2-mkrescue                 pbmtpg                                   stty
+bond2team                            grub2-mkstandalone             pchrt                                    su
+bootctl                              grub2-script-check             pdf2dsc                                  sudo
+brltty                               grub2-syslinux2cfg             pdf2ps                                   sudoedit
+brltty-atb                           gs                             pdfdetach                                sudoreplay
+brltty-config                        gsettings                      pdffonts                                 sum
+brltty-ctb                           gsettings-data-convert         pdfimages                                sushi
+brltty-ktb                           gsf-office-thumbnailer         pdfinfo                                  symlinks
+brltty-lsinc                         gsnd                           pdfseparate                              sync
+brltty-trtxt                         gsoelim                        pdfsig                                   systemctl
+brltty-ttb                           gst-inspect-1.0                pdftocairo                               systemd-analyze
+brltty-tune                          gst-launch-1.0                 pdftohtml                                systemd-ask-password
+broadwayd                            gst-stats-1.0                  pdftoppm                                 systemd-cat
+brotli                               gst-typefind-1.0               pdftops                                  systemd-cgls
+btattach                             gtar                           pdftotext                                systemd-cgtop
+btmon                                gtbl                           pdfunite                                 systemd-delta
+btrace                               gtf                            peekfd                                   systemd-detect-virt
+btrecord                             gtk-launch                     perl                                     systemd-escape
+btreplay                             gtk-query-immodules-2.0-64     perl5.26.3                               systemd-firstboot
+btt                                  gtk-query-immodules-3.0-64     perldoc                                  systemd-hwdb
+buildah                              gtk-update-icon-cache          pflags                                   systemd-inhibit
+bunzip2                              gtroff                         pgrep                                    systemd-machine-id-setup
+busctl                               gunzip                         pic                                      systemd-mount
+bwrap                                gupnp-dlna-info-2.0            piconv                                   systemd-notify
+bzcat                                gupnp-dlna-ls-profiles-2.0     pidof                                    systemd-nspawn
+bzcmp                                gzexe                          pigz                                     systemd-path
+bzdiff                               gzip                           pinentry                                 systemd-resolve
+bzegrep                              hash                           pinentry-curses                          systemd-run
+bzfgrep                              hciattach                      pinentry-gtk                             systemd-socket-activate
+bzgrep                               hciconfig                      pinentry-gtk-2                           systemd-stdio-bridge
+bzip2                                hcidump                        pinfo                                    systemd-sysusers
+bzip2recover                         hcitool                        ping                                     systemd-tmpfiles
+bzless                               head                           pinky                                    systemd-tty-ask-password-agent
+bzmore                               hex2hcd                        pip-3                                    systemd-umount
+c++filt                              hexdump                        pip-3.6                                  tabs
+ca-legacy                            host                           pip3                                     tac
+cairo-sphinx                         hostid                         pip3.6                                   tail
+cal                                  hostname                       pipewire                                 tar
+calibrate_ppa                        hostnamectl                    pitchplay                                taskset
+canberra-boot                        hunspell                       pkaction                                 tbl
+canberra-gtk-play                    i386                           pkcheck                                  teamd
+cancel                               ibdev2netdev                   pkcon                                    teamdctl
+cancel.cups                          ibus                           pkexec                                   teamnl
+captoinfo                            ibus-daemon                    pkg-config                               tee
+cat                                  ibus-setup                     pkgconf                                  test
+catchsegv                            iceauth                        pkill                                    test_ppa
+catman                               iconv                          pkla-admin-identities                    testlibraw
+cd                                   id                             pkla-check-authorization                 tgz
+cd-convert                           idiag-socket-details           pkmon                                    tic
+cd-create-profile                    idn                            pkttyagent                               time
+cd-drive                             iecset                         pldd                                     timedatectl
+cd-fix-profile                       iio_event_monitor              plistutil                                timeout
+cd-iccdump                           iio_generic_buffer             plymouth                                 tload
+cd-info                              info                           pmap                                     tmon
+cd-it8                               infocmp                        pnm2ppa                                  toe
+cd-paranoia                          infotocap                      pod2man                                  top
+cd-read                              install                        pod2text                                 totem
+cdda-player                          instperf                       pod2usage                                totem-video-thumbnailer
+celtdec051                           ionice                         podman                                   touch
+celtenc051                           ipcalc                         post-grohtml                             tpm2_activatecredential
+centrino-decode                      ipcmk                          powernow-k8-decode                       tpm2_certify
+chacl                                ipcrm                          ppdc                                     tpm2_create
+chage                                ipcs                           ppdhtml                                  tpm2_createpolicy
+chardetect                           iptc                           ppdi                                     tpm2_createprimary
+chattr                               isdv4-serial-inputattach       ppdmerge                                 tpm2_dictionarylockout
+chcat                                iso-info                       ppdpo                                    tpm2_encryptdecrypt
+chcon                                iso-read                       pr                                       tpm2_evictcontrol
+checkmodule                          isodebug                       pre-grohtml                              tpm2_getcap
+checkpolicy                          isodump                        precat                                   tpm2_getmanufec
+cheese                               isoinfo                        preconv                                  tpm2_getpubak
+chfn                                 isosize                        preunzip                                 tpm2_getpubek
+chgrp                                isovfy                         prezip                                   tpm2_getrandom
+chmem                                ispell                         prezip-bin                               tpm2_hash
+chmod                                itstool                        printenv                                 tpm2_hmac
+chown                                jimsh                          printf                                   tpm2_listpersistent
+chrome-gnome-shell                   jobs                           prlimit                                  tpm2_load
+chronyc                              join                           prtstat                                  tpm2_loadexternal
+chrt                                 jose                           ps                                       tpm2_makecredential
+chsh                                 journalctl                     ps2ascii                                 tpm2_nvdefine
+chvt                                 json_reformat                  ps2epsi                                  tpm2_nvlist
+ciptool                              json_verify                    ps2pdf                                   tpm2_nvread
+cksum                                kbd_mode                       ps2pdf12                                 tpm2_nvreadlock
+clear                                kbdinfo                        ps2pdf13                                 tpm2_nvrelease
+clevis                               kbdrate                        ps2pdf14                                 tpm2_nvwrite
+clevis-decrypt                       kbxutil                        ps2pdfwr                                 tpm2_pcrevent
+clevis-decrypt-sss                   kdumpctl                       ps2ps                                    tpm2_pcrextend
+clevis-decrypt-tang                  kernel-install                 ps2ps2                                   tpm2_pcrlist
+clevis-decrypt-tpm2                  keyctl                         psfaddtable                              tpm2_quote
+clevis-encrypt-sss                   kill                           psfgettable                              tpm2_rc_decode
+clevis-encrypt-tang                  killall                        psfstriptable                            tpm2_readpublic
+clevis-encrypt-tpm2                  kmod                           psfxtable                                tpm2_rsadecrypt
+clevis-luks-bind                     kvm_stat                       pslog                                    tpm2_rsaencrypt
+clevis-luks-unbind                   l2ping                         pstree                                   tpm2_send
+clevis-luks-unlock                   l2test                         pstree.x11                               tpm2_sign
+cmp                                  last                           ptaskset                                 tpm2_startup
+cockpit-bridge                       lastb                          ptx                                      tpm2_takeownership
+col                                  lastcomm                       pulseaudio                               tpm2_unseal
+colcrt                               lastlog                        pwd                                      tpm2_verifysignature
+colormgr                             lchfn                          pwdx                                     tput
+colrm                                lchsh                          pwmake                                   tr
+column                               ld                             pwscore                                  tracepath
+comm                                 ld.bfd                         pydoc-3                                  tracker
+command                              ld.gold                        pydoc3                                   tree
+compress                             ldd                            pydoc3.6                                 troff
+consolehelper                        less                           python3                                  true
+consolehelper-gtk                    lessecho                       python3.6                                truncate
+coredumpctl                          lesskey                        python3.6m                               trust
+cp                                   lesspipe.sh                    pyvenv-3                                 tset
+cpio                                 lexgrog                        pyvenv-3.6                               tsort
+cpupower                             libieee1284_test               qemu-ga                                  tty
+cronnext                             libinput                       qemu-img                                 turbostat
+crontab                              libtar                         qemu-io                                  type
+csplit                               libwacom-list-local-devices    qemu-keymap                              tzselect
+csslint-0.6                          link                           qemu-nbd                                 ucs2any
+cups-calibrate                       linux-boot-prober              qemu-pr-helper                           udevadm
+cupstestdsc                          linux32                        qmi-firmware-update                      udisksctl
+cupstestppd                          linux64                        qmi-network                              ul
+curl                                 liveinst                       qmicli                                   ulimit
+cut                                  ln                             quota                                    ulockmgr_server
+cvt                                  loadkeys                       quotasync                                umask
+cvtsudoers                           loadunimap                     ranlib                                   umax_pp
+date                                 locale                         rarian-example                           umount
+db_archive                           localectl                      rarian-sk-config                         unalias
+db_checkpoint                        localedef                      rarian-sk-extract                        uname
+db_deadlock                          locate                         rarian-sk-gen-uuid                       uname26
+db_dump                              logger                         rarian-sk-get-cl                         uncompress
+db_dump185                           login                          rarian-sk-get-content-list               unexpand
+db_hotbackup                         loginctl                       rarian-sk-get-extended-content-list      unicode_start
+db_load                              logname                        rarian-sk-get-scripts                    unicode_stop
+db_log_verify                        look                           rarian-sk-install                        uniq
+db_printlog                          lp                             rarian-sk-migrate                        unix2dos
+db_recover                           lp.cups                        rarian-sk-preinstall                     unix2mac
+db_replicate                         lpoptions                      rarian-sk-rebuild                        unlink
+db_stat                              lpq                            rarian-sk-update                         unlz4
+db_tuner                             lpq.cups                       raw                                      unpigz
+db_upgrade                           lpr                            rctest                                   unshare
+db_verify                            lpr.cups                       read                                     unversioned-python
+dbilogstrip                          lprm                           readelf                                  unxz
+dbiprof                              lprm.cups                      readlink                                 unzip
+dbus-binding-tool                    lpstat                         readmult                                 unzipsfx
+dbus-cleanup-sockets                 lpstat.cups                    realpath                                 update-ca-trust
+dbus-daemon                          ls                             recode-sr-latin                          update-crypto-policies
+dbus-launch                          lsattr                         red                                      update-desktop-database
+dbus-monitor                         lsblk                          rename                                   update-gtk-immodules
+dbus-run-session                     lscpu                          renew-dummy-cert                         update-mime-database
+dbus-send                            lsgpio                         renice                                   updatedb
+dbus-test-tool                       lsiio                          report-cli                               upower
+dbus-update-activation-environment   lsinitrd                       report-gtk                               uptime
+dbus-uuidgen                         lsipc                          reporter-rhtsupport                      usb-devices
+dc                                   lslocks                        reporter-upload                          usbhid-dump
+dconf                                lslogins                       rescan-scsi-bus.sh                       userformat
+dd                                   lsmcli                         reset                                    userinfo
+deallocvt                            lsmd                           resizecons                               usermount
+delv                                 lsmem                          resolvectl                               userpasswd
+desktop-file-edit                    lsns                           rev                                      users
+desktop-file-install                 lsof                           rfcomm                                   usleep
+desktop-file-validate                lsscsi                         rm                                       utmpdump
+detect_ppa                           lsusb                          rmdir                                    uuidgen
+df                                   lsusb.py                       rnano                                    uuidparse
+dfu-tool                             lua                            rngtest                                  uz
+diff                                 luac                           rofiles-fuse                             vdir
+diff3                                luksmeta                       rpcbind                                  vdo
+diffpp                               lz                             rpcinfo                                  vdodmeventd
+dig                                  lz4                            rpm                                      vdodumpconfig
+dir                                  lz4c                           rpm2archive                              vdoforcerebuild
+dircolors                            lz4cat                         rpm2cpio                                 vdoformat
+dirmngr                              lzop                           rpmdb                                    vdoprepareupgrade
+dirmngr-client                       mac2unix                       rpmkeys                                  vdoreadonly
+dirname                              machinectl                     rpmquery                                 vdostats
+dmesg                                make-dummy-cert                rpmverify                                verify_blkparse
+dnf                                  makedb                         rsync                                    vi
+dnf-3                                man                            rsyslog-recover-qi.pl                    view
+dnsdomainname                        mandb                          run-parts                                vim
+domainname                           manpath                        run-with-aspell                          vimdiff
+dos2unix                             mapscrn                        runc                                     vimtutor
+dracut                               mattrib                        runcon                                   vlock
+driverless                           mbadblocks                     rvi                                      vm-support
+du                                   mbim-network                   rview                                    vmhgfs-fuse
+dumpiso                              mbimcli                        rvim                                     vmstat
+dumpkeys                             mcat                           rxe_cfg                                  vmtoolsd
+dvcont                               mcd                            sandbox                                  vmware-checkvm
+dwp                                  mcheck                         sane-find-scanner                        vmware-guestproxycerttool
+easy_install-3                       mclasserase                    satyr                                    vmware-hgfsclient
+easy_install-3.6                     mcomp                          sbcdec                                   vmware-namespace-cmd
+echo                                 mcookie                        sbcenc                                   vmware-rpctool
+ed                                   mcopy                          sbcinfo                                  vmware-toolbox-cmd
+edid-decode                          mcpp                           scanimage                                vmware-user
+egrep                                md5sum                         scp                                      vmware-user-suid-wrapper
+eject                                mdel                           scp-dbus-service                         vmware-vgauth-cmd
+elfedit                              mdeltree                       script                                   vmware-vmblock-fuse
+encguess                             mdir                           scriptreplay                             vmware-xferlogs
+enchant-2                            mdu                            scrollkeeper-config                      vncconfig
+enchant-lsmod-2                      mesg                           scrollkeeper-extract                     vncpasswd
+enscript                             metacity                       scrollkeeper-gen-seriesid                vstp
+env                                  metacity-message               scrollkeeper-get-cl                      w
+envsubst                             mformat                        scrollkeeper-get-content-list            wait
+eog                                  minfo                          scrollkeeper-get-extended-content-list   wall
+eps2eps                              mkafmmap                       scrollkeeper-get-index-from-docpath      watch
+eqn                                  mkdir                          scrollkeeper-get-toc-from-docpath        watchgnupg
+escputil                             mkfifo                         scrollkeeper-get-toc-from-id             wavpack
+espeak-ng                            mkfontdir                      scrollkeeper-install                     wc
+eutp                                 mkfontscale                    scrollkeeper-preinstall                  wdctl
+evince                               mkhybrid                       scrollkeeper-rebuilddb                   wget
+evince-previewer                     mkinitrd                       scrollkeeper-uninstall                   whatis
+evince-thumbnailer                   mkisofs                        scrollkeeper-update                      whereis
+evmctl                               mkmanifest                     scsi-rescan                              which
+ex                                   mknod                          scsi_logging_level                       whiptail
+exempi                               mkrfc2734                      scsi_mandat                              who
+exiv2                                mktemp                         scsi_readcap                             whoami
+expand                               mlabel                         scsi_ready                               wnck-urgency-monitor
+expr                                 mmc-tool                       scsi_satl                                word-list-compress
+factor                               mmcli                          scsi_start                               write
+fallocate                            mmd                            scsi_stop                                wvgain
+false                                mmount                         scsi_temperature                         wvtag
+fc                                   mmove                          sdiff                                    wvunpack
+fc-cache                             modulemd-validator-v1          sdptool                                  x86_64
+fc-cache-64                          monitor-sensor                 sealert                                  x86_64-redhat-linux-gnu-pkg-config
+fc-cat                               more                           secon                                    x86_energy_perf_policy
+fc-conflist                          mount                          secret-tool                              xargs
+fc-list                              mountpoint                     sed                                      xauth
+fc-match                             mousetweaks                    sedismod                                 xbrlapi
+fc-pattern                           mpartition                     sedispol                                 xdg-desktop-icon
+fc-query                             mpris-proxy                    semodule_expand                          xdg-desktop-menu
+fc-scan                              mrd                            semodule_link                            xdg-email
+fc-validate                          mren                           semodule_package                         xdg-icon-resource
+fg                                   msgattrib                      semodule_unpackage                       xdg-mime
+fgconsole                            msgcat                         sendiso                                  xdg-open
+fgrep                                msgcmp                         seq                                      xdg-screensaver
+file                                 msgcomm                        sessreg                                  xdg-settings
+file-roller                          msgconv                        setarch                                  xdg-user-dir
+fincore                              msgen                          setfacl                                  xdg-user-dirs-gtk-update
+find                                 msgexec                        setfattr                                 xdg-user-dirs-update
+findmnt                              msgfilter                      setfont                                  xdpyinfo
+fips-finish-install                  msgfmt                         setkeycodes                              xdriinfo
+fips-mode-setup                      msggrep                        setleds                                  xev
+fipscheck                            msginit                        setmetamode                              xgamma
+fipshmac                             msgmerge                       setpriv                                  xgettext
+firefox                              msgunfmt                       setsid                                   xhost
+firewall-cmd                         msguniq                        setterm                                  xinit
+firewall-offline-cmd                 mshortname                     setup-nsssysinit                         xinput
+flatpak                              mshowfat                       setup-nsssysinit.sh                      xkbcomp
+flatpak-bisect                       mtools                         setvtrgb                                 xkill
+flatpak-coredumpctl                  mtoolstest                     setxkbmap                                xlsatoms
+flock                                mtype                          sftp                                     xlsclients
+fmt                                  mutter                         sg                                       xlsfonts
+fold                                 mv                             sg_bg_ctl                                xmlcatalog
+fonttosfnt                           mxtar                          sg_compare_and_write                     xmllint
+foomatic-rip                         mzip                           sg_copy_results                          xmlsec1
+fprintd-delete                       namei                          sg_dd                                    xmlwf
+fprintd-enroll                       nano                           sg_decode_sense                          xmodmap
+fprintd-list                         nautilus                       sg_emc_trespass                          xorg-x11-fonts-update-dirs
+fprintd-verify                       nautilus-autorun-software      sg_format                                xprop
+free                                 nautilus-sendto                sg_get_config                            xrandr
+fribidi                              nc                             sg_get_lba_status                        xrdb
+funzip                               ncat                           sg_ident                                 xrefresh
+fuse-overlayfs                       ndctl                          sg_inq                                   xset
+fusermount                           ndptool                        sg_logs                                  xsetpointer
+fwupdmgr                             nenscript                      sg_luns                                  xsetroot
+g13                                  neqn                           sg_map                                   xsetwacom
+gapplication                         netstat                        sg_map26                                 xsltproc
+gatttool                             newgidmap                      sg_modes                                 xstdcmap
+gawk                                 newgrp                         sg_opcodes                               xvinfo
+gcalccmd                             newuidmap                      sg_persist                               xwininfo
+gcm-calibrate                        nf-ct-add                      sg_prevent                               xxd
+gcm-import                           nf-ct-list                     sg_raw                                   xz
+gcm-inspect                          nf-exp-add                     sg_rbuf                                  xzcat
+gcm-picker                           nf-exp-delete                  sg_rdac                                  xzcmp
+gcm-viewer                           nf-exp-list                    sg_read                                  xzdec
+gconf-merge-tree                     nf-log                         sg_read_attr                             xzdiff
+gconftool-2                          nf-monitor                     sg_read_block_limits                     xzegrep
+gcr-viewer                           nf-queue                       sg_read_buffer                           xzfgrep
+gdbm_dump                            ngettext                       sg_read_long                             xzgrep
+gdbm_load                            nice                           sg_readcap                               xzless
+gdbmtool                             nisdomainname                  sg_reassign                              xzmore
+gdbus                                nl                             sg_referrals                             yelp
+gdk-pixbuf-query-loaders-64          nl-addr-add                    sg_rep_zones                             yelp-build
+gdk-pixbuf-thumbnailer               nl-addr-delete                 sg_requests                              yelp-check
+gdmflexiserver                       nl-addr-list                   sg_reset                                 yelp-new
+gedit                                nl-class-add                   sg_reset_wp                              yes
+gencat                               nl-class-delete                sg_rmsn                                  ypdomainname
+genisoimage                          nl-class-list                  sg_rtpg                                  yum
+genl-ctrl-list                       nl-classid-lookup              sg_safte                                 zcat
+geqn                                 nl-cls-add                     sg_sanitize                              zcmp
+getconf                              nl-cls-delete                  sg_sat_identify                          zdiff
+getent                               nl-cls-list                    sg_sat_phy_event                         zegrep
+getfacl                              nl-fib-lookup                  sg_sat_read_gplog                        zenity
+getfattr                             nl-link-enslave                sg_sat_set_features                      zfgrep
+getkeycodes                          nl-link-ifindex2name           sg_scan                                  zforce
+getopt                               nl-link-list                   sg_seek                                  zgrep
+getopts                              nl-link-name2ifindex           sg_senddiag                              zip
+gettext                              nl-link-release                sg_ses                                   zipcloak
+gettext.sh                           nl-link-set                    sg_ses_microcode                         zipgrep
+ghostscript                          nl-link-stats                  sg_start                                 zipinfo
+gio                                  nl-list-caches                 sg_stpg                                  zipnote
+gio-querymodules-64                  nl-list-sockets                sg_stream_ctl                            zipsplit
+gjs                                  nl-monitor                     sg_sync                                  zless
+gjs-console                          nl-neigh-add                   sg_test_rwbuf                            zmore
+gkbd-keyboard-display                nl-neigh-delete                sg_timestamp                             znew
+glib-compile-schemas                 nl-neigh-list                  sg_turs                                  zsoelim
+```
