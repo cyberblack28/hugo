@@ -10,69 +10,111 @@ description: "calling custom Shortcodes into your content files."
 
 ### 1.現在のディレクトリ（カレントディレクトリ）を表示するコマンドを実行してください。
 
-```
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
 $ pwd
 /home/student
-```
-<details>
-  <summary>
-    Visible text
-  </summary>
-  Hidden text; seen after clicking that accordion arrow
+</pre>
+</div>
 </details>
+{{< /accordion >}}
 
 ### 2.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
 
-```
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
 $ cd
-```
+</pre>
 
-```
+<pre>
 $ cd ~
-```
+</pre>
 
-```
-$ cd /home/student
-```
+<pre>
+$ cd
+/home/student
+</pre>
+</div>
+</details>
+{{< /accordion >}}
 
 ### 3.カレントディレクトリを確認するコマンドを実行してください。
 
-```
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
 $ pwd
 /home/student
-```
+</pre>
+</div>
+</details>
+{{< /accordion >}}
 
 ### 4.カレントディレクトリをルートディレクトリに変更してください。
 
-```
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
 $ cd /
-```
+</pre>
+</div>
+</details>
+{{< /accordion >}}
 
 ### 5.カレントディレクトリを確認するコマンドを実行してください。
 
-```
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
 $ pwd
 /
-```
+</pre>
+</div>
+</details>
+{{< /accordion >}}
 
 ### 6.ルートディレクトリの直下に保存されているディレクトリやファイルを表示してください。
 
-```
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
 $ ls /
 bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
 boot  etc  lib   media  opt  root  sbin  sys  usr
-```
+</pre>
 
-```
+<pre>
 //カレントディレクトリが「/」の場合は「ls」だけでも確認できます。
 $ ls
 bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
 boot  etc  lib   media  opt  root  sbin  sys  usr
-```
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
 
 ### 7.ルートディレクトリの直下にあるbinというディレクトリ内容を、現在のカレントディレクトリを変更せずに表示してください。
 
-```
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
 $ ls /bin
   VGAuthService                        glxgears                       nl-neightbl-list                         sg_unmap
   WebKitWebDriver                      glxinfo                        nl-pktloc-lookup                         sg_verify
@@ -443,9 +485,9 @@ $ ls /bin
   gjs-console                          nl-neigh-add                   sg_test_rwbuf                            zmore
   gkbd-keyboard-display                nl-neigh-delete                sg_timestamp                             znew
   glib-compile-schemas                 nl-neigh-list                  sg_turs                                  zsoelim
-```
+</pre>
 
-```
+<pre>
 //カレントディレクトリが「/」の場合は「/」無しでも確認できます。
 $ ls bin
 VGAuthService                        glxgears                       nl-neightbl-list                         sg_unmap
@@ -817,4 +859,9 @@ gjs                                  nl-monitor                     sg_sync     
 gjs-console                          nl-neigh-add                   sg_test_rwbuf                            zmore
 gkbd-keyboard-display                nl-neigh-delete                sg_timestamp                             znew
 glib-compile-schemas                 nl-neigh-list                  sg_turs                                  zsoelim
-```
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+***
