@@ -13,7 +13,7 @@ images:
 
 ## The Techdoc is a Hugo Theme for technical documentation.
 
-test
+nothing
 
 ## Features
 
