@@ -11,7 +11,7 @@ description: "calling custom Shortcodes into your content files."
 ### 1.File & Directory Management
 
 * [Exercise1 File & Directory](exercise1-file-directory)
-* [Exercise2 Search of file & Command usage]()
-* [Exercise3 File & Basic operation of directory]()
+* [Exercise2 Search of file & Command usage](exercise2-search-of-file-command-usage)
+* [Exercise3 File & Basic operation of directory](exercise3-file-basic-operation-of-directory)
 * [Exercise4 Archive & Compress file]()
 * [Exercise5 Text editor]()

@@ -9,7 +9,7 @@ weight: 10
 
 次の図を参照しながら、同じディレクトリ構成を作成してみましょう。
 
-![sample directory](/images/linux-exercise3_01.png)
+![sample directory](/hugo/images/linux-exercise3_01.png)
 
 ### 1.ホームディレクトリ（/home/student）に移動して、カレントディレクトリを確認してください。
 
@@ -302,6 +302,8 @@ $
 </div>
 </details>
 {{< /accordion >}}
+
+***
 
 ## 4.長文テキストの表示および閲覧
 
