@@ -3,7 +3,6 @@ title: "Exercise1 File & Directory"
 date: 2017-10-17T15:26:15Z
 draft: false
 weight: 10
-description: "calling custom Shortcodes into your content files."
 ---
 
 ## 1.pwd,ls,cdコマンド演習
@@ -865,3 +864,312 @@ glib-compile-schemas                 nl-neigh-list                  sg_turs     
 {{< /accordion >}}
 
 ***
+
+## 2.絶対パス演習
+
+### 1.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ cd
+</pre>
+
+<pre>
+$ cd ~
+</pre>
+
+<pre>
+$ cd /home/student
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 2.カレントディレクトリを確認するコマンドを実行してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ pwd
+/home/student
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 3.カレントディレクトリから絶対パスを指定して、ルートディレクトリの直下にあるvarディレクトリの中にあるlogディレクトリの内容を確認してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ ls /var/log/
+README      audit              btmp    cups             dnf.rpm.log  glusterfs   libvirt   private  secure             sssd   wtmp
+Xorg.9.log  boot.log           chrony  dnf.librepo.log  firewalld    hawkey.log  maillog   qemu-ga  speech-dispatcher  swtpm
+anaconda    boot.log-20200128  cron    dnf.log          gdm          lastlog     messages  samba    spooler            tuned
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 4.カレントディレクトリから絶対パスを指定して、ルートディレクトリの直下にあるusrディレクトリの中にあるlocalディレクトリにキーボードのTabキーを利用して補完しながら移動してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ cd /u[Tab]/lo[Tab]
+$ pwd
+/usr/local
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 5.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ cd
+</pre>
+
+<pre>
+$ cd ~
+</pre>
+
+<pre>
+$ cd /home/student
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 6.カレントディレクトリを確認するコマンドを実行してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ pwd
+/home/student
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+***
+
+## 3.相対パス演習
+
+### 1.カレントディレクトリを相対パスを指定して、ルートディレクトリに変更してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ cd /
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 2.カレントディレクトリを確認するコマンドを実行してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ pwd
+/
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 3.カレントディレクトリを相対パスを指定して、/sys/devices/platform/powerに変更してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ cd sys/devices/platform/power
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 4.カレントディレクトリを確認するコマンドを実行してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ pwd
+/sys/devices/platform/power
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 5.カレントディレクトリを相対パスを指定して、ルートディレクトリに変更してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ cd ../../../../
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 6.カレントディレクトリを確認するコマンドを実行してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ pwd
+/
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 7.カレントディレクトリから相対パスを指定して、ルートディレクトリの直下にあるvarディレクトリの中にあるlogディレクトリの内容を確認してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ ls var/log
+  README      audit              btmp    cups             dnf.rpm.log  glusterfs   libvirt   private  secure             sssd   wtmp
+  Xorg.9.log  boot.log           chrony  dnf.librepo.log  firewalld    hawkey.log  maillog   qemu-ga  speech-dispatcher  swtpm
+  anaconda    boot.log-20200128  cron    dnf.log          gdm          lastlog     messages  samba    spooler            tuned
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+***
+
+## 4.コマンド操作色々
+
+これまでの復習とまだやったことのない課題があります。Webを利用し、調べながらチャレンジしてください。最初から回答を見ずに考えてみましょう。
+
+### 1.カレントディレクトリを確認するコマンドは何ですか。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ pwd
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 2.ホームディレクトリに移動するコマンドを3個挙げてください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ cd
+</pre>
+
+<pre>
+$ cd ~
+</pre>
+
+<pre>
+$ cd /home/student
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 3.実行してきたコマンドの履歴を確認するコマンドは何ですか。コマンド以外にの操作方法は何ですか。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ history
+</pre>
+
+<pre>
+キーボードの[↑]キーを押す
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 4.補完機能を利用する場合にはどのキーを必要としますか。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+[Tab]キー
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 5.lsコマンドを1回実行して、ルートディレクトリとホームディレクトリを確認してください。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ ls / /home
+/:
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+  
+/home:
+student
+</pre>
+</div>
+</details>
+{{< /accordion >}}
+
+### 6.カレントディレクトリの一つ上のディレクトリを相対パスで確認する場合はどうしますか。
+
+{{< accordion >}}
+<details style="margin-top: 10px;">
+<summary>Answer</summary>
+<div>
+<pre>
+$ ls ../
+</pre>
+
+<pre>
+$ ls ..
+</pre>
+</div>
+</details>
+{{< /accordion >}}
