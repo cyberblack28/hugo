@@ -24,3 +24,7 @@ TableOfContents: true
 ### 3.Prosess & Job Management
 
 * [Exercise1 Prosess & Job Management](chapter1-3/exercise1-prosess-job-management)
+
+### 4.Shell
+
+* [Exercise1 Standard input/output & Pipeline](chapter1-3/exercise1-standard-input-output-pipeline)

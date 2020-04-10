@@ -13,5 +13,5 @@ images:
 
 ## Features
 
-* [Training](training/)
+* [Linux](chapter1/)
 * [Cyberblack's Tech Blog](blog/)
