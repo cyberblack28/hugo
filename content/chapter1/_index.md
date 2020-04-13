@@ -27,4 +27,13 @@ TableOfContents: true
 
 ### 4.Shell
 
-* [Exercise1 Standard input/output & Pipeline](chapter1-3/exercise1-standard-input-output-pipeline)
+* [Exercise1 Standard input/output & Pipeline](chapter1-4/exercise1-standard-input-output-pipeline)
+* [Exercise2 About Bash](chapter1-4/exercise2-about-bash)
+* [Exercise3 grep command & regular expression](chapter1-4/exercise3-grep-command-regular-expression)
+* [Exercise4 Advanced Text Processing](chapter1-4/exercise4-advanced-text-processing)
+* [Exercise5 Creation and automatic execution of Shell Script](chapter1-4/exercise5-creation-automatic-execution-of-shell-script)
+* [Exercise6 Write a Shell Script](chapter1-4/exercise6-write-a-shell-script)
+
+### 5.Package Management
+
+* [Exercise1 rpm & dnf](chapter1-5/exercise1-rpm-dnf)

@@ -9,7 +9,7 @@ weight: 10
 
 stressコマンドを利用して、フォアグラウンドとバックグラウンドのジョブの切替を確認します。
 
-### 1.rootユーザに変更してください。
+1.rootユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -24,7 +24,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 2.stressのRPMパッケージをインストールします。
+2.stressのRPMパッケージをインストールします。
 
 ※ダウンロード:https://www.cyberblack.net/practice/linux/zip/stress-1.0.4-23.el8.x86_64.rpm
 
@@ -46,10 +46,10 @@ stress-1.0.4-23.el8 100%[===================>]  38.72K  77.5KB/s 時間 0.5s
 2020-02-02 20:23:06 (77.5 KB/s) - `stress-1.0.4-23.el8.x86_64.rpm' へ保存完了 [39652/39652]
 # rpm -Uvh stress-1.0.4-23.el8.x86_64.rpm
 警告: stress-1.0.4-23.el8.x86_64.rpm: ヘッダー V4 RSA/SHA256 Signature、鍵 ID e755cc63: NOKEY
-Verifying...                          ################################# [100%]
-準備しています...              ################################# [100%]
+Verifying...                          ##############################[100%]
+準備しています...              ##############################[100%]
 更新中 / インストール中...
-   1:stress-1.0.4-23.el8              ################################# [100%]
+   1:stress-1.0.4-23.el8              ##############################[100%]
 # rpm -qa | grep stress
 stress-1.0.4-23.el8.x86_64
 </pre>
@@ -57,7 +57,7 @@ stress-1.0.4-23.el8.x86_64
 </details>
 {{< /accordion >}}
 
-### 3.4つのstressのプロセスを動かして、仮想マシンにで負荷をかけます。以下のstressコマンドを実行します。
+3.4つのstressのプロセスを動かして、仮想マシンにで負荷をかけます。以下のstressコマンドを実行します。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -71,7 +71,7 @@ stress: info: [30808] dispatching hogs: 3 cpu, 0 io, 0 vm, 0 hdd
 </details>
 {{< /accordion >}}
 
-### 4.3.で実行したstressコマンドが、フォアグラウンドジョブとして実行されているため、端末ウインドウではほかのコマンドが入力できません。キー入力を行えるようにするため、バックグラウンドジョブに変更してください。
+4.3.で実行したstressコマンドが、フォアグラウンドジョブとして実行されているため、端末ウインドウではほかのコマンドが入力できません。キー入力を行えるようにするため、バックグラウンドジョブに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -94,7 +94,7 @@ stress: info: [30808] dispatching hogs: 3 cpu, 0 io, 0 vm, 0 hdd
 </details>
 {{< /accordion >}}
 
-### 5.バックグラウンドジョブになっていること確認してください。
+5.バックグラウンドジョブになっていること確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -108,7 +108,7 @@ stress: info: [30808] dispatching hogs: 3 cpu, 0 io, 0 vm, 0 hdd
 </details>
 {{< /accordion >}}
 
-### 6.stressコマンドを終了させます。一度、フォアグラウンドジョブに戻した後、[Ctrl] + [c]で終了させて下さい。
+6.stressコマンドを終了させます。一度、フォアグラウンドジョブに戻した後、[Ctrl] + [c]で終了させて下さい。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -125,7 +125,7 @@ stress --cpu 3
 </details>
 {{< /accordion >}}
 
-### 7.stressコマンドが終了したことを確認してください。
+7.stressコマンドが終了したことを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -144,7 +144,7 @@ stress --cpu 3
 
 stressコマンドを使って、ジョブとプロセスの違い、psコマンドやkillコマンドについて確認します。
 
-### 1.バックグラウンドジョブとして、「stress --cpu 3」コマンドを実行し、確認してください。
+1.バックグラウンドジョブとして、「stress --cpu 3」コマンドを実行し、確認してください。
 
 ※プロンプトが戻らない場合は、[Enter]キー何度か押してください。
 
@@ -168,7 +168,7 @@ stressコマンドを使って、ジョブとプロセスの違い、psコマン
 </details>
 {{< /accordion >}}
 
-### 2.stress --cpu 3は、ジョブとしては1つです。psコマンドで、プロセス単位でみたときのstress --cpu 3を確認します。
+2.stress --cpu 3は、ジョブとしては1つです。psコマンドで、プロセス単位でみたときのstress --cpu 3を確認します。
 
 オプション無しで、psコマンドを実行し、stressのプロセス数を確認してみましょう。
 
@@ -194,7 +194,7 @@ stressコマンドを使って、ジョブとプロセスの違い、psコマン
 </details>
 {{< /accordion >}}
 
-### 3.pstreeコマンドにpオプションを付けて、ツリー構造でstressプロセスの親子関係を確認してみましょう。「pstree -p | grep stress」
+3.pstreeコマンドにpオプションを付けて、ツリー構造でstressプロセスの親子関係を確認してみましょう。「pstree -p | grep stress」
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -210,7 +210,7 @@ stressコマンドを使って、ジョブとプロセスの違い、psコマン
 </details>
 {{< /accordion >}}
 
-### 4.killコマンドを使って、すべてのstressのプロセスを強制終了してください。
+4.killコマンドを使って、すべてのstressのプロセスを強制終了してください。
 
 pstreeコマンドで確認した結果の内、31395が親プロセスそれ以外が子プロセス（31396,31397,31398）になります。まず、3個の子プロセスの内どれか1個を強制終了してください。
 
@@ -242,7 +242,7 @@ PID TTY          TIME CMD
 </details>
 {{< /accordion >}}
 
-### 5.もう一度、「stress --cpu 3 &」を実行、「pstree -p | grep stress」で親プロセスIDを確認して、今度は親プロセスから強制終了してください。
+5.もう一度、「stress --cpu 3 &」を実行、「pstree -p | grep stress」で親プロセスIDを確認して、今度は親プロセスから強制終了してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">

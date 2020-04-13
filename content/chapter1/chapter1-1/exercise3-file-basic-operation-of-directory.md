@@ -11,7 +11,7 @@ weight: 10
 
 ![sample directory](/hugo/images/linux-exercise3_01.png)
 
-### 1.ホームディレクトリ（/home/student）に移動して、カレントディレクトリを確認してください。
+1.ホームディレクトリ（/home/student）に移動して、カレントディレクトリを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -26,7 +26,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 2.trainingディレクトリを作成して、できていることを確認してください。
+2.trainingディレクトリを作成して、できていることを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -42,7 +42,7 @@ training      テンプレート  ドキュメント  音楽  公開
 </details>
 {{< /accordion >}}
 
-### 3.カレントディレクトリをtrainingディレクトリに変更して、linuxディレクトリを作成してできていることを確認してください。
+3.カレントディレクトリをtrainingディレクトリに変更して、linuxディレクトリを作成してできていることを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -58,7 +58,7 @@ linux
 </details>
 {{< /accordion >}}
 
-### 4.unixディレクトリとwindowsディレクトリを作成して、できていることを確認してください。
+4.unixディレクトリとwindowsディレクトリを作成して、できていることを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -73,7 +73,7 @@ linux  unix  windows
 </details>
 {{< /accordion >}}
 
-### 5.ホームディレクトリ（/home/student）に移動して、trainingディレクトリを削除して、削除できたことを確認してください。
+5.ホームディレクトリ（/home/student）に移動して、trainingディレクトリを削除して、削除できたことを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -90,7 +90,7 @@ $ ls
 </details>
 {{< /accordion >}}
 
-### 6.1回のコマンド実行で画像のディレクトリ構造を作成してください。lsコマンドで「-R」オプションを利用してディレクトリ構造を確認してみましょう。
+6.1回のコマンド実行で画像のディレクトリ構造を作成してください。lsコマンドで「-R」オプションを利用してディレクトリ構造を確認してみましょう。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -109,7 +109,7 @@ linux  unix  windows
 
 ## 2.ファイルのコピー
 
-### 1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。
+1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -124,7 +124,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 2.studentユーザのホームディレクトリ（/home/student）に移動して、「/etc/hosts」ファイルを「/etc/hosts.bak」というファイル名にしてコピーしてください。コピーファイルができたことを確認してください。
+2.studentユーザのホームディレクトリ（/home/student）に移動して、「/etc/hosts」ファイルを「/etc/hosts.bak」というファイル名にしてコピーしてください。コピーファイルができたことを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -177,7 +177,7 @@ cron.daily               fwupd                       libaudit.conf  nftables    
 </details>
 {{< /accordion >}}
 
-### 3.「exit」コマンドを実行して、studentユーザに変更してください。
+3.「exit」コマンドを実行して、studentユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -198,7 +198,7 @@ $
 
 ## 3.ファイルの移動
 
-### 1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。
+1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -213,7 +213,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 2.studentユーザのホームディレクトリ（/home/student）に移動して、training/linuxの下にbackupディレクトリを作成して、できたことを確認してください。
+2.studentユーザのホームディレクトリ（/home/student）に移動して、training/linuxの下にbackupディレクトリを作成して、できたことを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -258,7 +258,7 @@ backup
 </details>
 {{< /accordion >}}
 
-### 3.「/etc/hosts.bak」ファイルをホームディレクトリにあるtraining/linux/backupに移動してください。
+3.「/etc/hosts.bak」ファイルをホームディレクトリにあるtraining/linux/backupに移動してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -273,7 +273,7 @@ hosts.bak
 </details>
 {{< /accordion >}}
 
-### 4.rmコマンドの「-rf」オプションを利用して、「training」ディレクトリを削除します。
+4.rmコマンドの「-rf」オプションを利用して、「training」ディレクトリを削除します。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -289,7 +289,7 @@ hosts.bak
 </details>
 {{< /accordion >}}
 
-### 5.「exit」コマンドを実行して、studentユーザに変更してください。
+5.「exit」コマンドを実行して、studentユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -307,7 +307,7 @@ $
 
 ## 4.長文テキストの表示および閲覧
 
-### 1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。
+1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -322,7 +322,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 2.studentユーザのホームディレクトリ（/home/student）に移動して、「/etc/bashrc」ファイルをlessコマンドを実行して先頭から末尾まで見てみましょう。
+2.studentユーザのホームディレクトリ（/home/student）に移動して、「/etc/bashrc」ファイルをlessコマンドを実行して先頭から末尾まで見てみましょう。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -471,7 +471,7 @@ q
 </details>
 {{< /accordion >}}
 
-### 3.ホームディレクトリ（/home/student）に移動して、「/etc/bashrc」ファイルをlessコマンドを実行して先「else」という文字列を検索してみましょう。
+3.ホームディレクトリ（/home/student）に移動して、「/etc/bashrc」ファイルをlessコマンドを実行して先「else」という文字列を検索してみましょう。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -485,7 +485,7 @@ q
 </details>
 {{< /accordion >}}
 
-### 4.「exit」コマンドを実行して、studentユーザに変更してください。
+4.「exit」コマンドを実行して、studentユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -503,7 +503,7 @@ $
 
 ## 5.シンボリックリンク
 
-### 1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。
+1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -518,7 +518,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 2.studentユーザのホームディレクトリ（/home/student）に移動して、「/sys/dev/block」のシンボリックリンクとして「block」ファイル作成して、シンボリックリンクが貼られていること確認してください。
+2.studentユーザのホームディレクトリ（/home/student）に移動して、「/sys/dev/block」のシンボリックリンクとして「block」ファイル作成して、シンボリックリンクが貼られていること確認してください。
 
 ※ls -laコマンド結果でblockの箇所がblock -> /sys/dev/blockとなっていることを確認しましょう。
 
@@ -559,7 +559,7 @@ drwxr-xr-x.  2 student student     6  1月 21 00:23 公開
 </details>
 {{< /accordion >}}
 
-### 3.「cd /sys/dev/block」と入力せず、作成したシンボリックリンクを利用して、「/sys/dev/block」ディレクトリまで移動してみましょう。
+3.「cd /sys/dev/block」と入力せず、作成したシンボリックリンクを利用して、「/sys/dev/block」ディレクトリまで移動してみましょう。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -580,7 +580,7 @@ $ cd /sys/dev/block
 </details>
 {{< /accordion >}}
 
-### 4.「/home/student」ディレクトリに戻って、blockファイルを削除してください。
+4.「/home/student」ディレクトリに戻って、blockファイルを削除してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -598,7 +598,7 @@ rm: シンボリックリンク 'block' を削除しますか? y //yと入力
 </details>
 {{< /accordion >}}
 
-### 5.「exit」コマンドを実行して、studentユーザに変更してください。
+5.「exit」コマンドを実行して、studentユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">

@@ -7,7 +7,7 @@ weight: 10
 
 ## 1.標準入力、標準出力、標準エラー出力の確認
 
-### 1.カレントディレクトリをホームディレクトリに変更してください。
+1.カレントディレクトリをホームディレクトリに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -22,7 +22,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 2.catコマンドとリダイレクト機能を使って、cloud.txtというファイルをホームディレクトリに作成してください。
+2.catコマンドとリダイレクト機能を使って、cloud.txtというファイルをホームディレクトリに作成してください。
 
 ファイルの内容は次の3行です。作成後、catコマンドで確認してください。
 aws
@@ -51,7 +51,7 @@ azure
 </details>
 {{< /accordion >}}
 
-### 3.catコマンドとリダイレクト機能を使って、2.で作成したcloud.txtの4行目以降に、次の3行を追記してください。また、catコマンドで追記できたことを確認してください。
+3.catコマンドとリダイレクト機能を使って、2.で作成したcloud.txtの4行目以降に、次の3行を追記してください。また、catコマンドで追記できたことを確認してください。
 
 oracle cloud
 IBM cloud
@@ -82,7 +82,7 @@ digital ocean
 </details>
 {{< /accordion >}}
 
-### 4.cloud.txtの内容を画面表示してください。このとき、cloudベンダーの名称がアルファベットの順と逆順に並べ替えられた状態で表示してください。
+4.cloud.txtの内容を画面表示してください。このとき、cloudベンダーの名称がアルファベットの順と逆順に並べ替えられた状態で表示してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -111,7 +111,7 @@ IBM cloud
 </details>
 {{< /accordion >}}
 
-### 5.findコマンドを使って、/etc から拡張子が.txtのファイルを検索してください。パーミッションがないため、「許可がありません」と表示されるファイルがあります。なので、リダイレクト機能を利用して、エラー内容が表示されないようにしてみましょう。
+5.findコマンドを使って、/etc から拡張子が.txtのファイルを検索してください。パーミッションがないため、「許可がありません」と表示されるファイルがあります。なので、リダイレクト機能を利用して、エラー内容が表示されないようにしてみましょう。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -179,7 +179,7 @@ $ find /etc -name '*.txt' 2>/dev/null
 </details>
 {{< /accordion >}}
 
-### 6.5の検索結果をエラー出力も含めて、画面とfind_results.txtという名前のテキストファイルに出力してください。catコマンドでfind_results.txtを確認してみましょう。
+6.5の検索結果をエラー出力も含めて、画面とfind_results.txtという名前のテキストファイルに出力してください。catコマンドでfind_results.txtを確認してみましょう。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -266,7 +266,7 @@ find: ‘/etc/sudoers.d’: 許可がありません
 
 ## 2.主なフィルタコマンドの確認
 
-### 1.カレントディレクトリをホームディレクトリに変更してください。
+1.カレントディレクトリをホームディレクトリに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -281,7 +281,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 2.catコマンドとリダイレクト機能を使って、programming.txtというファイルをホームディレクトリに作成してください。
+2.catコマンドとリダイレクト機能を使って、programming.txtというファイルをホームディレクトリに作成してください。
 
 ファイルの内容は次の8行です。作成後、catコマンドで確認してください。
 
@@ -326,7 +326,7 @@ go
 </details>
 {{< /accordion >}}
 
-### 3.programming.txtから重複行を排除し、昇順（アルファベット順）に並び替えて表示してください。
+3.programming.txtから重複行を排除し、昇順（アルファベット順）に並び替えて表示してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -344,7 +344,7 @@ shellscript
 </details>
 {{< /accordion >}}
 
-### 4.programming.txtから重複行を排除し、逆順（アルファベット順）に並び替えて、上位2行を表示してください。
+4.programming.txtから重複行を排除し、逆順（アルファベット順）に並び替えて、上位2行を表示してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -359,7 +359,7 @@ ruby
 </details>
 {{< /accordion >}}
 
-### 5.programming.txtから重複行を排除し、逆順に並び替えて、画面表示と同時にファイルtee.txtに保存してください。
+5.programming.txtから重複行を排除し、逆順に並び替えて、画面表示と同時にファイルtee.txtに保存してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">

@@ -7,7 +7,7 @@ weight: 10
 
 ## 1.tarコマンド演習
 
-### 1.ホームディレクトリ（/home/student）に移動して、カレントディレクトリを確認してください。
+1.ホームディレクトリ（/home/student）に移動して、カレントディレクトリを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -22,7 +22,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 2.「tar_training」ディレクトリを作成してください。
+2.「tar_training」ディレクトリを作成してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -38,7 +38,7 @@ tar_training  テンプレート  ドキュメント  音楽  公開
 </details>
 {{< /accordion >}}
 
-### 3.touchコマンドを利用して「tar_training」ディレクトリの中にfile01.txt,file02.txt,file03.txt,file04.txt,file05.txt」ファイルを作成します。
+3.touchコマンドを利用して「tar_training」ディレクトリの中にfile01.txt,file02.txt,file03.txt,file04.txt,file05.txt」ファイルを作成します。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -59,7 +59,7 @@ file01.txt  file02.txt  file03.txt  file04.txt  file05.txt
 </details>
 {{< /accordion >}}
 
-### 4.tarコマンドを利用して、「tar_training」ディレクトリをアーカイブと同時に圧縮して、「tar_training.tar.gz」ファイルができたことを確認します。
+4.tarコマンドを利用して、「tar_training」ディレクトリをアーカイブと同時に圧縮して、「tar_training.tar.gz」ファイルができたことを確認します。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -75,7 +75,7 @@ tar_training.tar.gz  テンプレート  ドキュメント  音楽    公開
 </details>
 {{< /accordion >}}
 
-### 5.「tar_training」ディレクトリを削除し、削除できたことを確認してください。
+5.「tar_training」ディレクトリを削除し、削除できたことを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -91,7 +91,7 @@ tar_training.tar.gz  テンプレート  ドキュメント  音楽  公開
 </details>
 {{< /accordion >}}
 
-### 6.「tar_training.tar.gz」ファイルを展開して、展開できたことを確認してください。
+6.「tar_training.tar.gz」ファイルを展開して、展開できたことを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -107,7 +107,7 @@ tar_training.tar.gz  テンプレート  ドキュメント  音楽    公開
 </details>
 {{< /accordion >}}
 
-### 7.「tar_training.tar.gz」ファイル、「tar_training」ディレクトリ、「training」ディレクトリを削除して、削除できたことを確認してください。
+7.「tar_training.tar.gz」ファイル、「tar_training」ディレクトリ、「training」ディレクトリを削除して、削除できたことを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -127,7 +127,7 @@ $ ls
 
 ## 2.zipコマンド演習
 
-### 1.ホームディレクトリ（/home/student）に移動して、カレントディレクトリを確認してください。
+1.ホームディレクトリ（/home/student）に移動して、カレントディレクトリを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -142,7 +142,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 2.「zip_training」ディレクトリを作成してください。
+2.「zip_training」ディレクトリを作成してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -158,7 +158,7 @@ zip_training  テンプレート  ドキュメント  音楽  公開
 </details>
 {{< /accordion >}}
 
-### 3.touchコマンドを利用して「zip_training」ディレクトリの中にfile01.txt,file02.txt,file03.txt,file04.txt,file05.txt」ファイルを作成します。
+3.touchコマンドを利用して「zip_training」ディレクトリの中にfile01.txt,file02.txt,file03.txt,file04.txt,file05.txt」ファイルを作成します。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -179,7 +179,7 @@ file01.txt  file02.txt  file03.txt  file04.txt  file05.txt
 </details>
 {{< /accordion >}}
 
-### 4.zipコマンドを利用して、「zip_training」ディレクトリを圧縮して、「zip_training.zip」ファイルができたことを確認します。
+4.zipコマンドを利用して、「zip_training」ディレクトリを圧縮して、「zip_training.zip」ファイルができたことを確認します。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -202,7 +202,7 @@ zip_training.zip  テンプレート  ドキュメント  音楽    公開
 </details>
 {{< /accordion >}}
 
-### 5.「zip_training」ディレクトリを削除し、削除できたことを確認してください。
+5.「zip_training」ディレクトリを削除し、削除できたことを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -218,7 +218,7 @@ zip_training.zip  テンプレート  ドキュメント  音楽  公開
 </details>
 {{< /accordion >}}
 
-### 6.「zip_training.zip」ファイルを展開して、展開できたことを確認してください。
+6.「zip_training.zip」ファイルを展開して、展開できたことを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -241,7 +241,7 @@ zip_training.zip  テンプレート  ドキュメント  音楽    公開
 </details>
 {{< /accordion >}}
 
-### 7.「zip_training」ディレクトリをパスワード付けて圧縮してください。
+7.「zip_training」ディレクトリをパスワード付けて圧縮してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -265,7 +265,7 @@ zip_training.zip  テンプレート  ドキュメント  音楽    公開
 </details>
 {{< /accordion >}}
 
-### 8.パスワードの付いた「zip_training.zip」ファイルを設定したパスワードで解凍してください。
+8.パスワードの付いた「zip_training.zip」ファイルを設定したパスワードで解凍してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -289,7 +289,7 @@ zip_training.zip  テンプレート  ドキュメント  音楽    公開
 </details>
 {{< /accordion >}}
 
-### 9.「zip_training」ディレクトリ、「zip_training.zip」ファイルを削除してください。
+9.「zip_training」ディレクトリ、「zip_training.zip」ファイルを削除してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">

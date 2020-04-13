@@ -7,7 +7,7 @@ weight: 10
 
 ## 1.pwd,ls,cdコマンド演習
 
-### 1.現在のディレクトリ（カレントディレクトリ）を表示するコマンドを実行してください。
+1.現在のディレクトリ（カレントディレクトリ）を表示するコマンドを実行してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -21,7 +21,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 2.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
+2.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -43,7 +43,7 @@ $ cd
 </details>
 {{< /accordion >}}
 
-### 3.カレントディレクトリを確認するコマンドを実行してください。
+3.カレントディレクトリを確認するコマンドを実行してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -57,7 +57,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 4.カレントディレクトリをルートディレクトリに変更してください。
+4.カレントディレクトリをルートディレクトリに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -70,7 +70,7 @@ $ cd /
 </details>
 {{< /accordion >}}
 
-### 5.カレントディレクトリを確認するコマンドを実行してください。
+5.カレントディレクトリを確認するコマンドを実行してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -84,7 +84,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 6.ルートディレクトリの直下に保存されているディレクトリやファイルを表示してください。
+6.ルートディレクトリの直下に保存されているディレクトリやファイルを表示してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -107,7 +107,7 @@ boot  etc  lib   media  opt  root  sbin  sys  usr
 {{< /accordion >}}
 
 
-### 7.ルートディレクトリの直下にあるbinというディレクトリ内容を、現在のカレントディレクトリを変更せずに表示してください。
+7.ルートディレクトリの直下にあるbinというディレクトリ内容を、現在のカレントディレクトリを変更せずに表示してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -867,7 +867,7 @@ glib-compile-schemas                 nl-neigh-list                  sg_turs     
 
 ## 2.絶対パス演習
 
-### 1.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
+1.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -888,7 +888,7 @@ $ cd /home/student
 </details>
 {{< /accordion >}}
 
-### 2.カレントディレクトリを確認するコマンドを実行してください。
+2.カレントディレクトリを確認するコマンドを実行してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -902,7 +902,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 3.カレントディレクトリから絶対パスを指定して、ルートディレクトリの直下にあるvarディレクトリの中にあるlogディレクトリの内容を確認してください。
+3.カレントディレクトリから絶対パスを指定して、ルートディレクトリの直下にあるvarディレクトリの中にあるlogディレクトリの内容を確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -918,7 +918,7 @@ anaconda    boot.log-20200128  cron    dnf.log          gdm          lastlog    
 </details>
 {{< /accordion >}}
 
-### 4.カレントディレクトリから絶対パスを指定して、ルートディレクトリの直下にあるusrディレクトリの中にあるlocalディレクトリにキーボードのTabキーを利用して補完しながら移動してください。
+4.カレントディレクトリから絶対パスを指定して、ルートディレクトリの直下にあるusrディレクトリの中にあるlocalディレクトリにキーボードのTabキーを利用して補完しながら移動してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -933,7 +933,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 5.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
+5.カレントディレクトリをホームディレクトリ（/home/student）に変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -954,7 +954,7 @@ $ cd /home/student
 </details>
 {{< /accordion >}}
 
-### 6.カレントディレクトリを確認するコマンドを実行してください。
+6.カレントディレクトリを確認するコマンドを実行してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -972,7 +972,7 @@ $ pwd
 
 ## 3.相対パス演習
 
-### 1.カレントディレクトリを相対パスを指定して、ルートディレクトリに変更してください。
+1.カレントディレクトリを相対パスを指定して、ルートディレクトリに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -985,7 +985,7 @@ $ cd /
 </details>
 {{< /accordion >}}
 
-### 2.カレントディレクトリを確認するコマンドを実行してください。
+2.カレントディレクトリを確認するコマンドを実行してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -999,7 +999,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 3.カレントディレクトリを相対パスを指定して、/sys/devices/platform/powerに変更してください。
+3.カレントディレクトリを相対パスを指定して、/sys/devices/platform/powerに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1012,7 +1012,7 @@ $ cd sys/devices/platform/power
 </details>
 {{< /accordion >}}
 
-### 4.カレントディレクトリを確認するコマンドを実行してください。
+4.カレントディレクトリを確認するコマンドを実行してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1026,7 +1026,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 5.カレントディレクトリを相対パスを指定して、ルートディレクトリに変更してください。
+5.カレントディレクトリを相対パスを指定して、ルートディレクトリに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1039,7 +1039,7 @@ $ cd ../../../../
 </details>
 {{< /accordion >}}
 
-### 6.カレントディレクトリを確認するコマンドを実行してください。
+6.カレントディレクトリを確認するコマンドを実行してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1053,7 +1053,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 7.カレントディレクトリから相対パスを指定して、ルートディレクトリの直下にあるvarディレクトリの中にあるlogディレクトリの内容を確認してください。
+7.カレントディレクトリから相対パスを指定して、ルートディレクトリの直下にあるvarディレクトリの中にあるlogディレクトリの内容を確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1075,7 +1075,7 @@ $ ls var/log
 
 これまでの復習とまだやったことのない課題があります。Webを利用し、調べながらチャレンジしてください。最初から回答を見ずに考えてみましょう。
 
-### 1.カレントディレクトリを確認するコマンドは何ですか。
+1.カレントディレクトリを確認するコマンドは何ですか。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1088,7 +1088,7 @@ $ pwd
 </details>
 {{< /accordion >}}
 
-### 2.ホームディレクトリに移動するコマンドを3個挙げてください。
+2.ホームディレクトリに移動するコマンドを3個挙げてください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1109,7 +1109,7 @@ $ cd /home/student
 </details>
 {{< /accordion >}}
 
-### 3.実行してきたコマンドの履歴を確認するコマンドは何ですか。コマンド以外にの操作方法は何ですか。
+3.実行してきたコマンドの履歴を確認するコマンドは何ですか。コマンド以外にの操作方法は何ですか。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1126,7 +1126,7 @@ $ history
 </details>
 {{< /accordion >}}
 
-### 4.補完機能を利用する場合にはどのキーを必要としますか。
+4.補完機能を利用する場合にはどのキーを必要としますか。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1139,7 +1139,7 @@ $ history
 </details>
 {{< /accordion >}}
 
-### 5.lsコマンドを1回実行して、ルートディレクトリとホームディレクトリを確認してください。
+5.lsコマンドを1回実行して、ルートディレクトリとホームディレクトリを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -1157,7 +1157,7 @@ student
 </details>
 {{< /accordion >}}
 
-### 6.カレントディレクトリの一つ上のディレクトリを相対パスで確認する場合はどうしますか。
+6.カレントディレクトリの一つ上のディレクトリを相対パスで確認する場合はどうしますか。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">

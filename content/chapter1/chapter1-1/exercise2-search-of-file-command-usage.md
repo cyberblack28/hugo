@@ -7,7 +7,7 @@ weight: 10
 
 ## 1.ファイルを検索する
 
-### 1.rootユーザに変更する手順は以下となります。rootユーザーに変更します。
+1.rootユーザに変更する手順は以下となります。rootユーザーに変更します。
 ※パスワードは入力してもコンソール上に表示はされません。
 
 {{< accordion >}}
@@ -23,7 +23,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 2.findコマンドでルートディレクトリを起点にhostsファイルがどこにあるのか検索してください。
+2.findコマンドでルートディレクトリを起点にhostsファイルがどこにあるのか検索してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -38,7 +38,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 3.絶対パスを指定してvarディレクトリにあるlogディレクトリ内にあるmessagesファイルを検索してください。
+3.絶対パスを指定してvarディレクトリにあるlogディレクトリ内にあるmessagesファイルを検索してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -52,7 +52,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 4.相対パスを指定してvarディレクトリにあるlogディレクトリ内にあるmessagesファイルを検索してください。
+4.相対パスを指定してvarディレクトリにあるlogディレクトリ内にあるmessagesファイルを検索してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -68,7 +68,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 5.「exit」コマンドを実行して、studentユーザに変更してください。
+5.「exit」コマンドを実行して、studentユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -86,7 +86,7 @@ $
 
 ## 2.コマンドのヘルプとマニュアル
 
-### 1.calコマンドのコマンドヘルプを表示してください。
+1.calコマンドのコマンドヘルプを表示してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -127,7 +127,7 @@ cal [options] <timestamp|monthname>
 </details>
 {{< /accordion >}}
 
-### 2.calコマンドのマニュアルを表示してください。表示後は［q］キーを押すと元の画面に戻ります。
+2.calコマンドのマニュアルを表示してください。表示後は［q］キーを押すと元の画面に戻ります。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -386,7 +386,7 @@ $ man cal
 
 ## 3.コマンドの保存場所を確認する
 
-### 1.pwdコマンドがどのディレクトリに保存されているか確認してください。
+1.pwdコマンドがどのディレクトリに保存されているか確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -400,7 +400,7 @@ $ which pwd
 </details>
 {{< /accordion >}}
 
-### 2.whichコマンド表示されたパスにpwdコマンドが実際に保存されていることをlsコマンドで確認してください。
+2.whichコマンド表示されたパスにpwdコマンドが実際に保存されていることをlsコマンドで確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">

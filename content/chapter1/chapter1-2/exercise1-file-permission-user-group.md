@@ -7,7 +7,7 @@ weight: 10
 
 ## 1.suコマンドとパーミッションの変更
 
-### 1.studentとしてログインしている状態で、端末を開きます。idコマンドを実行し、現在のユーザを確認してください。
+1.studentとしてログインしている状態で、端末を開きます。idコマンドを実行し、現在のユーザを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -21,7 +21,7 @@ uid=1000(student) gid=1000(student) groups=1000(student),10(wheel) context=uncon
 </details>
 {{< /accordion >}}
 
-### 2.suコマンドを使って、rootユーザに切り替えてください。
+2.suコマンドを使って、rootユーザに切り替えてください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -36,7 +36,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 3.idコマンドを実行し、現在のユーザを確認してください。
+3.idコマンドを実行し、現在のユーザを確認してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -50,7 +50,7 @@ uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfi
 </details>
 {{< /accordion >}}
 
-### 4.rootユーザのまま、カレントディレクトリを/usr/tmp/に変更します。
+4.rootユーザのまま、カレントディレクトリを/usr/tmp/に変更します。
 
 以降の操作は、指示が無い限りはrootユーザで行ってください。
 
@@ -65,7 +65,7 @@ uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfi
 </details>
 {{< /accordion >}}
 
-### 5.touchコマンドで、test1.txtおよびtest2.txtという空のファイルを、カレントディレクトリに作成してください。その後、lsコマンドでtest1.txtとtest2.txtのパーミッションを確認してください。
+5.touchコマンドで、test1.txtおよびtest2.txtという空のファイルを、カレントディレクトリに作成してください。その後、lsコマンドでtest1.txtとtest2.txtのパーミッションを確認してください。
 
 rootにはrw（読み取りと書き込み）、その他のユーザにはr（読み取りのみ）が割り当てられています。
 
@@ -83,7 +83,7 @@ rootにはrw（読み取りと書き込み）、その他のユーザにはr（�
 </details>
 {{< /accordion >}}
 
-### 6.現在の端末ウインドウはそのまま閉じずに、新たにもう一つ端末ウインドウを開いてください。
+6.現在の端末ウインドウはそのまま閉じずに、新たにもう一つ端末ウインドウを開いてください。
 
 新たに開いた端末ウインドウは、studentのまま（rootには切り替えない）にします。
 
@@ -109,7 +109,7 @@ E45: 'readonly' オプションが設定されています (! を追加で上書
 </details>
 {{< /accordion >}}
 
-### 7.test1.txtとtest2.txtのパーミッションを、以下の要件に従い変更します。※開いたrootの端末ウインドウで実行してください。
+7.test1.txtとtest2.txtのパーミッションを、以下の要件に従い変更します。※開いたrootの端末ウインドウで実行してください。
 
 a. test1.txtおよびtest2.txtに、studentが文字を追加し、上書き保存できるようにしてください
 
@@ -134,7 +134,7 @@ d. test2.txtのパーミッションは数値モードで変更してくださ�
 </details>
 {{< /accordion >}}
 
-### 8.新たに開いたstudentの端末ウインドウで、/usr/tmp/test1.txtをテキストエディタで開きます。
+8.新たに開いたstudentの端末ウインドウで、/usr/tmp/test1.txtをテキストエディタで開きます。
 
 今度は、ファイルを上書き保存できるはずです。適当な文字を入力後、上書き保存動作を行い、確認してください。同様に、test2.txtも確認してください。
 
@@ -171,7 +171,7 @@ test2test2
 
 ## 2.ユーザの作成とUID、所属グループの確認
 
-### 1.rootユーザの状態で、次の作業を行ってください。
+1.rootユーザの状態で、次の作業を行ってください。
 
 a. student02というユーザを作成してください。
 
@@ -215,7 +215,7 @@ $
 </details>
 {{< /accordion >}}
 
-### 2.端末上でsuコマンドを使ってstudent02に切り替えてください。
+2.端末上でsuコマンドを使ってstudent02に切り替えてください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -230,7 +230,7 @@ $
 </details>
 {{< /accordion >}}
 
-### 3.student02として任意のパスワードに変更してください。
+3.student02として任意のパスワードに変更してください。
 
 ※一般ユーザは、rootとは異なり、自分のパスワードしか変更できません。パスワードの変更時には、現在使用中のパスワードの入力が必要です。新しいパスワードは、セキュリティレベルの低いパスワードは受け付けてもらえません。なお、パスワードの変更を中断する場合は、［Ctrl］+［C］キーを押します。
 
@@ -250,7 +250,7 @@ passwd: すべての認証トークンが正しく更新できました。
 </details>
 {{< /accordion >}}
 
-### 4.student02としての作業が完了したため、studentに戻ります。
+4.student02としての作業が完了したため、studentに戻ります。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -270,7 +270,7 @@ $
 
 user01、user02をメンバーとするグループgrp01を新規に作成し、このグループのメンバーであればsudoコマンドを使って、管理が行えるようにします。
 
-### 1.rootユーザに変更してください。
+1.rootユーザに変更してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -285,7 +285,7 @@ $ su -
 </details>
 {{< /accordion >}}
 
-### 2.user01、user02を作成してください。パスワード「gakusei@@@」としてください。
+2.user01、user02を作成してください。パスワード「gakusei@@@」としてください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -312,7 +312,7 @@ passwd: すべての認証トークンが正しく更新できました。
 </details>
 {{< /accordion >}}
 
-### 3.idコマンドでuser01とuser02ができていることを確認します。
+3.idコマンドでuser01とuser02ができていることを確認します。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -328,7 +328,7 @@ uid=1003(user02) gid=1003(user02) groups=1003(user02)
 </details>
 {{< /accordion >}}
 
-### 4.grp01グループを作成してください。
+4.grp01グループを作成してください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -343,7 +343,7 @@ grp01:x:1004:
 </details>
 {{< /accordion >}}
 
-### 5.user01とuser02をgrp01グループに所属させてください。
+5.user01とuser02をgrp01グループに所属させてください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -362,7 +362,7 @@ uid=1003(user02) gid=1003(user02) groups=1003(user02),1004(grp01)
 </details>
 {{< /accordion >}}
 
-### 6.visudoコマンドを使用して、最終行に「%grp01 ALL=(ALL) ALL」と入力します。
+6.visudoコマンドを使用して、最終行に「%grp01 ALL=(ALL) ALL」と入力します。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -384,7 +384,7 @@ uid=1003(user02) gid=1003(user02) groups=1003(user02),1004(grp01)
 </details>
 {{< /accordion >}}
 
-### 7.root,studentからログアウトしてください。
+7.root,studentからログアウトしてください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -399,9 +399,9 @@ $ exit
 </details>
 {{< /accordion >}}
 
-### 8.TeraTermを起動して、user01でログインしてください。※パスワードは「gakusei@@@」です。
+8.TeraTermを起動して、user01でログインしてください。※パスワードは「gakusei@@@」です。
 
-### 9.「sudo useradd user03」を実行してください。
+9.「sudo useradd user03」を実行してください。
 
 ※パスワードの入力を求められるので、user01のパスワード「gakusei@@@」を入力してください。
 
@@ -425,7 +425,7 @@ $ exit
 </details>
 {{< /accordion >}}
 
-### 10.同じやり方でuser03にパスワードを設定してみましょう。パスワードは「gakusei@@@」とします。
+10.同じやり方でuser03にパスワードを設定してみましょう。パスワードは「gakusei@@@」とします。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -442,7 +442,7 @@ passwd: すべての認証トークンが正しく更新できました。
 </details>
 {{< /accordion >}}
 
-### 11.idコマンドでuser03を確認してください。
+11.idコマンドでuser03を確認してください。
 
 ※user03の情報が表示されれば、useraddコマンドがsudoで実行できたと見なします。
 
@@ -458,7 +458,7 @@ uid=1004(user03) gid=1005(user03) groups=1005(user03)
 </details>
 {{< /accordion >}}
 
-### 12.user01からログアウトしてください。
+12.user01からログアウトしてください。
 
 {{< accordion >}}
 <details style="margin-top: 10px;">
@@ -472,9 +472,9 @@ $ exit
 </details>
 {{< /accordion >}}
 
-### 13.TeraTermを起動して、user03でログインしてください。※パスワードは「gakusei@@@」です。
+13.TeraTermを起動して、user03でログインしてください。※パスワードは「gakusei@@@」です。
 
-### 14.「sudo useradd user04」を実行してください。
+14.「sudo useradd user04」を実行してください。
 
 ※パスワードの入力を求められるので、user03のパスワード「gakusei@@@」を入力してください。
 「user03は、sudoersファイル内にありません。この事象は記録・報告されます。」というメッセージが表示されます。
