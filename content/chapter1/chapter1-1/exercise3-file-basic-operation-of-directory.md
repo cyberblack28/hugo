@@ -9,7 +9,7 @@ weight: 10
 
 次の図を参照しながら、同じディレクトリ構成を作成してみましょう。
 
-![sample directory](/hugo/images/linux-exercise3_01.png)
+![sample directory](/hugo/images/exercise3-file-basic-operation-of-directory.png)
 
 1.ホームディレクトリ（/home/student）に移動して、カレントディレクトリを確認してください。
 
