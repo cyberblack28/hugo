@@ -1,5 +1,5 @@
 ---
-title: "Linux"
+title: "Linux Training Contents of Previous Term"
 date: 2017-10-17T15:26:15Z
 draft: false
 weight: 10
@@ -63,5 +63,3 @@ Linuxユーザとして「student」を作成してから始めてください�
 * [Exercise1 Network Management](chapter1-6/exercise1-network-management)
 * [Exercise2 DNS Command](chapter1-6/exercise2-dns-command)
 * [Exercise3 Networkmanager](chapter1-6/exercise3-networkmanager)
-
-## Training Contents of Latter Term
