@@ -11,7 +11,7 @@ images:
 
 # Welcome Cyberblack.net !
 
-## Features
+## Contents
 
-* [Linux](chapter1/)
-* [Cyberblack's Tech Blog](blog/)
+* [Training of Linux](chapter1/)
+* [Training of Cloud Computing](chapter2/)
