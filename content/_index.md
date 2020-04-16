@@ -13,5 +13,9 @@ images:
 
 ## Contents
 
-* [Training of Linux](chapter1/)
-* [Training of Cloud Computing](chapter2/)
+### 1.Linux Training
+
+* [Previous Term](chapter1/)
+* [Latter Term](chapter2/)
+
+### 2.Cloud Computing Training

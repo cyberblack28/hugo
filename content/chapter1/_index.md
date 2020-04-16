@@ -1,5 +1,5 @@
 ---
-title: "Linux Training Contents of Previous Term"
+title: "1.Linux Training Contents of Previous Term"
 date: 2017-10-17T15:26:15Z
 draft: false
 weight: 10

@@ -1,5 +1,5 @@
 ---
-title: "Linux Training Contents of Latter Term"
+title: "2.Linux Training Contents of Latter Term"
 date: 2017-10-17T15:26:15Z
 draft: false
 weight: 10
@@ -29,8 +29,12 @@ Linuxユーザとして「student」を作成してから始めてください�
 
 ## Training Contents of Latter Term
 
-### 1.About systemd
-
 * [1.Exercise1 systemd](chapter2-1/exercise1-systemd)
 * [2.DNS Server Construction](chapter2-1/dns-server-construction)
 * [3.Proxy Server Construction](chapter2-1/proxy-server-construction)
+* [4.Web Server Construction](chapter2-1/web-server-construction)
+* [5.PHP Server Construction](chapter2-1/php-server-construction)
+* [6.MariaDB Server Construction](chapter2-1/mariadb-server-construction)
+* [7.WordPress Server Construction](chapter2-1/wp-server-construction)
+* [8.Exercise2 firewalld](chapter2-1/exercise2-firewalld)
+* [9.FTP Server Construction](chapter2-1/ftp-server-construction)
