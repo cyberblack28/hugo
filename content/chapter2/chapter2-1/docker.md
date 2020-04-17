@@ -1,0 +1,1848 @@
+---
+title: "13.Docker"
+date: 2017-10-17T15:26:15Z
+draft: false
+weight: 20
+---
+
+## 事前作業
+
+1.studentユーザでログインして、rootユーザに変更します。
+
+```
+$ su -
+パスワード:tokyoec
+#
+```
+
+***
+
+## Dockerのインストール
+
+1.podmanの削除
+
+{{< accordion >}}
+<div>
+<pre>
+# dnf -y remove podman
+モジュラーの依存に関する問題:
+
+ 問題 1: conflicting requests
+  - nothing provides module(perl:5.26) needed by module perl-DBD-SQLite:1.58:8010020191114033549:073fa5fe-0.x86_64
+ 問題 2: conflicting requests
+  - nothing provides module(perl:5.26) needed by module perl-DBI:1.641:8010020191113222731:16b3ab4d-0.x86_64
+依存関係が解決しました。
+================================================================================
+ パッケージ       Arch   バージョン                            Repo       サイズ
+================================================================================
+削除中:
+ podman           x86_64 1.4.2-5.module_el8.1.0+237+63e26edc   @AppStream  51 M
+依存関係パッケージの削除:
+ cockpit-podman   noarch 4-1.module_el8.1.0+237+63e26edc       @AppStream 5.1 M
+未使用の依存関係の削除:
+ libvarlink       x86_64 18-3.el8                              @anaconda  129 k
+ oci-systemd-hook x86_64 1:0.1.15-2.git2d0b8a3.module_el8.1.0+237+63e26edc
+                                                               @AppStream  74 k
+ podman-manpages  noarch 1.4.2-5.module_el8.1.0+237+63e26edc   @AppStream 134 k
+
+トランザクションの概要
+================================================================================
+削除  5 パッケージ
+
+解放された容量: 56 M
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  scriptletの実行中: cockpit-podman-4-1.module_el8.1.0+237+63e26edc.noarc   1/1
+  削除             : cockpit-podman-4-1.module_el8.1.0+237+63e26edc.noarc   1/5
+  削除             : podman-1.4.2-5.module_el8.1.0+237+63e26edc.x86_64      2/5
+  scriptletの実行中: podman-1.4.2-5.module_el8.1.0+237+63e26edc.x86_64      2/5
+  削除             : podman-manpages-1.4.2-5.module_el8.1.0+237+63e26edc.   3/5
+  削除             : oci-systemd-hook-1:0.1.15-2.git2d0b8a3.module_el8.1.   4/5
+  削除             : libvarlink-18-3.el8.x86_64                             5/5
+  scriptletの実行中: libvarlink-18-3.el8.x86_64                             5/5
+  検証             : cockpit-podman-4-1.module_el8.1.0+237+63e26edc.noarc   1/5
+  検証             : libvarlink-18-3.el8.x86_64                             2/5
+  検証             : oci-systemd-hook-1:0.1.15-2.git2d0b8a3.module_el8.1.   3/5
+  検証             : podman-1.4.2-5.module_el8.1.0+237+63e26edc.x86_64      4/5
+  検証             : podman-manpages-1.4.2-5.module_el8.1.0+237+63e26edc.   5/5
+
+削除しました:
+  podman-1.4.2-5.module_el8.1.0+237+63e26edc.x86_64
+  cockpit-podman-4-1.module_el8.1.0+237+63e26edc.noarch
+  libvarlink-18-3.el8.x86_64
+  oci-systemd-hook-1:0.1.15-2.git2d0b8a3.module_el8.1.0+237+63e26edc.x86_64
+  podman-manpages-1.4.2-5.module_el8.1.0+237+63e26edc.noarch
+
+完了しました!
+</pre>
+</div>
+{{< /accordion >}}
+
+2.Dockerのインストール
+
+{{< accordion >}}
+<div>
+<pre>
+# dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+repo の追加: https://download.docker.com/linux/centos/docker-ce.repo
+</pre>
+
+<pre>
+# dnf -y install --nobest docker-ce docker-ce-cli
+CentOS-8 - AppStream                            9.3 kB/s | 4.3 kB     00:00
+CentOS-8 - AppStream                            691 kB/s | 6.4 MB     00:09
+CentOS-8 - Base                                 5.9 kB/s | 3.8 kB     00:00
+CentOS-8 - Base                                 322 kB/s | 5.0 MB     00:15
+CentOS-8 - Extras                               2.7 kB/s | 1.5 kB     00:00
+Docker CE Stable - x86_64                        40 kB/s |  21 kB     00:00
+依存関係が解決しました。
+
+ 問題: package docker-ce-3:19.03.6-3.el7.x86_64 requires containerd.io >= 1.2.2-3, but none of the providers can be installed
+  - cannot install the best candidate for the job
+  - package containerd.io-1.2.10-3.2.el7.x86_64 is excluded
+  - package containerd.io-1.2.2-3.3.el7.x86_64 is excluded
+  - package containerd.io-1.2.2-3.el7.x86_64 is excluded
+  - package containerd.io-1.2.4-3.1.el7.x86_64 is excluded
+  - package containerd.io-1.2.5-3.1.el7.x86_64 is excluded
+  - package containerd.io-1.2.6-3.3.el7.x86_64 is excluded
+================================================================================
+ パッケージ        Arch       バージョン             リポジトリー         サイズ
+================================================================================
+インストール:
+ docker-ce         x86_64     3:18.09.1-3.el7        docker-ce-stable      19 M
+ docker-ce-cli     x86_64     1:19.03.6-3.el7        docker-ce-stable      40 M
+依存関係のインストール:
+ libcgroup         x86_64     0.41-19.el8            BaseOS                70 k
+ containerd.io     x86_64     1.2.0-3.el7            docker-ce-stable      22 M
+壊れた dependencies のパッケージをスキップします:
+ docker-ce         x86_64     3:19.03.6-3.el7        docker-ce-stable      24 M
+
+トランザクションの概要
+================================================================================
+インストール  4 パッケージ
+スキップ      1 パッケージ
+
+ダウンロードサイズの合計: 80 M
+インストール済みのサイズ: 338 M
+パッケージのダウンロード:
+(1/4): libcgroup-0.41-19.el8.x86_64.rpm         153 kB/s |  70 kB     00:00
+(2/4): docker-ce-18.09.1-3.el7.x86_64.rpm       8.6 MB/s |  19 MB     00:02
+(3/4): containerd.io-1.2.0-3.el7.x86_64.rpm     6.4 MB/s |  22 MB     00:03
+(4/4): docker-ce-cli-19.03.6-3.el7.x86_64.rpm   7.7 MB/s |  40 MB     00:05
+--------------------------------------------------------------------------------
+合計                                             13 MB/s |  80 MB     00:05
+警告: /var/cache/dnf/docker-ce-stable-091d8a9c23201250/packages/containerd.io-1.2.0-3.el7.x86_64.rpm: ヘッダー V4 RSA/SHA512 Signature、鍵 ID 621e9f35: NOKEY
+Docker CE Stable - x86_64                        10 kB/s | 1.6 kB     00:00
+GPG 鍵 0x621E9F35 をインポート中:
+ Userid     : "Docker Release (CE rpm) <docker@docker.com>"
+ Fingerprint: 060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35
+ From       : https://download.docker.com/linux/centos/gpg
+鍵のインポートに成功しました
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  インストール中   : docker-ce-cli-1:19.03.6-3.el7.x86_64                   1/4
+  scriptletの実行中: docker-ce-cli-1:19.03.6-3.el7.x86_64                   1/4
+  インストール中   : containerd.io-1.2.0-3.el7.x86_64                       2/4
+  scriptletの実行中: containerd.io-1.2.0-3.el7.x86_64                       2/4
+  scriptletの実行中: libcgroup-0.41-19.el8.x86_64                           3/4
+  インストール中   : libcgroup-0.41-19.el8.x86_64                           3/4
+  scriptletの実行中: libcgroup-0.41-19.el8.x86_64                           3/4
+  scriptletの実行中: docker-ce-3:18.09.1-3.el7.x86_64                       4/4
+  インストール中   : docker-ce-3:18.09.1-3.el7.x86_64                       4/4
+  scriptletの実行中: docker-ce-3:18.09.1-3.el7.x86_64                       4/4
+  検証             : libcgroup-0.41-19.el8.x86_64                           1/4
+  検証             : containerd.io-1.2.0-3.el7.x86_64                       2/4
+  検証             : docker-ce-3:18.09.1-3.el7.x86_64                       3/4
+  検証             : docker-ce-cli-1:19.03.6-3.el7.x86_64                   4/4
+
+インストール済み:
+  docker-ce-3:18.09.1-3.el7.x86_64     docker-ce-cli-1:19.03.6-3.el7.x86_64
+  libcgroup-0.41-19.el8.x86_64         containerd.io-1.2.0-3.el7.x86_64
+
+スキップしました:
+  docker-ce-3:19.03.6-3.el7.x86_64
+
+完了しました!
+</pre>
+</div>
+{{< /accordion >}}
+
+3.Dockerの自動起動設定
+
+{{< accordion >}}
+<div>
+<pre>
+# systemctl enable docker
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /usr/lib/systemd/system/docker.service.
+</pre>
+
+<pre>
+# systemctl start docker
+</pre>
+
+<pre>
+# systemctl status docker
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2020-02-18 02:16:20 EST; 54s ago
+     Docs: https://docs.docker.com
+ Main PID: 7780 (dockerd)
+    Tasks: 18
+   Memory: 49.3M
+   CGroup: /system.slice/docker.service
+           tq7780 /usr/bin/dockerd -H fd://
+           mq7795 containerd --config /var/run/docker/containerd/containerd.toml --log-level info
+
+ 2月 18 02:16:19 localhost.localdomain dockerd[7780]: time="2020-02-18T02:16:19.588553302-05:00" level=info msg="Graph migration to content-addressability t>
+ 2月 18 02:16:19 localhost.localdomain dockerd[7780]: time="2020-02-18T02:16:19.589050334-05:00" level=warning msg="Your kernel does not support cgroup blki>
+ 2月 18 02:16:19 localhost.localdomain dockerd[7780]: time="2020-02-18T02:16:19.589064367-05:00" level=warning msg="Your kernel does not support cgroup blki>
+ 2月 18 02:16:19 localhost.localdomain dockerd[7780]: time="2020-02-18T02:16:19.589335234-05:00" level=info msg="Loading containers: start."
+ 2月 18 02:16:19 localhost.localdomain dockerd[7780]: time="2020-02-18T02:16:19.874940367-05:00" level=info msg="Default bridge (docker0) is assigned with a>
+ 2月 18 02:16:20 localhost.localdomain dockerd[7780]: time="2020-02-18T02:16:20.142444503-05:00" level=info msg="Loading containers: done."
+ 2月 18 02:16:20 localhost.localdomain dockerd[7780]: time="2020-02-18T02:16:20.184113999-05:00" level=info msg="Docker daemon" commit=4c52b90 graphdriver(s>
+ 2月 18 02:16:20 localhost.localdomain dockerd[7780]: time="2020-02-18T02:16:20.184508402-05:00" level=info msg="Daemon has completed initialization"
+ 2月 18 02:16:20 localhost.localdomain dockerd[7780]: time="2020-02-18T02:16:20.206035568-05:00" level=info msg="API listen on /var/run/docker.sock"
+ 2月 18 02:16:20 localhost.localdomain systemd[1]: Started Docker Application Container Engine.
+ <font color="Red">//[q]キーを入力して終了</font>
+</pre>
+</div>
+{{< /accordion >}}
+
+4.containerdのアップグレード
+
+{{< accordion >}}
+<div>
+<pre>
+# dnf -y update https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.10-3.2.el7.x86_64.rpm
+メタデータの期限切れの最終確認: 0:01:23 時間前の 2020年02月20日 22時20分05秒 に 実施しました。
+containerd.io-1.2.10-3.2.el7.x86_64.rpm         9.0 MB/s |  23 MB     00:02
+依存関係が解決しました。
+================================================================================
+ パッケージ          Arch         バージョン           リポジトリー       サイズ
+================================================================================
+アップグレード:
+ containerd.io       x86_64       1.2.10-3.2.el7       @commandline        23 M
+     置き換え  runc.x86_64 1.0.0-64.rc9.module_el8.1.0+272+3e64ee36
+
+トランザクションの概要
+================================================================================
+アップグレード  1 パッケージ
+
+合計サイズ: 23 M
+パッケージのダウンロード:
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  scriptletの実行中: containerd.io-1.2.10-3.2.el7.x86_64                    1/1
+  アップグレード中 : containerd.io-1.2.10-3.2.el7.x86_64                    1/3
+  scriptletの実行中: containerd.io-1.2.10-3.2.el7.x86_64                    1/3
+  scriptletの実行中: containerd.io-1.2.0-3.el7.x86_64                       2/3
+  整理             : containerd.io-1.2.0-3.el7.x86_64                       2/3
+  scriptletの実行中: containerd.io-1.2.0-3.el7.x86_64                       2/3
+  廃止             : runc-1.0.0-64.rc9.module_el8.1.0+272+3e64ee36.x86_64   3/3
+  scriptletの実行中: runc-1.0.0-64.rc9.module_el8.1.0+272+3e64ee36.x86_64   3/3
+  検証             : containerd.io-1.2.10-3.2.el7.x86_64                    1/3
+  検証             : containerd.io-1.2.0-3.el7.x86_64                       2/3
+  検証             : runc-1.0.0-64.rc9.module_el8.1.0+272+3e64ee36.x86_64   3/3
+
+アップグレード済み:
+  containerd.io-1.2.10-3.2.el7.x86_64
+
+完了しました!
+</pre>
+</div>
+{{< /accordion >}}
+
+5.パッケージアップグレード
+
+{{< accordion >}}
+<div>
+<pre>
+# dnf -y upgrade
+メタデータの期限切れの最終確認: 0:03:09 時間前の 2020年02月20日 22時20分05秒 に 実施しました。
+依存関係が解決しました。
+================================================================================
+ パッケージ     Arch        バージョン              リポジトリー          サイズ
+================================================================================
+アップグレード:
+ docker-ce      x86_64      3:19.03.6-3.el7         docker-ce-stable       24 M
+
+トランザクションの概要
+================================================================================
+アップグレード  1 パッケージ
+
+ダウンロードサイズの合計: 24 M
+パッケージのダウンロード:
+docker-ce-19.03.6-3.el7.x86_64.rpm              603 kB/s |  24 MB     00:41
+--------------------------------------------------------------------------------
+合計                                            603 kB/s |  24 MB     00:41
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  scriptletの実行中: docker-ce-3:19.03.6-3.el7.x86_64                       1/1
+  アップグレード中 : docker-ce-3:19.03.6-3.el7.x86_64                       1/2
+  scriptletの実行中: docker-ce-3:19.03.6-3.el7.x86_64                       1/2
+  scriptletの実行中: docker-ce-3:18.09.1-3.el7.x86_64                       2/2
+/usr/bin/dockerd は dockerd の為の互換用として設定されていません。
+
+  整理             : docker-ce-3:18.09.1-3.el7.x86_64                       2/2
+  scriptletの実行中: docker-ce-3:18.09.1-3.el7.x86_64                       2/2
+  検証             : docker-ce-3:19.03.6-3.el7.x86_64                       1/2
+  検証             : docker-ce-3:18.09.1-3.el7.x86_64                       2/2
+
+アップグレード済み:
+  docker-ce-3:19.03.6-3.el7.x86_64
+
+完了しました!
+</pre>
+</div>
+{{< /accordion >}}
+
+6.Dockerのバージョン確認
+
+{{< accordion >}}
+<div>
+<pre>
+# docker version
+Client: Docker Engine - Community
+ Version:           19.03.6
+ API version:       1.40
+ Go version:        go1.12.16
+ Git commit:        369ce74a3c
+ Built:             Thu Feb 13 01:29:29 2020
+ OS/Arch:           linux/amd64
+ Experimental:      false
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.6
+  API version:      1.40 (minimum version 1.12)
+  Go version:       go1.12.16
+  Git commit:       369ce74a3c
+  Built:            Thu Feb 13 01:28:07 2020
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.2.10
+  GitCommit:        b34a5c8af56e510852c35414db4c1f4fa6172339
+ runc:
+  Version:          1.0.0-rc8+dev
+  GitCommit:        3e425f80a8c931f88e6d94a8c831b9d5aa481657
+ docker-init:
+  Version:          0.18.0
+  GitCommit:        fec3683
+</pre>
+</div>
+{{< /accordion >}}
+
+7.システム情報の確認
+
+{{< accordion >}}
+<div>
+<pre>
+# docker info
+Client:
+ Debug Mode: false
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 19.03.6
+ Storage Driver: overlay2
+  Backing Filesystem: xfs
+  Supports d_type: true
+  Native Overlay Diff: true
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: b34a5c8af56e510852c35414db4c1f4fa6172339
+ runc version: 3e425f80a8c931f88e6d94a8c831b9d5aa481657
+ init version: fec3683
+ Security Options:
+  seccomp
+   Profile: default
+ Kernel Version: 4.18.0-147.5.1.el8_1.x86_64
+ Operating System: CentOS Linux 8 (Core)
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 1
+ Total Memory: 3.692GiB
+ Name: localhost.localdomain
+ ID: L7LU:C4OE:SYXY:BAW4:CWLI:G7ZK:C62D:ZGHQ:MSO3:3TFD:JZYY:C5FA
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Live Restore Enabled: false
+</pre>
+</div>
+{{< /accordion >}}
+
+8.firewalldの変更
+
+{{< accordion >}}
+<div>
+<pre>
+# firewall-cmd --add-masquerade --permanent
+success
+</pre>
+
+<pre>
+# firewall-cmd --reload
+success
+</pre>
+</div>
+{{< /accordion >}}
+
+***
+
+## Docker Hubからコンテナーイメージのpull
+
+1.searchサブコマンドでレジストリーを検索
+
+{{< accordion >}}
+<div>
+<pre>
+# docker search linaction
+NAME                               DESCRIPTION               STARS               OFFICIAL            AUTOMATED
+linaction/centos                   Sample CentOS6.7(Final)   1                  
+linaction/wordpress                                          0                  
+linaction2017/docker-whale                                   0                  
+linaction2205/docker-whale                                   0                  
+linaction2017/python-hello-world                             0                  
+you19920304/linaction              wordpress                 0
+</pre>
+</div>
+{{< /accordion >}}
+
+2.コンテナーイメージをダウンロード
+
+{{< accordion >}}
+<div>
+<pre>
+# docker image pull -a linaction/centos
+centos6: Pulling from linaction/centos
+a3ed95caeb02: Pull complete
+3b231ed5aa2f: Pull complete
+cc8adad0f7cd: Pull complete
+d00fd8fd4a07: Pull complete
+Digest: sha256:759ea478951130a32e9191daaffc9b4e3c5ad089331eccc32112e370bf7c9fb8
+Status: Downloaded newer image for linaction/centos
+docker.io/linaction/centos
+</pre>
+</div>
+{{< /accordion >}}
+
+3.ダウンロードしたイメージを確認
+
+{{< accordion >}}
+<div>
+<pre>
+# docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+linaction/centos    centos6             6ccd3be87830        4 years ago         191MB
+</pre>
+</div>
+{{< /accordion >}}
+
+***
+
+## コンテナーの起動
+
+1.コンテナーを起動
+
+```
+# docker container run -it --name centos01 linaction/centos:centos6 /bin/bash
+[root@5f2cc286a156 /]#
+```
+
+***
+
+## 起動したコンテナーの確認
+
+1.コンテナー環境のOSのバージョンを確認
+
+```
+[root@5f2cc286a156 /]# cat /etc/redhat-release
+CentOS release 6.7 (Final)
+```
+
+2.コンテナー内のプロセスを確認
+
+```
+[root@5f2cc286a156 /]# ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 08:42 pts/0    00:00:00 /bin/bash
+root        13     1  0 08:48 pts/0    00:00:00 ps -ef
+```
+
+3.コンテナー環境のネットワークを確認
+
+```
+[root@5f2cc286a156 /]# ifconfig eth0
+eth0      Link encap:Ethernet  HWaddr 02:42:AC:11:00:02
+          inet addr:172.17.0.2  Bcast:172.17.255.255  Mask:255.255.0.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:58 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:6845 (6.6 KiB)  TX bytes:0 (0.0 b)
+```
+
+***
+
+## コンテナーとホストLinuxの切替
+
+1.コンテナーの/bin/bashから抜けてホストLinuxに戻る
+
+```
+Linuxホストに戻るCtrlキーを押したまま、PとQを順番に押す。
+```
+
+2.ホストLinuxから再度コンテナー内のbashに接続
+
+```
+# docker container attach centos01
+[root@5f2cc286a156 /]#
+```
+
+## コンテナーの起動と停止
+
+1.Linuxホストに戻る
+
+```
+Linuxホストに戻るCtrlキーを押したまま、PとQを順番に押す。
+```
+
+2.コンテナーを停止
+
+```
+# docker container stop centos01
+centos01
+```
+
+3.停止したコンテナーを確認
+
+```
+# docker container ls -a
+CONTAINER ID        IMAGE                      COMMAND             CREATED             STATUS                            PORTS               NAMES
+5f2cc286a156        linaction/centos:centos6   "/bin/bash"         19 minutes ago      Exited (137) About a minute ago                       centos01
+```
+
+4.コンテナーを起動
+
+```
+# docker container start centos01
+centos01
+```
+
+5.起動したコンテナーを確認
+
+```
+# docker container ls
+CONTAINER ID        IMAGE                      COMMAND             CREATED             STATUS              PORTS               NAMES
+5f2cc286a156        linaction/centos:centos6   "/bin/bash"         21 minutes ago      Up About a minute                       centos01
+```
+
+6.docker container execコマンド
+
+```
+# docker container exec -it centos01 /bin/bash
+```
+
+```
+# ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 09:02 pts/0    00:00:00 /bin/bash
+root        23     0  5 09:08 pts/1    00:00:00 /bin/bash
+root        33    23  0 09:08 pts/1    00:00:00 ps -ef
+```
+
+```
+# docker container ls
+CONTAINER ID        IMAGE                      COMMAND             CREATED             STATUS              PORTS               NAMES
+5f2cc286a156        linaction/centos:centos6   "/bin/bash"         24 minutes ago      Up 4 minutes                            centos01
+```
+
+## DockerfileからWordPress環境作成
+
+1.コンテナーを停止
+
+```
+# docker container stop centos01
+centos01
+```
+
+2.build用のディレクトリを作成
+
+```
+# mkdir ~/build_wordpress
+```
+
+3.Dockerfileを作成
+
+```
+# cd build_wordpress
+```
+
+```
+# vim Dockerfile
+
+--------------------------------------------------以下の内容をコピー&ペースト-----------------------------------------------------
+#centos6のイメージを取得
+FROM centos:centos6
+
+#タイムゾーンの設定
+RUN /bin/cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+#yumリポジトリの追加
+RUN yum install -y epel-release
+RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
+#php7のインストール
+RUN yum install -y --enablerepo=remi,remi-php70 php php-devel php-mbstring php-pdo php-mysql php-gd php-mcrypt libmcrypt
+
+#yumによるHTTPD,MySQL,tar,wgetのインストール
+RUN yum -y install httpd mysql-server tar wget
+
+#tmpディレクトリに移動
+WORKDIR /tmp/
+
+#wordpress一式のダウンロード
+RUN wget https://ja.wordpress.org/latest-ja.tar.gz
+
+#wordpressの展開
+RUN tar xvfz ./latest-ja.tar.gz -C /var/www/html
+
+#ダウンロードしたwordpressの削除
+RUN rm -f ./latest-ja.tar.gz
+
+#wordpressのconfigファイルをリネームして利用可能にする
+RUN cp /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+
+#wordpressのconfigファイルに必要な情報をsedコマンドで書き換える
+RUN sed -i -e 's/database_name_here/wordpress/g' -e 's/username_here/wordpress/g' -e 's/password_here/wppass/g' /var/www/html/wordpress/wp-config.php
+
+#DocumentRootディレクトリの所有者をapacheに変更
+RUN chown -R apache.apache /var/www/html/
+
+#mysqldの起動、DB作成、ユーザ作成および権限設定、mysqldの停止
+RUN service mysqld start && mysql -u root -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost' IDENTIFIED BY 'wppass'; FLUSH PRIVILEGES;" && service mysqld stop
+
+#mysqld,httpdの起動スクリプトの作成
+RUN echo -e "service mysqld start\nservice httpd start\n/bin/bash" > /startService.sh
+
+#mysqld,httpdの起動スクリプトの権限設定
+RUN chmod o+x /startService.sh
+
+#公開ポート
+EXPOSE 80
+
+#mysqld,httpdの起動スクリプトの実行
+CMD /startService.sh
+--------------------------------------------------[Esc + :wq]で保存終了します。--------------------------------------------------
+```
+
+4.Dockerfileを実行
+
+```
+# docker image build -t linaction/wordpress:ver1.0 ~/build_wordpress
+Sending build context to Docker daemon  3.584kB
+Step 1/18 : FROM centos:centos6
+centos6: Pulling from library/centos
+ff50d722b382: Pull complete
+Digest: sha256:dec8f471302de43f4cfcf82f56d99a5227b5ea1aa6d02fa56344986e1f4610e7
+Status: Downloaded newer image for centos:centos6
+ ---> d0957ffdf8a2
+Step 2/18 : RUN /bin/cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+ ---> Running in 11e416295580
+Removing intermediate container 11e416295580
+ ---> 0b9071e76c28
+Step 3/18 : RUN yum install -y epel-release
+ ---> Running in 9cac1016db2e
+Loaded plugins: fastestmirror, ovl
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package epel-release.noarch 0:6-8 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                Arch             Version         Repository        Size
+================================================================================
+Installing:
+ epel-release           noarch           6-8             extras            14 k
+
+Transaction Summary
+================================================================================
+Install       1 Package(s)
+
+Total download size: 14 k
+Installed size: 22 k
+Downloading Packages:
+warning: rpmts_HdrFromFdno: Header V3 RSA/SHA1 Signature, key ID c105b9de: NOKEY
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+Importing GPG key 0xC105B9DE:
+ Userid : CentOS-6 Key (CentOS 6 Official Signing Key) 
+ Package: centos-release-6-10.el6.centos.12.3.x86_64 (@CentOS/6.10)
+ From   : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : epel-release-6-8.noarch                                      1/1
+  Verifying  : epel-release-6-8.noarch                                      1/1
+
+Installed:
+  epel-release.noarch 0:6-8
+
+Complete!
+Removing intermediate container 9cac1016db2e
+ ---> 1b65f2572705
+Step 4/18 : RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+ ---> Running in 02170ee7597c
+warning: /var/tmp/rpm-tmp.1UNpzP: Header V4 DSA/SHA1 Signature, key ID 00f97f56: NOKEY
+Retrieving http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+Preparing...                ##################################################
+remi-release                ##################################################
+Removing intermediate container 02170ee7597c
+ ---> 493ea53cbf0e
+Step 5/18 : RUN yum install -y --enablerepo=remi,remi-php70 php php-devel php-mbstring php-pdo php-mysql php-gd php-mcrypt libmcrypt
+ ---> Running in 692f054874a3
+Loaded plugins: fastestmirror, ovl
+Setting up Install Process
+Determining fastest mirrors
+ * base: ftp.iij.ad.jp
+ * epel: ftp.iij.ad.jp
+ * extras: ftp.iij.ad.jp
+ * remi: ftp.riken.jp
+ * remi-php70: ftp.riken.jp
+ * remi-safe: ftp.riken.jp
+ * updates: ftp.iij.ad.jp
+Package php-mysql is obsoleted by php-mysqlnd, trying to install php-mysqlnd-7.0.33-18.el6.remi.x86_64 instead
+Resolving Dependencies
+--> Running transaction check
+---> Package libmcrypt.x86_64 0:2.5.8-9.el6 will be installed
+---> Package php.x86_64 0:7.0.33-18.el6.remi will be installed
+--> Processing Dependency: httpd-mmn = 20051115 for package: php-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: php-common(x86-64) = 7.0.33-18.el6.remi for package: php-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: php-cli(x86-64) = 7.0.33-18.el6.remi for package: php-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: httpd for package: php-7.0.33-18.el6.remi.x86_64
+---> Package php-devel.x86_64 0:7.0.33-18.el6.remi will be installed
+--> Processing Dependency: autoconf for package: php-devel-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: automake for package: php-devel-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: krb5-devel(x86-64) for package: php-devel-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: libedit-devel(x86-64) for package: php-devel-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: libxml2-devel(x86-64) for package: php-devel-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: openssl-devel(x86-64) for package: php-devel-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: zlib-devel(x86-64) for package: php-devel-7.0.33-18.el6.remi.x86_64
+---> Package php-gd.x86_64 0:7.0.33-18.el6.remi will be installed
+--> Processing Dependency: gd-last(x86-64) >= 2.1.1 for package: php-gd-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: libfreetype.so.6()(64bit) for package: php-gd-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: libgd.so.3()(64bit) for package: php-gd-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: libjpeg.so.62()(64bit) for package: php-gd-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: libpng12.so.0()(64bit) for package: php-gd-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: libX11.so.6()(64bit) for package: php-gd-7.0.33-18.el6.remi.x86_64
+--> Processing Dependency: libXpm.so.4()(64bit) for package: php-gd-7.0.33-18.el6.remi.x86_64
+---> Package php-mbstring.x86_64 0:7.0.33-18.el6.remi will be installed
+---> Package php-mcrypt.x86_64 0:7.0.33-18.el6.remi will be installed
+--> Processing Dependency: libltdl.so.7()(64bit) for package: php-mcrypt-7.0.33-18.el6.remi.x86_64
+---> Package php-mysqlnd.x86_64 0:7.0.33-18.el6.remi will be installed
+---> Package php-pdo.x86_64 0:7.0.33-18.el6.remi will be installed
+--> Running transaction check
+---> Package autoconf.noarch 0:2.63-5.1.el6 will be installed
+--> Processing Dependency: perl >= 5.005_03 for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl >= 5.005 for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl >= 5.000 for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: m4 >= 1.4.7 for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(vars) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(strict) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(Text::ParseWords) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(POSIX) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(IO::File) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(Getopt::Long) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(File::stat) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(File::Spec) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(File::Path) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(File::Find) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(File::Copy) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(File::Compare) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(File::Basename) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(Exporter) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(Errno) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(DynaLoader) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(Data::Dumper) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(Cwd) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: perl(Carp) for package: autoconf-2.63-5.1.el6.noarch
+--> Processing Dependency: /usr/bin/perl for package: autoconf-2.63-5.1.el6.noarch
+---> Package automake.noarch 0:1.11.1-4.el6 will be installed
+---> Package freetype.x86_64 0:2.3.11-19.el6_10 will be installed
+---> Package gd-last.x86_64 0:2.2.5-10.el6.remi will be installed
+--> Processing Dependency: libfontconfig.so.1()(64bit) for package: gd-last-2.2.5-10.el6.remi.x86_64
+--> Processing Dependency: libtiff.so.3()(64bit) for package: gd-last-2.2.5-10.el6.remi.x86_64
+--> Processing Dependency: libwebp.so.5()(64bit) for package: gd-last-2.2.5-10.el6.remi.x86_64
+---> Package httpd.x86_64 0:2.2.15-69.el6.centos will be installed
+--> Processing Dependency: httpd-tools = 2.2.15-69.el6.centos for package: httpd-2.2.15-69.el6.centos.x86_64
+--> Processing Dependency: system-logos >= 7.92.1-1 for package: httpd-2.2.15-69.el6.centos.x86_64
+--> Processing Dependency: initscripts >= 8.36 for package: httpd-2.2.15-69.el6.centos.x86_64
+--> Processing Dependency: apr-util-ldap for package: httpd-2.2.15-69.el6.centos.x86_64
+--> Processing Dependency: /etc/mime.types for package: httpd-2.2.15-69.el6.centos.x86_64
+--> Processing Dependency: libaprutil-1.so.0()(64bit) for package: httpd-2.2.15-69.el6.centos.x86_64
+--> Processing Dependency: libapr-1.so.0()(64bit) for package: httpd-2.2.15-69.el6.centos.x86_64
+---> Package krb5-devel.x86_64 0:1.10.3-65.el6 will be installed
+--> Processing Dependency: libkadm5(x86-64) = 1.10.3-65.el6 for package: krb5-devel-1.10.3-65.el6.x86_64
+--> Processing Dependency: libselinux-devel for package: krb5-devel-1.10.3-65.el6.x86_64
+--> Processing Dependency: libcom_err-devel for package: krb5-devel-1.10.3-65.el6.x86_64
+--> Processing Dependency: keyutils-libs-devel for package: krb5-devel-1.10.3-65.el6.x86_64
+---> Package libX11.x86_64 0:1.6.4-3.el6 will be installed
+--> Processing Dependency: libX11-common = 1.6.4-3.el6 for package: libX11-1.6.4-3.el6.x86_64
+--> Processing Dependency: libxcb.so.1()(64bit) for package: libX11-1.6.4-3.el6.x86_64
+---> Package libXpm.x86_64 0:3.5.10-2.el6 will be installed
+---> Package libedit-devel.x86_64 0:2.11-4.20080712cvs.1.el6 will be installed
+--> Processing Dependency: libedit = 2.11-4.20080712cvs.1.el6 for package: libedit-devel-2.11-4.20080712cvs.1.el6.x86_64
+--> Processing Dependency: ncurses-devel for package: libedit-devel-2.11-4.20080712cvs.1.el6.x86_64
+--> Processing Dependency: libedit.so.0()(64bit) for package: libedit-devel-2.11-4.20080712cvs.1.el6.x86_64
+---> Package libjpeg-turbo.x86_64 0:1.2.1-3.el6_5 will be installed
+---> Package libpng.x86_64 2:1.2.49-2.el6_7 will be installed
+---> Package libtool-ltdl.x86_64 0:2.2.6-15.5.el6 will be installed
+---> Package libxml2-devel.x86_64 0:2.7.6-21.el6_8.1 will be installed
+---> Package openssl-devel.x86_64 0:1.0.1e-58.el6_10 will be installed
+--> Processing Dependency: openssl = 1.0.1e-58.el6_10 for package: openssl-devel-1.0.1e-58.el6_10.x86_64
+---> Package php-cli.x86_64 0:7.0.33-18.el6.remi will be installed
+---> Package php-common.x86_64 0:7.0.33-18.el6.remi will be installed
+--> Processing Dependency: php-json(x86-64) = 7.0.33-18.el6.remi for package: php-common-7.0.33-18.el6.remi.x86_64
+---> Package zlib-devel.x86_64 0:1.2.3-29.el6 will be installed
+--> Running transaction check
+---> Package apr.x86_64 0:1.3.9-5.el6_9.1 will be installed
+---> Package apr-util.x86_64 0:1.3.9-3.el6_0.1 will be installed
+---> Package apr-util-ldap.x86_64 0:1.3.9-3.el6_0.1 will be installed
+---> Package fontconfig.x86_64 0:2.8.0-5.el6 will be installed
+---> Package httpd-tools.x86_64 0:2.2.15-69.el6.centos will be installed
+---> Package initscripts.x86_64 0:9.03.61-1.el6.centos will be installed
+--> Processing Dependency: util-linux-ng >= 2.16 for package: initscripts-9.03.61-1.el6.centos.x86_64
+--> Processing Dependency: upstart >= 0.6.5-11 for package: initscripts-9.03.61-1.el6.centos.x86_64
+--> Processing Dependency: udev >= 125-1 for package: initscripts-9.03.61-1.el6.centos.x86_64
+--> Processing Dependency: sysvinit-tools >= 2.87-6 for package: initscripts-9.03.61-1.el6.centos.x86_64
+--> Processing Dependency: plymouth for package: initscripts-9.03.61-1.el6.centos.x86_64
+--> Processing Dependency: /sbin/pidof for package: initscripts-9.03.61-1.el6.centos.x86_64
+--> Processing Dependency: /sbin/ip for package: initscripts-9.03.61-1.el6.centos.x86_64
+--> Processing Dependency: /sbin/blkid for package: initscripts-9.03.61-1.el6.centos.x86_64
+--> Processing Dependency: /sbin/arping for package: initscripts-9.03.61-1.el6.centos.x86_64
+---> Package keyutils-libs-devel.x86_64 0:1.4-5.el6 will be installed
+---> Package libX11-common.noarch 0:1.6.4-3.el6 will be installed
+---> Package libcom_err-devel.x86_64 0:1.41.12-24.el6 will be installed
+---> Package libedit.x86_64 0:2.11-4.20080712cvs.1.el6 will be installed
+---> Package libkadm5.x86_64 0:1.10.3-65.el6 will be installed
+---> Package libselinux-devel.x86_64 0:2.0.94-7.el6 will be installed
+--> Processing Dependency: libsepol-devel >= 2.0.32-1 for package: libselinux-devel-2.0.94-7.el6.x86_64
+--> Processing Dependency: pkgconfig(libsepol) for package: libselinux-devel-2.0.94-7.el6.x86_64
+---> Package libtiff.x86_64 0:3.9.4-21.el6_8 will be installed
+---> Package libwebp.x86_64 0:0.4.3-3.el6 will be installed
+---> Package libxcb.x86_64 0:1.12-4.el6 will be installed
+--> Processing Dependency: libXau.so.6()(64bit) for package: libxcb-1.12-4.el6.x86_64
+---> Package m4.x86_64 0:1.4.13-5.el6 will be installed
+---> Package mailcap.noarch 0:2.1.31-2.el6 will be installed
+---> Package ncurses-devel.x86_64 0:5.7-4.20090207.el6 will be installed
+---> Package openssl.x86_64 0:1.0.1e-57.el6 will be updated
+---> Package openssl.x86_64 0:1.0.1e-58.el6_10 will be an update
+---> Package perl.x86_64 4:5.10.1-144.el6 will be installed
+--> Processing Dependency: perl-libs = 4:5.10.1-144.el6 for package: 4:perl-5.10.1-144.el6.x86_64
+--> Processing Dependency: perl-libs for package: 4:perl-5.10.1-144.el6.x86_64
+--> Processing Dependency: perl(version) for package: 4:perl-5.10.1-144.el6.x86_64
+--> Processing Dependency: perl(Pod::Simple) for package: 4:perl-5.10.1-144.el6.x86_64
+--> Processing Dependency: perl(Module::Pluggable) for package: 4:perl-5.10.1-144.el6.x86_64
+--> Processing Dependency: libperl.so()(64bit) for package: 4:perl-5.10.1-144.el6.x86_64
+---> Package php-json.x86_64 0:7.0.33-18.el6.remi will be installed
+---> Package redhat-logos.noarch 0:60.0.14-12.el6.centos will be installed
+--> Running transaction check
+---> Package iproute.x86_64 0:2.6.32-57.el6 will be installed
+--> Processing Dependency: iptables >= 1.4.5 for package: iproute-2.6.32-57.el6.x86_64
+--> Processing Dependency: libxtables.so.4()(64bit) for package: iproute-2.6.32-57.el6.x86_64
+---> Package iputils.x86_64 0:20071127-24.el6 will be installed
+---> Package libXau.x86_64 0:1.0.6-4.el6 will be installed
+---> Package libsepol-devel.x86_64 0:2.0.41-4.el6 will be installed
+---> Package perl-Module-Pluggable.x86_64 1:3.90-144.el6 will be installed
+---> Package perl-Pod-Simple.x86_64 1:3.13-144.el6 will be installed
+--> Processing Dependency: perl(Pod::Escapes) >= 1.04 for package: 1:perl-Pod-Simple-3.13-144.el6.x86_64
+---> Package perl-libs.x86_64 4:5.10.1-144.el6 will be installed
+---> Package perl-version.x86_64 3:0.77-144.el6 will be installed
+---> Package plymouth.x86_64 0:0.8.3-29.el6.centos will be installed
+--> Processing Dependency: libdrm_radeon.so.1()(64bit) for package: plymouth-0.8.3-29.el6.centos.x86_64
+--> Processing Dependency: libdrm_nouveau.so.1()(64bit) for package: plymouth-0.8.3-29.el6.centos.x86_64
+--> Processing Dependency: libdrm_intel.so.1()(64bit) for package: plymouth-0.8.3-29.el6.centos.x86_64
+--> Processing Dependency: libdrm.so.2()(64bit) for package: plymouth-0.8.3-29.el6.centos.x86_64
+---> Package sysvinit-tools.x86_64 0:2.87-6.dsf.el6 will be installed
+---> Package udev.x86_64 0:147-2.74.el6_10 will be installed
+--> Processing Dependency: hwdata for package: udev-147-2.74.el6_10.x86_64
+---> Package upstart.x86_64 0:0.6.5-17.el6 will be installed
+---> Package util-linux-ng.x86_64 0:2.17.2-12.28.el6_9.2 will be installed
+--> Running transaction check
+---> Package hwdata.noarch 0:0.233-20.1.el6 will be installed
+---> Package iptables.x86_64 0:1.4.7-19.el6 will be installed
+--> Processing Dependency: policycoreutils for package: iptables-1.4.7-19.el6.x86_64
+---> Package libdrm.x86_64 0:2.4.65-2.el6 will be installed
+--> Processing Dependency: libpciaccess.so.0()(64bit) for package: libdrm-2.4.65-2.el6.x86_64
+---> Package perl-Pod-Escapes.x86_64 1:1.04-144.el6 will be installed
+--> Running transaction check
+---> Package libpciaccess.x86_64 0:0.13.4-1.el6 will be installed
+---> Package policycoreutils.x86_64 0:2.0.83-30.1.el6_8 will be installed
+--> Processing Dependency: libdbus-glib-1.so.2()(64bit) for package: policycoreutils-2.0.83-30.1.el6_8.x86_64
+--> Running transaction check
+---> Package dbus-glib.x86_64 0:0.86-6.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                 Arch     Version                    Repository    Size
+================================================================================
+Installing:
+ libmcrypt               x86_64   2.5.8-9.el6                epel          96 k
+ php                     x86_64   7.0.33-18.el6.remi         remi-php70   2.7 M
+ php-devel               x86_64   7.0.33-18.el6.remi         remi-php70   1.3 M
+ php-gd                  x86_64   7.0.33-18.el6.remi         remi-php70    73 k
+ php-mbstring            x86_64   7.0.33-18.el6.remi         remi-php70   982 k
+ php-mcrypt              x86_64   7.0.33-18.el6.remi         remi-php70    57 k
+ php-mysqlnd             x86_64   7.0.33-18.el6.remi         remi-php70   221 k
+ php-pdo                 x86_64   7.0.33-18.el6.remi         remi-php70   114 k
+Installing for dependencies:
+ apr                     x86_64   1.3.9-5.el6_9.1            base         124 k
+ apr-util                x86_64   1.3.9-3.el6_0.1            base          87 k
+ apr-util-ldap           x86_64   1.3.9-3.el6_0.1            base          15 k
+ autoconf                noarch   2.63-5.1.el6               base         781 k
+ automake                noarch   1.11.1-4.el6               base         550 k
+ dbus-glib               x86_64   0.86-6.el6                 base         170 k
+ fontconfig              x86_64   2.8.0-5.el6                base         186 k
+ freetype                x86_64   2.3.11-19.el6_10           updates      361 k
+ gd-last                 x86_64   2.2.5-10.el6.remi          remi         129 k
+ httpd                   x86_64   2.2.15-69.el6.centos       base         836 k
+ httpd-tools             x86_64   2.2.15-69.el6.centos       base          81 k
+ hwdata                  noarch   0.233-20.1.el6             base         1.4 M
+ initscripts             x86_64   9.03.61-1.el6.centos       base         949 k
+ iproute                 x86_64   2.6.32-57.el6              base         386 k
+ iptables                x86_64   1.4.7-19.el6               base         255 k
+ iputils                 x86_64   20071127-24.el6            base         121 k
+ keyutils-libs-devel     x86_64   1.4-5.el6                  base          29 k
+ krb5-devel              x86_64   1.10.3-65.el6              base         504 k
+ libX11                  x86_64   1.6.4-3.el6                base         587 k
+ libX11-common           noarch   1.6.4-3.el6                base         171 k
+ libXau                  x86_64   1.0.6-4.el6                base          24 k
+ libXpm                  x86_64   3.5.10-2.el6               base          51 k
+ libcom_err-devel        x86_64   1.41.12-24.el6             base          33 k
+ libdrm                  x86_64   2.4.65-2.el6               base         136 k
+ libedit                 x86_64   2.11-4.20080712cvs.1.el6   base          74 k
+ libedit-devel           x86_64   2.11-4.20080712cvs.1.el6   base          26 k
+ libjpeg-turbo           x86_64   1.2.1-3.el6_5              base         174 k
+ libkadm5                x86_64   1.10.3-65.el6              base         143 k
+ libpciaccess            x86_64   0.13.4-1.el6               base          24 k
+ libpng                  x86_64   2:1.2.49-2.el6_7           base         182 k
+ libselinux-devel        x86_64   2.0.94-7.el6               base         137 k
+ libsepol-devel          x86_64   2.0.41-4.el6               base          64 k
+ libtiff                 x86_64   3.9.4-21.el6_8             base         346 k
+ libtool-ltdl            x86_64   2.2.6-15.5.el6             base          44 k
+ libwebp                 x86_64   0.4.3-3.el6                epel         210 k
+ libxcb                  x86_64   1.12-4.el6                 base         180 k
+ libxml2-devel           x86_64   2.7.6-21.el6_8.1           base         1.1 M
+ m4                      x86_64   1.4.13-5.el6               base         278 k
+ mailcap                 noarch   2.1.31-2.el6               base          27 k
+ ncurses-devel           x86_64   5.7-4.20090207.el6         base         641 k
+ openssl-devel           x86_64   1.0.1e-58.el6_10           updates      1.2 M
+ perl                    x86_64   4:5.10.1-144.el6           base          10 M
+ perl-Module-Pluggable   x86_64   1:3.90-144.el6             base          41 k
+ perl-Pod-Escapes        x86_64   1:1.04-144.el6             base          33 k
+ perl-Pod-Simple         x86_64   1:3.13-144.el6             base         213 k
+ perl-libs               x86_64   4:5.10.1-144.el6           base         579 k
+ perl-version            x86_64   3:0.77-144.el6             base          52 k
+ php-cli                 x86_64   7.0.33-18.el6.remi         remi-php70   4.0 M
+ php-common              x86_64   7.0.33-18.el6.remi         remi-php70   1.0 M
+ php-json                x86_64   7.0.33-18.el6.remi         remi-php70    61 k
+ plymouth                x86_64   0.8.3-29.el6.centos        base          89 k
+ policycoreutils         x86_64   2.0.83-30.1.el6_8          base         663 k
+ redhat-logos            noarch   60.0.14-12.el6.centos      base          15 M
+ sysvinit-tools          x86_64   2.87-6.dsf.el6             base          60 k
+ udev                    x86_64   147-2.74.el6_10            updates      358 k
+ upstart                 x86_64   0.6.5-17.el6               base         177 k
+ util-linux-ng           x86_64   2.17.2-12.28.el6_9.2       base         1.6 M
+ zlib-devel              x86_64   1.2.3-29.el6               base          44 k
+Updating for dependencies:
+ openssl                 x86_64   1.0.1e-58.el6_10           updates      1.5 M
+
+Transaction Summary
+================================================================================
+Install      66 Package(s)
+Upgrade       1 Package(s)
+
+Total download size: 53 M
+Downloading Packages:
+--------------------------------------------------------------------------------
+Total                                           1.3 MB/s |  53 MB     00:39
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+warning: rpmts_HdrFromFdno: Header V4 DSA/SHA1 Signature, key ID 00f97f56: NOKEY
+Importing GPG key 0x00F97F56:
+ Userid : Remi Collet 
+ Package: remi-release-6.10-2.el6.remi.noarch (installed)
+ From   : /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+warning: rpmts_HdrFromFdno: Header V3 RSA/SHA256 Signature, key ID 0608b895: NOKEY
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+Importing GPG key 0x0608B895:
+ Userid : EPEL (6) 
+ Package: epel-release-6-8.noarch (@extras)
+ From   : /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+Warning: RPMDB altered outside of yum.
+  Updating   : openssl-1.0.1e-58.el6_10.x86_64                             1/68
+  Installing : php-json-7.0.33-18.el6.remi.x86_64                          2/68
+  Installing : php-common-7.0.33-18.el6.remi.x86_64                        3/68
+  Installing : libjpeg-turbo-1.2.1-3.el6_5.x86_64                          4/68
+  Installing : freetype-2.3.11-19.el6_10.x86_64                            5/68
+  Installing : zlib-devel-1.2.3-29.el6.x86_64                              6/68
+  Installing : apr-1.3.9-5.el6_9.1.x86_64                                  7/68
+  Installing : apr-util-1.3.9-3.el6_0.1.x86_64                             8/68
+  Installing : libedit-2.11-4.20080712cvs.1.el6.x86_64                     9/68
+  Installing : php-cli-7.0.33-18.el6.remi.x86_64                          10/68
+  Installing : redhat-logos-60.0.14-12.el6.centos.noarch                  11/68
+  Installing : hwdata-0.233-20.1.el6.noarch                               12/68
+  Installing : sysvinit-tools-2.87-6.dsf.el6.x86_64                       13/68
+  Installing : 2:libpng-1.2.49-2.el6_7.x86_64                             14/68
+  Installing : libpciaccess-0.13.4-1.el6.x86_64                           15/68
+  Installing : httpd-tools-2.2.15-69.el6.centos.x86_64                    16/68
+  Installing : apr-util-ldap-1.3.9-3.el6_0.1.x86_64                       17/68
+  Installing : libxml2-devel-2.7.6-21.el6_8.1.x86_64                      18/68
+  Installing : fontconfig-2.8.0-5.el6.x86_64                              19/68
+  Installing : libtiff-3.9.4-21.el6_8.x86_64                              20/68
+  Installing : php-pdo-7.0.33-18.el6.remi.x86_64                          21/68
+  Installing : 1:perl-Pod-Escapes-1.04-144.el6.x86_64                     22/68
+  Installing : 4:perl-libs-5.10.1-144.el6.x86_64                          23/68
+  Installing : 1:perl-Pod-Simple-3.13-144.el6.x86_64                      24/68
+  Installing : 1:perl-Module-Pluggable-3.90-144.el6.x86_64                25/68
+  Installing : 3:perl-version-0.77-144.el6.x86_64                         26/68
+  Installing : 4:perl-5.10.1-144.el6.x86_64                               27/68
+  Installing : libX11-common-1.6.4-3.el6.noarch                           28/68
+  Installing : libkadm5-1.10.3-65.el6.x86_64                              29/68
+  Installing : upstart-0.6.5-17.el6.x86_64                                30/68
+  Installing : libsepol-devel-2.0.41-4.el6.x86_64                         31/68
+  Installing : libselinux-devel-2.0.94-7.el6.x86_64                       32/68
+  Installing : libwebp-0.4.3-3.el6.x86_64                                 33/68
+  Installing : libmcrypt-2.5.8-9.el6.x86_64                               34/68
+  Installing : libtool-ltdl-2.2.6-15.5.el6.x86_64                         35/68
+  Installing : m4-1.4.13-5.el6.x86_64                                     36/68
+  Installing : autoconf-2.63-5.1.el6.noarch                               37/68
+install-info: No such file or directory for /usr/share/info/autoconf.info
+  Installing : automake-1.11.1-4.el6.noarch                               38/68
+install-info: No such file or directory for /usr/share/info/automake.info.gz
+  Installing : dbus-glib-0.86-6.el6.x86_64                                39/68
+  Installing : policycoreutils-2.0.83-30.1.el6_8.x86_64                   40/68
+  Installing : iptables-1.4.7-19.el6.x86_64                               41/68
+  Installing : iproute-2.6.32-57.el6.x86_64                               42/68
+  Installing : libdrm-2.4.65-2.el6.x86_64                                 43/68
+  Installing : plymouth-0.8.3-29.el6.centos.x86_64                        44/68
+  Installing : iputils-20071127-24.el6.x86_64                             45/68
+  Installing : util-linux-ng-2.17.2-12.28.el6_9.2.x86_64                  46/68
+install-info: No such file or directory for /usr/share/info/ipc.info
+  Installing : initscripts-9.03.61-1.el6.centos.x86_64                    47/68
+  Installing : udev-147-2.74.el6_10.x86_64                                48/68
+  Installing : keyutils-libs-devel-1.4-5.el6.x86_64                       49/68
+  Installing : libcom_err-devel-1.41.12-24.el6.x86_64                     50/68
+  Installing : krb5-devel-1.10.3-65.el6.x86_64                            51/68
+  Installing : openssl-devel-1.0.1e-58.el6_10.x86_64                      52/68
+  Installing : ncurses-devel-5.7-4.20090207.el6.x86_64                    53/68
+  Installing : libedit-devel-2.11-4.20080712cvs.1.el6.x86_64              54/68
+  Installing : mailcap-2.1.31-2.el6.noarch                                55/68
+  Installing : httpd-2.2.15-69.el6.centos.x86_64                          56/68
+  Installing : libXau-1.0.6-4.el6.x86_64                                  57/68
+  Installing : libxcb-1.12-4.el6.x86_64                                   58/68
+  Installing : libX11-1.6.4-3.el6.x86_64                                  59/68
+  Installing : libXpm-3.5.10-2.el6.x86_64                                 60/68
+  Installing : gd-last-2.2.5-10.el6.remi.x86_64                           61/68
+  Installing : php-gd-7.0.33-18.el6.remi.x86_64                           62/68
+  Installing : php-7.0.33-18.el6.remi.x86_64                              63/68
+  Installing : php-devel-7.0.33-18.el6.remi.x86_64                        64/68
+  Installing : php-mcrypt-7.0.33-18.el6.remi.x86_64                       65/68
+  Installing : php-mysqlnd-7.0.33-18.el6.remi.x86_64                      66/68
+  Installing : php-mbstring-7.0.33-18.el6.remi.x86_64                     67/68
+  Cleanup    : openssl-1.0.1e-57.el6.x86_64                               68/68
+  Verifying  : 3:perl-version-0.77-144.el6.x86_64                          1/68
+  Verifying  : policycoreutils-2.0.83-30.1.el6_8.x86_64                    2/68
+  Verifying  : 4:perl-5.10.1-144.el6.x86_64                                3/68
+  Verifying  : libXpm-3.5.10-2.el6.x86_64                                  4/68
+  Verifying  : httpd-2.2.15-69.el6.centos.x86_64                           5/68
+  Verifying  : krb5-devel-1.10.3-65.el6.x86_64                             6/68
+  Verifying  : fontconfig-2.8.0-5.el6.x86_64                               7/68
+  Verifying  : libxcb-1.12-4.el6.x86_64                                    8/68
+  Verifying  : libXau-1.0.6-4.el6.x86_64                                   9/68
+  Verifying  : php-cli-7.0.33-18.el6.remi.x86_64                          10/68
+  Verifying  : apr-1.3.9-5.el6_9.1.x86_64                                 11/68
+  Verifying  : mailcap-2.1.31-2.el6.noarch                                12/68
+  Verifying  : automake-1.11.1-4.el6.noarch                               13/68
+  Verifying  : 2:libpng-1.2.49-2.el6_7.x86_64                             14/68
+  Verifying  : ncurses-devel-5.7-4.20090207.el6.x86_64                    15/68
+  Verifying  : libcom_err-devel-1.41.12-24.el6.x86_64                     16/68
+  Verifying  : libtiff-3.9.4-21.el6_8.x86_64                              17/68
+  Verifying  : 4:perl-libs-5.10.1-144.el6.x86_64                          18/68
+  Verifying  : udev-147-2.74.el6_10.x86_64                                19/68
+  Verifying  : sysvinit-tools-2.87-6.dsf.el6.x86_64                       20/68
+  Verifying  : php-7.0.33-18.el6.remi.x86_64                              21/68
+  Verifying  : hwdata-0.233-20.1.el6.noarch                               22/68
+  Verifying  : php-pdo-7.0.33-18.el6.remi.x86_64                          23/68
+  Verifying  : keyutils-libs-devel-1.4-5.el6.x86_64                       24/68
+  Verifying  : zlib-devel-1.2.3-29.el6.x86_64                             25/68
+  Verifying  : dbus-glib-0.86-6.el6.x86_64                                26/68
+  Verifying  : php-mcrypt-7.0.33-18.el6.remi.x86_64                       27/68
+  Verifying  : 1:perl-Pod-Simple-3.13-144.el6.x86_64                      28/68
+  Verifying  : php-gd-7.0.33-18.el6.remi.x86_64                           29/68
+  Verifying  : apr-util-1.3.9-3.el6_0.1.x86_64                            30/68
+  Verifying  : autoconf-2.63-5.1.el6.noarch                               31/68
+  Verifying  : iproute-2.6.32-57.el6.x86_64                               32/68
+  Verifying  : plymouth-0.8.3-29.el6.centos.x86_64                        33/68
+  Verifying  : php-common-7.0.33-18.el6.remi.x86_64                       34/68
+  Verifying  : freetype-2.3.11-19.el6_10.x86_64                           35/68
+  Verifying  : httpd-tools-2.2.15-69.el6.centos.x86_64                    36/68
+  Verifying  : m4-1.4.13-5.el6.x86_64                                     37/68
+  Verifying  : gd-last-2.2.5-10.el6.remi.x86_64                           38/68
+  Verifying  : apr-util-ldap-1.3.9-3.el6_0.1.x86_64                       39/68
+  Verifying  : openssl-1.0.1e-58.el6_10.x86_64                            40/68
+  Verifying  : redhat-logos-60.0.14-12.el6.centos.noarch                  41/68
+  Verifying  : util-linux-ng-2.17.2-12.28.el6_9.2.x86_64                  42/68
+  Verifying  : libedit-devel-2.11-4.20080712cvs.1.el6.x86_64              43/68
+  Verifying  : libtool-ltdl-2.2.6-15.5.el6.x86_64                         44/68
+  Verifying  : libX11-1.6.4-3.el6.x86_64                                  45/68
+  Verifying  : libedit-2.11-4.20080712cvs.1.el6.x86_64                    46/68
+  Verifying  : libjpeg-turbo-1.2.1-3.el6_5.x86_64                         47/68
+  Verifying  : libpciaccess-0.13.4-1.el6.x86_64                           48/68
+  Verifying  : libmcrypt-2.5.8-9.el6.x86_64                               49/68
+  Verifying  : php-mysqlnd-7.0.33-18.el6.remi.x86_64                      50/68
+  Verifying  : php-mbstring-7.0.33-18.el6.remi.x86_64                     51/68
+  Verifying  : libwebp-0.4.3-3.el6.x86_64                                 52/68
+  Verifying  : libsepol-devel-2.0.41-4.el6.x86_64                         53/68
+  Verifying  : upstart-0.6.5-17.el6.x86_64                                54/68
+  Verifying  : openssl-devel-1.0.1e-58.el6_10.x86_64                      55/68
+  Verifying  : 1:perl-Pod-Escapes-1.04-144.el6.x86_64                     56/68
+  Verifying  : initscripts-9.03.61-1.el6.centos.x86_64                    57/68
+  Verifying  : iptables-1.4.7-19.el6.x86_64                               58/68
+  Verifying  : 1:perl-Module-Pluggable-3.90-144.el6.x86_64                59/68
+  Verifying  : libkadm5-1.10.3-65.el6.x86_64                              60/68
+  Verifying  : libX11-common-1.6.4-3.el6.noarch                           61/68
+  Verifying  : iputils-20071127-24.el6.x86_64                             62/68
+  Verifying  : libselinux-devel-2.0.94-7.el6.x86_64                       63/68
+  Verifying  : libxml2-devel-2.7.6-21.el6_8.1.x86_64                      64/68
+  Verifying  : php-json-7.0.33-18.el6.remi.x86_64                         65/68
+  Verifying  : libdrm-2.4.65-2.el6.x86_64                                 66/68
+  Verifying  : php-devel-7.0.33-18.el6.remi.x86_64                        67/68
+  Verifying  : openssl-1.0.1e-57.el6.x86_64                               68/68
+
+Installed:
+  libmcrypt.x86_64 0:2.5.8-9.el6
+  php.x86_64 0:7.0.33-18.el6.remi
+  php-devel.x86_64 0:7.0.33-18.el6.remi
+  php-gd.x86_64 0:7.0.33-18.el6.remi
+  php-mbstring.x86_64 0:7.0.33-18.el6.remi
+  php-mcrypt.x86_64 0:7.0.33-18.el6.remi
+  php-mysqlnd.x86_64 0:7.0.33-18.el6.remi
+  php-pdo.x86_64 0:7.0.33-18.el6.remi
+
+Dependency Installed:
+  apr.x86_64 0:1.3.9-5.el6_9.1
+  apr-util.x86_64 0:1.3.9-3.el6_0.1
+  apr-util-ldap.x86_64 0:1.3.9-3.el6_0.1
+  autoconf.noarch 0:2.63-5.1.el6
+  automake.noarch 0:1.11.1-4.el6
+  dbus-glib.x86_64 0:0.86-6.el6
+  fontconfig.x86_64 0:2.8.0-5.el6
+  freetype.x86_64 0:2.3.11-19.el6_10
+  gd-last.x86_64 0:2.2.5-10.el6.remi
+  httpd.x86_64 0:2.2.15-69.el6.centos
+  httpd-tools.x86_64 0:2.2.15-69.el6.centos
+  hwdata.noarch 0:0.233-20.1.el6
+  initscripts.x86_64 0:9.03.61-1.el6.centos
+  iproute.x86_64 0:2.6.32-57.el6
+  iptables.x86_64 0:1.4.7-19.el6
+  iputils.x86_64 0:20071127-24.el6
+  keyutils-libs-devel.x86_64 0:1.4-5.el6
+  krb5-devel.x86_64 0:1.10.3-65.el6
+  libX11.x86_64 0:1.6.4-3.el6
+  libX11-common.noarch 0:1.6.4-3.el6
+  libXau.x86_64 0:1.0.6-4.el6
+  libXpm.x86_64 0:3.5.10-2.el6
+  libcom_err-devel.x86_64 0:1.41.12-24.el6
+  libdrm.x86_64 0:2.4.65-2.el6
+  libedit.x86_64 0:2.11-4.20080712cvs.1.el6
+  libedit-devel.x86_64 0:2.11-4.20080712cvs.1.el6
+  libjpeg-turbo.x86_64 0:1.2.1-3.el6_5
+  libkadm5.x86_64 0:1.10.3-65.el6
+  libpciaccess.x86_64 0:0.13.4-1.el6
+  libpng.x86_64 2:1.2.49-2.el6_7
+  libselinux-devel.x86_64 0:2.0.94-7.el6
+  libsepol-devel.x86_64 0:2.0.41-4.el6
+  libtiff.x86_64 0:3.9.4-21.el6_8
+  libtool-ltdl.x86_64 0:2.2.6-15.5.el6
+  libwebp.x86_64 0:0.4.3-3.el6
+  libxcb.x86_64 0:1.12-4.el6
+  libxml2-devel.x86_64 0:2.7.6-21.el6_8.1
+  m4.x86_64 0:1.4.13-5.el6
+  mailcap.noarch 0:2.1.31-2.el6
+  ncurses-devel.x86_64 0:5.7-4.20090207.el6
+  openssl-devel.x86_64 0:1.0.1e-58.el6_10
+  perl.x86_64 4:5.10.1-144.el6
+  perl-Module-Pluggable.x86_64 1:3.90-144.el6
+  perl-Pod-Escapes.x86_64 1:1.04-144.el6
+  perl-Pod-Simple.x86_64 1:3.13-144.el6
+  perl-libs.x86_64 4:5.10.1-144.el6
+  perl-version.x86_64 3:0.77-144.el6
+  php-cli.x86_64 0:7.0.33-18.el6.remi
+  php-common.x86_64 0:7.0.33-18.el6.remi
+  php-json.x86_64 0:7.0.33-18.el6.remi
+  plymouth.x86_64 0:0.8.3-29.el6.centos
+  policycoreutils.x86_64 0:2.0.83-30.1.el6_8
+  redhat-logos.noarch 0:60.0.14-12.el6.centos
+  sysvinit-tools.x86_64 0:2.87-6.dsf.el6
+  udev.x86_64 0:147-2.74.el6_10
+  upstart.x86_64 0:0.6.5-17.el6
+  util-linux-ng.x86_64 0:2.17.2-12.28.el6_9.2
+  zlib-devel.x86_64 0:1.2.3-29.el6
+
+Dependency Updated:
+  openssl.x86_64 0:1.0.1e-58.el6_10
+
+Complete!
+Removing intermediate container 692f054874a3
+ ---> 952ba7b97491
+Step 6/18 : RUN yum -y install httpd mysql-server tar wget
+ ---> Running in 451e63baf452
+Loaded plugins: fastestmirror, ovl
+Setting up Install Process
+Loading mirror speeds from cached hostfile
+ * base: ftp.iij.ad.jp
+ * epel: ftp.iij.ad.jp
+ * extras: ftp.iij.ad.jp
+ * remi-safe: ftp.riken.jp
+ * updates: ftp.iij.ad.jp
+Package httpd-2.2.15-69.el6.centos.x86_64 already installed and latest version
+Package 2:tar-1.23-15.el6_8.x86_64 already installed and latest version
+Resolving Dependencies
+--> Running transaction check
+---> Package mysql-server.x86_64 0:5.1.73-8.el6_8 will be installed
+--> Processing Dependency: mysql = 5.1.73-8.el6_8 for package: mysql-server-5.1.73-8.el6_8.x86_64
+--> Processing Dependency: perl-DBI for package: mysql-server-5.1.73-8.el6_8.x86_64
+--> Processing Dependency: perl-DBD-MySQL for package: mysql-server-5.1.73-8.el6_8.x86_64
+--> Processing Dependency: perl(DBI) for package: mysql-server-5.1.73-8.el6_8.x86_64
+--> Processing Dependency: libmysqlclient_r.so.16(libmysqlclient_16)(64bit) for package: mysql-server-5.1.73-8.el6_8.x86_64
+--> Processing Dependency: libmysqlclient.so.16(libmysqlclient_16)(64bit) for package: mysql-server-5.1.73-8.el6_8.x86_64
+--> Processing Dependency: libmysqlclient_r.so.16()(64bit) for package: mysql-server-5.1.73-8.el6_8.x86_64
+--> Processing Dependency: libmysqlclient.so.16()(64bit) for package: mysql-server-5.1.73-8.el6_8.x86_64
+---> Package wget.x86_64 0:1.12-10.el6 will be installed
+--> Running transaction check
+---> Package mysql.x86_64 0:5.1.73-8.el6_8 will be installed
+---> Package mysql-libs.x86_64 0:5.1.73-8.el6_8 will be installed
+---> Package perl-DBD-MySQL.x86_64 0:4.013-3.el6 will be installed
+---> Package perl-DBI.x86_64 0:1.609-4.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package               Arch          Version                  Repository   Size
+================================================================================
+Installing:
+ mysql-server          x86_64        5.1.73-8.el6_8           base        8.6 M
+ wget                  x86_64        1.12-10.el6              base        484 k
+Installing for dependencies:
+ mysql                 x86_64        5.1.73-8.el6_8           base        895 k
+ mysql-libs            x86_64        5.1.73-8.el6_8           base        1.2 M
+ perl-DBD-MySQL        x86_64        4.013-3.el6              base        134 k
+ perl-DBI              x86_64        1.609-4.el6              base        705 k
+
+Transaction Summary
+================================================================================
+Install       6 Package(s)
+
+Total download size: 12 M
+Installed size: 35 M
+Downloading Packages:
+--------------------------------------------------------------------------------
+Total                                           3.1 MB/s |  12 MB     00:03
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : mysql-libs-5.1.73-8.el6_8.x86_64                             1/6
+  Installing : perl-DBI-1.609-4.el6.x86_64                                  2/6
+  Installing : perl-DBD-MySQL-4.013-3.el6.x86_64                            3/6
+  Installing : mysql-5.1.73-8.el6_8.x86_64                                  4/6
+  Installing : mysql-server-5.1.73-8.el6_8.x86_64                           5/6
+  Installing : wget-1.12-10.el6.x86_64                                      6/6
+install-info: No such file or directory for /usr/share/info/wget.info.gz
+  Verifying  : wget-1.12-10.el6.x86_64                                      1/6
+  Verifying  : perl-DBD-MySQL-4.013-3.el6.x86_64                            2/6
+  Verifying  : mysql-server-5.1.73-8.el6_8.x86_64                           3/6
+  Verifying  : perl-DBI-1.609-4.el6.x86_64                                  4/6
+  Verifying  : mysql-5.1.73-8.el6_8.x86_64                                  5/6
+  Verifying  : mysql-libs-5.1.73-8.el6_8.x86_64                             6/6
+
+Installed:
+  mysql-server.x86_64 0:5.1.73-8.el6_8         wget.x86_64 0:1.12-10.el6
+
+Dependency Installed:
+  mysql.x86_64 0:5.1.73-8.el6_8           mysql-libs.x86_64 0:5.1.73-8.el6_8
+  perl-DBD-MySQL.x86_64 0:4.013-3.el6     perl-DBI.x86_64 0:1.609-4.el6
+
+Complete!
+Removing intermediate container 451e63baf452
+ ---> a19b06fa2971
+Step 7/18 : WORKDIR /tmp/
+ ---> Running in 850bf874057c
+Removing intermediate container 850bf874057c
+ ---> 5e3d42fb7842
+Step 8/18 : RUN wget https://ja.wordpress.org/latest-ja.tar.gz
+ ---> Running in e3fd66d7dd3c
+--2020-02-21 12:34:15--  https://ja.wordpress.org/latest-ja.tar.gz
+Resolving ja.wordpress.org... 198.143.164.252
+Connecting to ja.wordpress.org|198.143.164.252|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 12479892 (12M) [application/octet-stream]
+Saving to: `latest-ja.tar.gz'
+
+     0K .......... .......... .......... .......... ..........  0%  152K 80s
+    50K .......... .......... .......... .......... ..........  0%  463K 53s
+   100K .......... .......... .......... .......... ..........  1%  613K 42s
+   150K .......... .......... .......... .......... ..........  1%  128K 54s
+   200K .......... .......... .......... .......... ..........  2% 49.0M 43s
+   250K .......... .......... .......... .......... ..........  2%  149M 36s
+   300K .......... .......... .......... .......... ..........  2% 60.8M 31s
+   350K .......... .......... .......... .......... ..........  3% 4.61M 27s
+   400K .......... .......... .......... .......... ..........  3%  294K 28s
+   450K .......... .......... .......... .......... ..........  4% 3.40M 26s
+   500K .......... .......... .......... .......... ..........  4%  354K 26s
+   550K .......... .......... .......... .......... ..........  4% 1.74M 25s
+   600K .......... .......... .......... .......... ..........  5%  444K 25s
+   650K .......... .......... .......... .......... ..........  5% 2.53M 23s
+   700K .......... .......... .......... .......... ..........  6% 2.41M 22s
+   750K .......... .......... .......... .......... ..........  6% 2.01M 21s
+   800K .......... .......... .......... .......... ..........  6%  545K 21s
+   850K .......... .......... .......... .......... ..........  7% 2.37M 20s
+   900K .......... .......... .......... .......... ..........  7% 2.52M 19s
+   950K .......... .......... .......... .......... ..........  8% 3.14M 18s
+  1000K .......... .......... .......... .......... ..........  8% 2.92M 17s
+  1050K .......... .......... .......... .......... ..........  9%  689K 17s
+  1100K .......... .......... .......... .......... ..........  9% 2.54M 16s
+  1150K .......... .......... .......... .......... ..........  9% 2.14M 16s
+  1200K .......... .......... .......... .......... .......... 10% 3.59M 15s
+  1250K .......... .......... .......... .......... .......... 10% 4.32M 15s
+  1300K .......... .......... .......... .......... .......... 11% 4.32M 14s
+  1350K .......... .......... .......... .......... .......... 11% 5.01M 14s
+  1400K .......... .......... .......... .......... .......... 11% 4.78M 13s
+  1450K .......... .......... .......... .......... .......... 12%  979K 13s
+  1500K .......... .......... .......... .......... .......... 12% 5.46M 13s
+  1550K .......... .......... .......... .......... .......... 13% 4.05M 12s
+  1600K .......... .......... .......... .......... .......... 13% 3.96M 12s
+  1650K .......... .......... .......... .......... .......... 13% 4.77M 12s
+  1700K .......... .......... .......... .......... .......... 14% 5.95M 11s
+  1750K .......... .......... .......... .......... .......... 14% 6.32M 11s
+  1800K .......... .......... .......... .......... .......... 15% 5.42M 11s
+  1850K .......... .......... .......... .......... .......... 15% 5.52M 10s
+  1900K .......... .......... .......... .......... .......... 16% 5.02M 10s
+  1950K .......... .......... .......... .......... .......... 16% 4.58M 10s
+  2000K .......... .......... .......... .......... .......... 16% 5.22M 10s
+  2050K .......... .......... .......... .......... .......... 17% 6.64M 9s
+  2100K .......... .......... .......... .......... .......... 17% 1.15M 9s
+  2150K .......... .......... .......... .......... .......... 18% 7.07M 9s
+  2200K .......... .......... .......... .......... .......... 18% 7.70M 9s
+  2250K .......... .......... .......... .......... .......... 18% 5.72M 9s
+  2300K .......... .......... .......... .......... .......... 19% 6.38M 8s
+  2350K .......... .......... .......... .......... .......... 19% 6.34M 8s
+  2400K .......... .......... .......... .......... .......... 20% 7.99M 8s
+  2450K .......... .......... .......... .......... .......... 20% 13.1M 8s
+  2500K .......... .......... .......... .......... .......... 20% 8.38M 8s
+  2550K .......... .......... .......... .......... .......... 21% 10.8M 8s
+  2600K .......... .......... .......... .......... .......... 21% 9.63M 7s
+  2650K .......... .......... .......... .......... .......... 22% 12.5M 7s
+  2700K .......... .......... .......... .......... .......... 22% 9.01M 7s
+  2750K .......... .......... .......... .......... .......... 22% 9.18M 7s
+  2800K .......... .......... .......... .......... .......... 23% 8.78M 7s
+  2850K .......... .......... .......... .......... .......... 23% 12.2M 7s
+  2900K .......... .......... .......... .......... .......... 24% 12.0M 7s
+  2950K .......... .......... .......... .......... .......... 24% 8.95M 6s
+  3000K .......... .......... .......... .......... .......... 25% 7.65M 6s
+  3050K .......... .......... .......... .......... .......... 25% 10.0M 6s
+  3100K .......... .......... .......... .......... .......... 25% 14.8M 6s
+  3150K .......... .......... .......... .......... .......... 26% 6.55M 6s
+  3200K .......... .......... .......... .......... .......... 26% 12.0M 6s
+  3250K .......... .......... .......... .......... .......... 27% 12.7M 6s
+  3300K .......... .......... .......... .......... .......... 27% 10.1M 6s
+  3350K .......... .......... .......... .......... .......... 27% 1.72M 6s
+  3400K .......... .......... .......... .......... .......... 28% 10.6M 5s
+  3450K .......... .......... .......... .......... .......... 28% 7.39M 5s
+  3500K .......... .......... .......... .......... .......... 29% 13.0M 5s
+  3550K .......... .......... .......... .......... .......... 29% 8.83M 5s
+  3600K .......... .......... .......... .......... .......... 29% 12.2M 5s
+  3650K .......... .......... .......... .......... .......... 30% 12.3M 5s
+  3700K .......... .......... .......... .......... .......... 30% 14.0M 5s
+  3750K .......... .......... .......... .......... .......... 31% 12.9M 5s
+  3800K .......... .......... .......... .......... .......... 31% 15.2M 5s
+  3850K .......... .......... .......... .......... .......... 32% 17.7M 5s
+  3900K .......... .......... .......... .......... .......... 32% 10.2M 5s
+  3950K .......... .......... .......... .......... .......... 32% 8.92M 5s
+  4000K .......... .......... .......... .......... .......... 33% 16.0M 4s
+  4050K .......... .......... .......... .......... .......... 33% 16.0M 4s
+  4100K .......... .......... .......... .......... .......... 34% 10.7M 4s
+  4150K .......... .......... .......... .......... .......... 34% 16.5M 4s
+  4200K .......... .......... .......... .......... .......... 34% 12.1M 4s
+  4250K .......... .......... .......... .......... .......... 35% 17.8M 4s
+  4300K .......... .......... .......... .......... .......... 35% 22.9M 4s
+  4350K .......... .......... .......... .......... .......... 36% 10.9M 4s
+  4400K .......... .......... .......... .......... .......... 36% 16.6M 4s
+  4450K .......... .......... .......... .......... .......... 36% 19.0M 4s
+  4500K .......... .......... .......... .......... .......... 37% 11.5M 4s
+  4550K .......... .......... .......... .......... .......... 37% 11.1M 4s
+  4600K .......... .......... .......... .......... .......... 38% 16.5M 4s
+  4650K .......... .......... .......... .......... .......... 38% 15.4M 4s
+  4700K .......... .......... .......... .......... .......... 38% 42.7M 4s
+  4750K .......... .......... .......... .......... .......... 39% 9.68M 3s
+  4800K .......... .......... .......... .......... .......... 39% 17.5M 3s
+  4850K .......... .......... .......... .......... .......... 40% 14.4M 3s
+  4900K .......... .......... .......... .......... .......... 40% 16.2M 3s
+  4950K .......... .......... .......... .......... .......... 41% 16.6M 3s
+  5000K .......... .......... .......... .......... .......... 41% 7.54M 3s
+  5050K .......... .......... .......... .......... .......... 41% 90.8M 3s
+  5100K .......... .......... .......... .......... .......... 42% 45.1M 3s
+  5150K .......... .......... .......... .......... .......... 42% 17.3M 3s
+  5200K .......... .......... .......... .......... .......... 43% 10.8M 3s
+  5250K .......... .......... .......... .......... .......... 43% 16.3M 3s
+  5300K .......... .......... .......... .......... .......... 43% 24.0M 3s
+  5350K .......... .......... .......... .......... .......... 44% 18.5M 3s
+  5400K .......... .......... .......... .......... .......... 44% 25.7M 3s
+  5450K .......... .......... .......... .......... .......... 45% 23.0M 3s
+  5500K .......... .......... .......... .......... .......... 45% 12.9M 3s
+  5550K .......... .......... .......... .......... .......... 45% 2.48M 3s
+  5600K .......... .......... .......... .......... .......... 46% 28.8M 3s
+  5650K .......... .......... .......... .......... .......... 46% 22.2M 3s
+  5700K .......... .......... .......... .......... .......... 47% 32.8M 3s
+  5750K .......... .......... .......... .......... .......... 47% 23.2M 3s
+  5800K .......... .......... .......... .......... .......... 48% 15.1M 3s
+  5850K .......... .......... .......... .......... .......... 48% 24.4M 2s
+  5900K .......... .......... .......... .......... .......... 48% 25.5M 2s
+  5950K .......... .......... .......... .......... .......... 49% 16.9M 2s
+  6000K .......... .......... .......... .......... .......... 49% 29.1M 2s
+  6050K .......... .......... .......... .......... .......... 50% 35.4M 2s
+  6100K .......... .......... .......... .......... .......... 50% 14.8M 2s
+  6150K .......... .......... .......... .......... .......... 50% 13.5M 2s
+  6200K .......... .......... .......... .......... .......... 51% 46.0M 2s
+  6250K .......... .......... .......... .......... .......... 51% 19.7M 2s
+  6300K .......... .......... .......... .......... .......... 52% 23.5M 2s
+  6350K .......... .......... .......... .......... .......... 52% 13.9M 2s
+  6400K .......... .......... .......... .......... .......... 52% 19.2M 2s
+  6450K .......... .......... .......... .......... .......... 53% 19.8M 2s
+  6500K .......... .......... .......... .......... .......... 53% 16.4M 2s
+  6550K .......... .......... .......... .......... .......... 54% 19.0M 2s
+  6600K .......... .......... .......... .......... .......... 54% 12.5M 2s
+  6650K .......... .......... .......... .......... .......... 54% 34.3M 2s
+  6700K .......... .......... .......... .......... .......... 55% 26.2M 2s
+  6750K .......... .......... .......... .......... .......... 55% 17.7M 2s
+  6800K .......... .......... .......... .......... .......... 56% 25.2M 2s
+  6850K .......... .......... .......... .......... .......... 56% 24.0M 2s
+  6900K .......... .......... .......... .......... .......... 57% 34.2M 2s
+  6950K .......... .......... .......... .......... .......... 57% 12.0M 2s
+  7000K .......... .......... .......... .......... .......... 57% 17.7M 2s
+  7050K .......... .......... .......... .......... .......... 58% 62.0M 2s
+  7100K .......... .......... .......... .......... .......... 58% 23.7M 2s
+  7150K .......... .......... .......... .......... .......... 59% 17.7M 2s
+  7200K .......... .......... .......... .......... .......... 59% 21.7M 2s
+  7250K .......... .......... .......... .......... .......... 59% 75.2K 2s
+  7300K .......... .......... .......... .......... .......... 60%  189M 2s
+  7350K .......... .......... .......... .......... .......... 60%  105K 2s
+  7400K .......... .......... .......... .......... .......... 61% 32.9M 2s
+  7450K .......... .......... .......... .......... .......... 61% 56.7K 3s
+  7500K .......... .......... .......... .......... .......... 61% 76.6K 3s
+  7550K .......... .......... .......... .......... .......... 62%  102K 3s
+  7600K .......... .......... .......... .......... .......... 62%  114M 3s
+  7650K .......... .......... .......... .......... .......... 63% 83.7M 3s
+  7700K .......... .......... .......... .......... .......... 63% 85.4M 3s
+  7750K .......... .......... .......... .......... .......... 64% 76.4M 3s
+  7800K .......... .......... .......... .......... .......... 64%  138M 3s
+  7850K .......... .......... .......... .......... .......... 64% 68.0M 3s
+  7900K .......... .......... .......... .......... .......... 65%  107M 3s
+  7950K .......... .......... .......... .......... .......... 65% 60.7M 3s
+  8000K .......... .......... .......... .......... .......... 66%  146M 3s
+  8050K .......... .......... .......... .......... .......... 66% 63.2M 3s
+  8100K .......... .......... .......... .......... .......... 66% 84.2M 3s
+  8150K .......... .......... .......... .......... .......... 67%  180M 3s
+  8200K .......... .......... .......... .......... .......... 67% 65.3M 3s
+  8250K .......... .......... .......... .......... .......... 68% 41.3K 3s
+  8300K .......... .......... .......... .......... .......... 68% 29.6K 4s
+  8350K .......... .......... .......... .......... .......... 68% 45.4K 4s
+  8400K .......... .......... .......... .......... .......... 69% 34.0K 5s
+  8450K .......... .......... .......... .......... .......... 69% 26.6K 6s
+  8500K .......... .......... .......... .......... .......... 70% 20.6M 5s
+  8550K .......... .......... .......... .......... .......... 70% 72.2M 5s
+  8600K .......... .......... .......... .......... .......... 70% 18.1M 5s
+  8650K .......... .......... .......... .......... .......... 71% 11.6M 5s
+  8700K .......... .......... .......... .......... .......... 71% 15.8M 5s
+  8750K .......... .......... .......... .......... .......... 72% 14.8M 5s
+  8800K .......... .......... .......... .......... .......... 72% 55.1M 5s
+  8850K .......... .......... .......... .......... .......... 73%  144M 5s
+  8900K .......... .......... .......... .......... .......... 73% 52.9K 5s
+  8950K .......... .......... .......... .......... .......... 73% 34.2M 5s
+  9000K .......... .......... .......... .......... .......... 74%  254M 5s
+  9050K .......... .......... .......... .......... .......... 74% 19.6M 5s
+  9100K .......... .......... .......... .......... .......... 75%  236M 5s
+  9150K .......... .......... .......... .......... .......... 75% 77.3M 5s
+  9200K .......... .......... .......... .......... .......... 75% 42.5M 4s
+  9250K .......... .......... .......... .......... .......... 76% 50.8M 4s
+  9300K .......... .......... .......... .......... .......... 76%  220M 4s
+  9350K .......... .......... .......... .......... .......... 77%  130M 4s
+  9400K .......... .......... .......... .......... .......... 77% 63.1M 4s
+  9450K .......... .......... .......... .......... .......... 77%  124M 4s
+  9500K .......... .......... .......... .......... .......... 78% 55.2M 4s
+  9550K .......... .......... .......... .......... .......... 78% 56.7M 4s
+  9600K .......... .......... .......... .......... .......... 79%  249M 4s
+  9650K .......... .......... .......... .......... .......... 79% 74.8M 4s
+  9700K .......... .......... .......... .......... .......... 80%  118M 3s
+  9750K .......... .......... .......... .......... .......... 80% 61.5M 3s
+  9800K .......... .......... .......... .......... .......... 80% 76.1M 3s
+  9850K .......... .......... .......... .......... .......... 81%  107M 3s
+  9900K .......... .......... .......... .......... .......... 81%  154M 3s
+  9950K .......... .......... .......... .......... .......... 82% 74.4M 3s
+ 10000K .......... .......... .......... .......... .......... 82%  104M 3s
+ 10050K .......... .......... .......... .......... .......... 82%  136M 3s
+ 10100K .......... .......... .......... .......... .......... 83% 85.3M 3s
+ 10150K .......... .......... .......... .......... .......... 83%  344M 3s
+ 10200K .......... .......... .......... .......... .......... 84% 46.1M 3s
+ 10250K .......... .......... .......... .......... .......... 84% 54.8M 3s
+ 10300K .......... .......... .......... .......... .......... 84%  307M 2s
+ 10350K .......... .......... .......... .......... .......... 85% 48.3M 2s
+ 10400K .......... .......... .......... .......... .......... 85% 70.1M 2s
+ 10450K .......... .......... .......... .......... .......... 86%  138M 2s
+ 10500K .......... .......... .......... .......... .......... 86%  185M 2s
+ 10550K .......... .......... .......... .......... .......... 86% 60.3M 2s
+ 10600K .......... .......... .......... .......... .......... 87% 78.7M 2s
+ 10650K .......... .......... .......... .......... .......... 87%  106M 2s
+ 10700K .......... .......... .......... .......... .......... 88%  112M 2s
+ 10750K .......... .......... .......... .......... .......... 88%  109M 2s
+ 10800K .......... .......... .......... .......... .......... 89%  124M 2s
+ 10850K .......... .......... .......... .......... .......... 89% 95.0M 2s
+ 10900K .......... .......... .......... .......... .......... 89% 71.2M 2s
+ 10950K .......... .......... .......... .......... .......... 90%  107M 2s
+ 11000K .......... .......... .......... .......... .......... 90% 84.1M 1s
+ 11050K .......... .......... .......... .......... .......... 91% 44.1M 1s
+ 11100K .......... .......... .......... .......... .......... 91% 61.0M 1s
+ 11150K .......... .......... .......... .......... .......... 91% 48.2M 1s
+ 11200K .......... .......... .......... .......... .......... 92% 53.3M 1s
+ 11250K .......... .......... .......... .......... .......... 92%  146M 1s
+ 11300K .......... .......... .......... .......... .......... 93% 33.8M 1s
+ 11350K .......... .......... .......... .......... .......... 93%  203M 1s
+ 11400K .......... .......... .......... .......... .......... 93%  120M 1s
+ 11450K .......... .......... .......... .......... .......... 94%  322M 1s
+ 11500K .......... .......... .......... .......... .......... 94% 14.3M 1s
+ 11550K .......... .......... .......... .......... .......... 95% 59.9M 1s
+ 11600K .......... .......... .......... .......... .......... 95% 48.7M 1s
+ 11650K .......... .......... .......... .......... .......... 96%  104M 1s
+ 11700K .......... .......... .......... .......... .......... 96%  116M 1s
+ 11750K .......... .......... .......... .......... .......... 96%  158M 0s
+ 11800K .......... .......... .......... .......... .......... 97% 70.2M 0s
+ 11850K .......... .......... .......... .......... .......... 97%  139M 0s
+ 11900K .......... .......... .......... .......... .......... 98% 62.1M 0s
+ 11950K .......... .......... .......... .......... .......... 98% 64.9M 0s
+ 12000K .......... .......... .......... .......... .......... 98%  356M 0s
+ 12050K .......... .......... .......... .......... .......... 99% 58.7M 0s
+ 12100K .......... .......... .......... .......... .......... 99%  105M 0s
+ 12150K .......... .......... .......... .......              100%  193M=14s
+
+2020-02-21 12:34:30 (875 KB/s) - `latest-ja.tar.gz' saved [12479892/12479892]
+
+Removing intermediate container e3fd66d7dd3c
+ ---> 25ccefb6a360
+Step 9/18 : RUN tar xvfz ./latest-ja.tar.gz -C /var/www/html
+ ---> Running in 0908df00fa80
+wordpress/
+・
+・省略
+・
+wordpress/wp-links-opml.php
+Removing intermediate container 0908df00fa80
+ ---> 7340099fda9d
+Step 10/18 : RUN rm -f ./latest-ja.tar.gz
+ ---> Running in 849fbcd3d57a
+Removing intermediate container 849fbcd3d57a
+ ---> 5b8cade812ba
+Step 11/18 : RUN cp /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+ ---> Running in 08fba07a35dd
+Removing intermediate container 08fba07a35dd
+ ---> 7742e0e03745
+Step 12/18 : RUN sed -i -e 's/database_name_here/wordpress/g' -e 's/username_here/wordpress/g' -e 's/password_here/wppass/g' /var/www/html/wordpress/wp-config.php
+ ---> Running in 3ba86e172f33
+Removing intermediate container 3ba86e172f33
+ ---> 42d4cff126c7
+Step 13/18 : RUN chown -R apache.apache /var/www/html/
+ ---> Running in e9afcace30fd
+Removing intermediate container e9afcace30fd
+ ---> 86a512eaca47
+Step 14/18 : RUN service mysqld start && mysql -u root -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost' IDENTIFIED BY 'wppass'; FLUSH PRIVILEGES;" && service mysqld stop
+ ---> Running in 5904b75c9d93
+Initializing MySQL database:  Installing MySQL system tables...
+OK
+Filling help tables...
+OK
+
+To start mysqld at boot time you have to copy
+support-files/mysql.server to the right place for your system
+
+PLEASE REMEMBER TO SET A PASSWORD FOR THE MySQL root USER !
+To do so, start the server, then issue the following commands:
+
+/usr/bin/mysqladmin -u root password 'new-password'
+/usr/bin/mysqladmin -u root -h 5904b75c9d93 password 'new-password'
+
+Alternatively you can run:
+/usr/bin/mysql_secure_installation
+
+which will also give you the option of removing the test
+databases and anonymous user created by default.  This is
+strongly recommended for production servers.
+
+See the manual for more instructions.
+
+You can start the MySQL daemon with:
+cd /usr ; /usr/bin/mysqld_safe &
+
+You can test the MySQL daemon with mysql-test-run.pl
+cd /usr/mysql-test ; perl mysql-test-run.pl
+
+Please report any problems with the /usr/bin/mysqlbug script!
+
+[  OK  ]
+Starting mysqld:  [  OK  ]
+Stopping mysqld:  [  OK  ]
+Removing intermediate container 5904b75c9d93
+ ---> 95eec37a1cf7
+Step 15/18 : RUN echo -e "service mysqld start\nservice httpd start\n/bin/bash" > /startService.sh
+ ---> Running in df8a6c6c0a6e
+Removing intermediate container df8a6c6c0a6e
+ ---> c87f18351a38
+Step 16/18 : RUN chmod o+x /startService.sh
+ ---> Running in 1eaea659c390
+Removing intermediate container 1eaea659c390
+ ---> 0e6ad4b6d496
+Step 17/18 : EXPOSE 80
+ ---> Running in fcb1bb408580
+Removing intermediate container fcb1bb408580
+ ---> a7ae943dac62
+Step 18/18 : CMD /startService.sh
+ ---> Running in 37738cc73954
+Removing intermediate container 37738cc73954
+ ---> 55bf165727ed
+Successfully built 55bf165727ed
+Successfully tagged linaction/wordpress:ver1.0
+```
+
+5.コンテナーを起動
+
+```
+# docker container run -itd -p 8000:80 --name wordpress01 linaction/wordpress:ver1.0
+de36a7042ae7994d86286e4806608742b574ab6152b0bc2b25dd1f0ade4fbce9
+```
+
+6.ブラウザを起動して「http://192.168.56.29:8000/wordpress/」にアクセス
+
+***
+
+## コンテナーのcommit
+
+1.コンテナーを停止
+
+```
+# docker container stop wordpress01
+wordpress01
+```
+
+2.コンテナーを保存
+
+```
+# docker container commit wordpress01 DockerHubアカウント名/wordpress:ver1.0
+sha256:ba32f09af4c82591f6694cf8ce889619d6eb01f9cf79b85de755479eb3e989be
+```
+
+3.コンテナーを保存
+
+```
+# docker image ls
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+linaction/wordpress   ver1.0              ba32f09af4c8        18 seconds ago      897MB
+centos                centos6             d0957ffdf8a2        11 months ago       194MB
+linaction/centos      centos6             6ccd3be87830        4 years ago         191MB
+```
+
+## コンテナーイメージをDocker Hubにpush
+
+1.Docker Hubにログイン
+
+```
+# docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: DockerHubアカウント名
+Password: DockerHubパスワード
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+```
+
+2.Docker Hubにコンテナーイメージをpush
+
+```
+# docker image push DockerHubアカウント名/wordpress
+The push refers to repository [docker.io/linaction/wordpress]
+4c26db3c08ca: Pushed
+0faac26d013f: Pushed
+9cc68682f1ab: Pushed
+3fbbd32dc888: Pushed
+7349d29e8e7b: Pushed
+6d5e74d3809c: Pushed
+8adf4bf231ac: Pushed
+d01c1c755c0e: Pushed
+8ed5365cb5b3: Pushed
+760d1a9d7bdc: Pushed
+e1ae6d19d536: Pushed
+913fedbaf8b3: Pushed
+67e9a8d78fc4: Pushed
+68165323e866: Pushed
+d97abbf6b89a: Pushed
+af6bf1987c2e: Layer already exists
+ver1.0: digest: sha256:fb6fef113b373d516ed9b34533693d4a7668c4eb384a31c03b88837f9177980e size: 3675
+```
+
+3.リポジトリーを確認
+
+```
+# docker search DockerHubアカウント名
+NAME                               DESCRIPTION               STARS               OFFICIAL            AUTOMATED
+linaction/centos                   Sample CentOS6.7(Final)   1                  
+linaction/wordpress                                          0                  
+linaction2017/docker-whale                                   0                  
+linaction2205/docker-whale                                   0                  
+linaction2017/python-hello-world                             0                  
+you19920304/linaction              wordpress                 0
+```
+
+## コンテナの一括削除
+
+1.停止コンテナの一括削除
+
+```
+# docker container rm `docker container ls -a -q`
+de36a7042ae7
+4d479fa37ad9
+```
+
+```
+# docker container ls -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+2.イメージの一括削除
+
+```
+# docker image rm `docker image ls -a -q`
+Untagged: linaction/wordpress:ver1.0
+Untagged: linaction/wordpress@sha256:fb6fef113b373d516ed9b34533693d4a7668c4eb384a31c03b88837f9177980e
+Deleted: sha256:ba32f09af4c82591f6694cf8ce889619d6eb01f9cf79b85de755479eb3e989be
+Deleted: sha256:5d7e12f15dd54aebf7245dae7d3237c21894d60e42ae802c298f1275692f7cd8
+Deleted: sha256:55bf165727edf999dc31e3a698613e1ad2f7919b3a39ef3efb9185b1e0b4061f
+Deleted: sha256:a7ae943dac62d269fa128085c1b5c78ed26f0d41c1cb16da9aa48d64af7d226e
+Deleted: sha256:0e6ad4b6d49655bb4d54004a23464ce5f1912439d5cbb27b4989697e52440585
+Deleted: sha256:c564aaf54c2b9ee6b7dee8c9540c4cdc0d569d7a1d44dba9e4545b0b0c78fdf2
+Deleted: sha256:c87f18351a38b6dc0a1664bc23e00ed3ddb208184507d9eb58ac8b15039133a3
+Deleted: sha256:86535cdbbb2edbd5294fb5f8882d8abde6d92af8e9e8cf4432f069cac406889b
+Deleted: sha256:95eec37a1cf7e1d14ba712e202561ef0e5fdcc5511972b81eec5012b83f22651
+Deleted: sha256:765494dd42df66454fb5fdb561810fa9de3fadf62a884735387f8dafe9477cee
+Deleted: sha256:86a512eaca47c65915b4a425a101d264cae811163933593dd7fa513b6f42d433
+Deleted: sha256:a784fa063409e0a693f0d761efcba5bd3736de4b218391b5c167c3fe98613938
+Deleted: sha256:42d4cff126c7688808d4213cccfb4d7018a5136d06dc25ad471403c96322c2c0
+Deleted: sha256:fe56ec1d2e5e4700cb521d032f77ebce6d8245386bf6d002d421feb7fd92a726
+Deleted: sha256:7742e0e037454bb5c45f8c16fa70afa5dee3079ea80ad75ddc81c963b4713d08
+Deleted: sha256:316a330b009cea5f88b104d54a778fc85aeb4348460bf5b633887a5318e526f9
+Deleted: sha256:5b8cade812ba3b045480b7d0f374301ceccc2cfdf2b0c3f01482ddcf851daf99
+Deleted: sha256:73b0949b19ea7a4cf32b8e8992c7d3e6de5a0c8b51c103eabdcd40713f865207
+Deleted: sha256:7340099fda9d14577be33d6e72ad6db0b7425c1512ebc0f81904e6e5d6415b0a
+Deleted: sha256:ce080e8e2f7fed2a83e981566de9a1890e1b19bdd2ebeb9fa066c65209fe8afb
+Deleted: sha256:25ccefb6a3604dda035056bd97d199b8df76c3fdde8df02017a323dc40cb86ef
+Deleted: sha256:1a869bab8694a38f9fba7f59b23ba90adda88fb441c57d699019c42a2f59a745
+Deleted: sha256:5e3d42fb7842a8e82d7d45c371e794c8ff2db9ebb067fee59889b38f4465f94d
+Deleted: sha256:a19b06fa29713ed56e564f9335a62350a685105b57ff5c8fb34b17cad90dc212
+Deleted: sha256:292def6e21ba45e34e51b337616027334a651521813024fb3e253a1457bf2d38
+Deleted: sha256:952ba7b974912f5b2b7e180c8fdb10396b86e22cff907fc593a952235d768746
+Deleted: sha256:d9dc34ce45e939576407eb32dc7e831ce5179fc721e3863d925183de8b2b5ae2
+Deleted: sha256:493ea53cbf0e0af1946a2ee7270a22fb0a5456c22c69dcc020413b06c74dc49c
+Deleted: sha256:006dcf7124364644dafeb46f50beddd2d3ff1701a3f66195057617bc77674d59
+Deleted: sha256:1b65f2572705f43e9ef0134da458f0df0b5b806725fbefd15550be3730933eb0
+Deleted: sha256:209be38ca9cfd21d5ea881bc9d82a188fe467ffeaf350bcf5c5e8a8b95bd6979
+Deleted: sha256:0b9071e76c28acf2a98ae303b40470d3a6195416e79ab8ca02ad015c2bf6f383
+Deleted: sha256:1af717d59e9a9efdce0ad09e3f6e897e98fad4dba13a483e95a3a61db008e40c
+Untagged: centos:centos6
+Untagged: centos@sha256:dec8f471302de43f4cfcf82f56d99a5227b5ea1aa6d02fa56344986e1f4610e7
+Deleted: sha256:d0957ffdf8a2ea8c8925903862b65a1b6850dbb019f88d45e927d3d5a3fa0c31
+Deleted: sha256:af6bf1987c2eb07d73f33836b0d8fd825d7c785273526b077e46780e8b4b2ae9
+Untagged: linaction/centos:centos6
+Untagged: linaction/centos@sha256:759ea478951130a32e9191daaffc9b4e3c5ad089331eccc32112e370bf7c9fb8
+Deleted: sha256:6ccd3be878308d49fb42cd47d9f49f29402705e64affae57a65f99cd04616fa2
+Deleted: sha256:7f75d454490142c4131d3ca6aedd3a2b19564d96a0fb2ce6547e511edc57b52c
+Deleted: sha256:b0bd94a388aad1d084e0e311a4c98097fb38f6ffcbb853ecf72e9514b08015d1
+Deleted: sha256:dad13f415d8417662f6a8c0790109106e05601d65651b7a8b4470fb434a83f97
+Deleted: sha256:b5471e6ec524d0911384bddc342965d98f164844889e06db5f4976e56e74dbd1
+Deleted: sha256:e7973ae3b5b17bb7d5a2acb9a90f52751df60e1ccdf2b85ca90b8640650684f9
+Deleted: sha256:0856b2ee9c1a321ee71f5c19cb07aa0a07e11c28fa8f22d867d02a3c79080e36
+Deleted: sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef
+Error: No such image: a7ae943dac62
+Error: No such image: 0e6ad4b6d496
+Error: No such image: 55bf165727ed
+Error: No such image: c87f18351a38
+Error: No such image: 95eec37a1cf7
+Error: No such image: 86a512eaca47
+Error: No such image: 42d4cff126c7
+Error: No such image: 7742e0e03745
+Error: No such image: 5b8cade812ba
+Error: No such image: 7340099fda9d
+Error: No such image: 25ccefb6a360
+Error: No such image: a19b06fa2971
+Error: No such image: 5e3d42fb7842
+Error: No such image: 952ba7b97491
+Error: No such image: 493ea53cbf0e
+Error: No such image: 1b65f2572705
+Error: No such image: 0b9071e76c28
+```
+
+```
+# docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+```
