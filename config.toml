@@ -64,7 +64,7 @@ enableMissingTranslationPlaceholders = false
 # Global menu section
 [[menu.main]]
     name = "Home"
-    url = "/hugo/docs/"
+    url = "/"
     weight = 1
 
 [[menu.main]]
