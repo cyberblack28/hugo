@@ -19,7 +19,7 @@ enableMissingTranslationPlaceholders = false
 [Params]
 
     # Souce Code repository section
-    description = "Training Contents"
+    description = "Cyberblack Official Site"
     #github_repository = "https://github.com/thingsym/hugo-theme-techdoc"
     #version = ""
 
@@ -71,6 +71,16 @@ enableMissingTranslationPlaceholders = false
     name = "Twitter"
     url = "https://twitter.com/cyberblack28"
     weight = 2
+
+[[menu.main]]
+    name = "Qiita"
+    url = "https://qiita.com/cyberblack28"
+    weight = 3
+
+[[menu.main]]
+    name = "GitHub"
+    url = "https://github.com/cyberblack28"
+    weight = 4
 
 [markup]
   [markup.tableOfContents]
