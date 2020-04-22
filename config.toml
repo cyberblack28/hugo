@@ -1,4 +1,4 @@
-baseURL = "http://dev.cyberblack.net/"
+baseURL = "https://dev.cyberblack.net/"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
