@@ -295,23 +295,23 @@ $ su -
 
 [接続の編集]
 
-<img src="/hugo/images/exercise3-networkmanager-01.png">
+<img src="/images/exercise3-networkmanager-01.png">
 
 [enp0s3]
 
-<img src="/hugo/images/exercise3-networkmanager-02.png">
+<img src="/images/exercise3-networkmanager-02.png">
 
 [取り消し]
 
-<img src="/hugo/images/exercise3-networkmanager-03.png">
+<img src="/images/exercise3-networkmanager-03.png">
 
 [戻る]
 
-<img src="/hugo/images/exercise3-networkmanager-04.png">
+<img src="/images/exercise3-networkmanager-04.png">
 
 [終了]
 
-<img src="/hugo/images/exercise3-networkmanager-04.png">
+<img src="/images/exercise3-networkmanager-04.png">
 
 </pre>
 </div>

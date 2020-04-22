@@ -263,7 +263,7 @@ http://192.168.56.28/phpinfo.php
 {{< accordion >}}
 <div>
 
-<img src="/hugo/images/php-environment-construction-01.png">
+<img src="/images/php-environment-construction-01.png">
 
 </div>
 {{< /accordion >}}

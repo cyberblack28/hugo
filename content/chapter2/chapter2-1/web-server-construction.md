@@ -394,7 +394,7 @@ Chrome起動後右クリック[検証]、192.168.56.28にアクセス、[Network
 
 {{< accordion >}}
 <div>
-<img src="/hugo/images/web-server-construction-01.png">
+<img src="/images/web-server-construction-01.png">
 </div>
 {{< /accordion >}}
 
