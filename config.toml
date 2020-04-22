@@ -1,4 +1,4 @@
-baseURL = "https://cyberblack28.github.io/hugo/"
+baseURL = "http://blog.cyberblack.net/"
 
 languageCode = "en-us"
 DefaultContentLanguage = "en"
