@@ -1,0 +1,328 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Exercise3 File & Basic operation of directory - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="Exercise3 File & Basic operation of directory"><meta property="og:description" content="1.ディレクトリの作成と削除 次の図を参照しながら、同じディレクトリ構成を作成してみましょう。 1.ホームディレクトリ（/home/studen"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-14T14:37:07+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="Exercise3 File & Basic operation of directory"><meta name=twitter:description content="1.ディレクトリの作成と削除 次の図を参照しながら、同じディレクトリ構成を作成してみましょう。 1.ホームディレクトリ（/home/studen"><meta itemprop=name content="Exercise3 File & Basic operation of directory"><meta itemprop=description content="1.ディレクトリの作成と削除 次の図を参照しながら、同じディレクトリ構成を作成してみましょう。 1.ホームディレクトリ（/home/studen"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-14T14:37:07+09:00"><meta itemprop=wordCount content="3445"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>Exercise3 File & Basic operation of directory</h1><h2 id=1ディレクトリの作成と削除>1.ディレクトリの作成と削除</h2><p>次の図を参照しながら、同じディレクトリ構成を作成してみましょう。</p><p><img src=/hugo/images/exercise3-file-basic-operation-of-directory.png alt="sample directory"></p><p>1.ホームディレクトリ（/home/student）に移動して、カレントディレクトリを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+</pre></div></details><p>2.trainingディレクトリを作成して、できていることを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ mkdir training
+$ ls
+training      テンプレート  ドキュメント  音楽  公開
+ダウンロード  デスクトップ  ビデオ        画像
+</pre></div></details><p>3.カレントディレクトリをtrainingディレクトリに変更して、linuxディレクトリを作成してできていることを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd training
+$ mkdir linux
+$ ls
+linux
+</pre></div></details><p>4.unixディレクトリとwindowsディレクトリを作成して、できていることを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ mkdir unix windows
+$ ls
+linux  unix  windows
+</pre></div></details><p>5.ホームディレクトリ（/home/student）に移動して、trainingディレクトリを削除して、削除できたことを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ rm -r training
+$ ls
+ダウンロード  デスクトップ  ビデオ  画像
+テンプレート  ドキュメント  音楽    公開
+</pre></div></details><p>6.1回のコマンド実行で画像のディレクトリ構造を作成してください。lsコマンドで「-R」オプションを利用してディレクトリ構造を確認してみましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ mkdir -p training/linux training/unix training/windows
+$ ls
+linux  unix  windows
+</pre></div></details><hr><h2 id=2ファイルのコピー>2.ファイルのコピー</h2><p>1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ su -
+パスワード:tokyoec
+#
+</pre></div></details><p>2.studentユーザのホームディレクトリ（/home/student）に移動して、「/etc/hosts」ファイルを「/etc/hosts.bak」というファイル名にしてコピーしてください。コピーファイルができたことを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# cd /home/student
+# cp -p /etc/hosts /etc/hosts.bak
+# ls /etc
+DIR_COLORS               cron.deny                   gconf          libblockdev               nsswitch.conf      rc3.d              sudo-ldap.conf
+DIR_COLORS.256color      cron.hourly                 gcrypt         libibverbs.d              nsswitch.conf.bak  rc4.d              sudo.conf
+DIR_COLORS.lightbgcolor  cron.monthly                gdm            libnl                     oddjob             rc5.d              sudoers
+GREP_COLORS              cron.weekly                 geoclue        libpaper.d                oddjobd.conf       rc6.d              sudoers.d
+NetworkManager           crontab                     glvnd          libreport                 oddjobd.conf.d     rdma               sysconfig
+PackageKit               crypto-policies             gnupg          libssh                    openldap           redhat-release     sysctl.conf
+UPower                   crypttab                    groff          libuser.conf              opt                request-key.conf   sysctl.d
+X11                      csh.cshrc                   group          libvirt                   os-release         request-key.d      system-release
+adjtime                  csh.login                   group-         locale.conf               ostree             resolv.conf        system-release-cpe
+aliases                  cups                        grub.d         localtime                 pam.d              rhsm               systemd
+alsa                     cupshelpers                 grub2.cfg      login.defs                papersize          rpc                tcsd.conf
+alternatives             dbus-1                      gshadow        logrotate.conf            passwd             rpm                terminfo
+anacrontab               dconf                       gshadow-       logrotate.d               passwd-            rsyslog.conf       tmpfiles.d
+asound.conf              default                     gss            lsm                       pbm2ppa.conf       rsyslog.d          trusted-key.key
+at.deny                  depmod.d                    gssproxy       lvm                       pinforc            rwtab.d            tuned
+audit                    dhcp                        host.conf      machine-id                pipewire           samba              udev
+authselect               dleyna-server-service.conf  hostname       magic                     pkcs11             sane.d             udisks2
+avahi                    dnf                         hosts          mailcap                   pki                sasl2              unbound
+bash_completion.d        dnsmasq.conf                hosts.bak      makedumpfile.conf.sample  plymouth           security           updatedb.conf
+bashrc                   dnsmasq.d                   hp             man_db.conf               pm                 selinux            usb_modeswitch.conf
+bindresvport.blacklist   dracut.conf                 idmapd.conf    mcelog                    pnm2ppa.conf       services           vconsole.conf
+binfmt.d                 dracut.conf.d               init.d         microcode_ctl             polkit-1           sestatus.conf      vimrc
+bluetooth                egl                         inittab        mime.types                popt.d             setroubleshoot     virc
+brlapi.key               enscript.cfg                inputrc        mke2fs.conf               prelink.conf.d     sgml               vmware-tools
+brltty                   environment                 iproute2       modprobe.d                printcap           shadow             wgetrc
+brltty.conf              ethertypes                  iscsi          modules-load.d            profile            shadow-            wpa_supplicant
+centos-release           exports                     issue          motd                      profile.d          shells             xattr.conf
+centos-release-upstream  exports.d                   issue.d        motd.d                    protocols          skel               xdg
+chkconfig.d              favicon.png                 issue.net      mtab                      pulse              smartmontools      xinetd.d
+chromium                 filesystems                 kdump.conf     mtools.conf               qemu-ga            sos.conf           xml
+chrony.conf              firefox                     kernel         multipath                 qemu-kvm           speech-dispatcher  yum
+chrony.keys              firewalld                   krb5.conf      nanorc                    radvd.conf         ssh                yum.conf
+cifs-utils               flatpak                     krb5.conf.d    ndctl                     ras                ssl                yum.repos.d
+cni                      fonts                       ksmtuned.conf  netconfig                 rc.d               sssd
+cockpit                  fprintd.conf                ld.so.cache    networks                  rc.local           subgid
+containers               fstab                       ld.so.conf     nfs.conf                  rc0.d              subgid-
+cron.d                   fuse.conf                   ld.so.conf.d   nfsmount.conf             rc1.d              subuid
+cron.daily               fwupd                       libaudit.conf  nftables                  rc2.d              subuid-
+</pre></div></details><p>3.「exit」コマンドを実行して、studentユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# exit
+$
+</pre></div></details><p>＜参考＞
+ファイルのコピーは、別の言い方をすると、ファイルのバックアップになります。設定ファイル等を更新する際は、必ず、元ファイルを別ファイル名でコピーして、バックアップファイルを作成した上で、元ファイルの更新を行います。もし設定ファイルの更新ミスがあり、システムが動かくなくなったりした場合に、更新前のファイルにすぐ戻せるようにして、迅速なトラブル回避を行えるよう備えておきます。</p><hr><h2 id=3ファイルの移動>3.ファイルの移動</h2><p>1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ su -
+パスワード:tokyoec
+#
+</pre></div></details><p>2.studentユーザのホームディレクトリ（/home/student）に移動して、training/linuxの下にbackupディレクトリを作成して、できたことを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# cd /home/student
+# mkdir training/linux/backup
+# ls -R
+.:
+training  ダウンロード  テンプレート  デスクトップ  ドキュメント  ビデオ  音楽  画像  公開
+
+./training:
+linux  unix  windows
+
+./training/linux:
+backup
+
+./training/linux/backup:
+
+./training/unix:
+
+./training/windows:
+
+./ダウンロード:
+
+./テンプレート:
+
+./デスクトップ:
+
+./ドキュメント:
+
+./ビデオ:
+
+./音楽:
+
+./画像:
+
+./公開:
+</pre></div></details><p>3.「/etc/hosts.bak」ファイルをホームディレクトリにあるtraining/linux/backupに移動してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# mv /etc/hosts.bak training/linux/backup
+# ls training/linux/backup/
+hosts.bak
+</pre></div></details><p>4.rmコマンドの「-rf」オプションを利用して、「training」ディレクトリを削除します。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# rm -rf training
+# ls
+ダウンロード  デスクトップ  ビデオ  画像
+テンプレート  ドキュメント  音楽    公開
+</pre></div></details><p>5.「exit」コマンドを実行して、studentユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# exit
+$
+</pre></div></details><hr><h2 id=4長文テキストの表示および閲覧>4.長文テキストの表示および閲覧</h2><p>1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ su -
+パスワード:tokyoec
+#
+</pre></div></details><p>2.studentユーザのホームディレクトリ（/home/student）に移動して、「/etc/bashrc」ファイルをlessコマンドを実行して先頭から末尾まで見てみましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# cd /home/student
+# less /etc/bashrc
+//spaceキーで末尾までスクロール、(END)と表示されたらqキーを押して終了する。
+# /etc/bashrc
+
+# System wide functions and aliases
+# Environment stuff goes in /etc/profile
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+# Prevent doublesourcing
+if [ -z "$BASHRCSOURCED" ]; then
+  BASHRCSOURCED="Y"
+
+  # are we an interactive shell?
+  if [ "$PS1" ]; then
+    if [ -z "$PROMPT_COMMAND" ]; then
+      case $TERM in
+      xterm*|vte*)
+        if [ -e /etc/sysconfig/bash-prompt-xterm ]; then
+            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm
+        elif [ "${VTE_VERSION:-0}" -ge 3405 ]; then
+            PROMPT_COMMAND="__vte_prompt_command"
+        else
+            PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+        fi
+        ;;
+      screen*)
+        if [ -e /etc/sysconfig/bash-prompt-screen ]; then
+            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-screen
+        else
+            PROMPT_COMMAND='printf "\033k%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+        fi
+        ;;
+# /etc/bashrc
+
+# System wide functions and aliases
+# Environment stuff goes in /etc/profile
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+# Prevent doublesourcing
+if [ -z "$BASHRCSOURCED" ]; then
+  BASHRCSOURCED="Y"
+
+  # are we an interactive shell?
+  if [ "$PS1" ]; then
+    if [ -z "$PROMPT_COMMAND" ]; then
+      case $TERM in
+      xterm*|vte*)
+        if [ -e /etc/sysconfig/bash-prompt-xterm ]; then
+            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm
+        elif [ "${VTE_VERSION:-0}" -ge 3405 ]; then
+            PROMPT_COMMAND="__vte_prompt_command"
+        else
+            PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+        fi
+        ;;
+      screen*)
+        if [ -e /etc/sysconfig/bash-prompt-screen ]; then
+            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-screen
+        else
+            PROMPT_COMMAND='printf "\033k%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+        fi
+        ;;
+      *)
+        [ -e /etc/sysconfig/bash-prompt-default ] && PROMPT_COMMAND=/etc/sysconfig/bash-prompt-default
+        ;;
+      esac
+    fi
+    # Turn on parallel history
+    shopt -s histappend
+    history -a
+    # Turn on checkwinsize
+    shopt -s checkwinsize
+    [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u@\h \W]\\$ "
+    # You might want to have e.g. tty in prompt (e.g. more virtual machines)
+    # and console windows
+    # If you want to do so, just add e.g.
+    # if [ "$PS1" ]; then
+    #   PS1="[\u@\h:\l \W]\\$ "
+    # fi
+    # to your custom modification shell script in /etc/profile.d/ directory
+  fi
+
+  if ! shopt -q login_shell ; then # We're not a login shell
+    # Need to redefine pathmunge, it gets undefined at the end of /etc/profile
+    pathmunge () {
+        case ":${PATH}:" in
+            *:"$1":*)
+                ;;
+            *)
+                if [ "$2" = "after" ] ; then
+                    PATH=$PATH:$1
+                else
+                    PATH=$1:$PATH
+                fi
+        esac
+    }
+
+    # By default, we want umask to get set. This sets it for non-login shell.
+    # Current threshold for system reserved uid/gids is 200
+    # You could check uidgid reservation validity in
+    # /usr/share/doc/setup-*/uidgid file
+    if [ $UID -gt 199 ] && [ "`id -gn`" = "`id -un`" ]; then
+       umask 002
+    else
+       umask 022
+    fi
+
+    SHELL=/bin/bash
+    # Only display echos from profile.d scripts if we are no login shell
+    # and interactive - otherwise just process them to set envvars
+    for i in /etc/profile.d/*.sh; do
+        if [ -r "$i" ]; then
+            if [ "$PS1" ]; then
+                . "$i"
+            else
+                . "$i" >/dev/null
+            fi
+        fi
+    done
+
+    unset i
+    unset -f pathmunge
+  fi
+
+fi
+# vim:ts=4:sw=4
+(END)
+q
+</pre></div></details><p>3.ホームディレクトリ（/home/student）に移動して、「/etc/bashrc」ファイルをlessコマンドを実行して先「else」という文字列を検索してみましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# less /etc/bashrc
+//(スラッシュ)elseと入力してnキーを「Pattern not found (press RETURN)」と表示されるまで押し、表示されたらqキーを押して終了する。
+</pre></div></details><p>4.「exit」コマンドを実行して、studentユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# exit
+$
+</pre></div></details><hr><h2 id=5シンボリックリンク>5.シンボリックリンク</h2><p>1.「su -」コマンドを実行して、rootユーザのパスワードを入力してrootユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ su -
+パスワード:tokyoec
+#
+</pre></div></details><p>2.studentユーザのホームディレクトリ（/home/student）に移動して、「/sys/dev/block」のシンボリックリンクとして「block」ファイル作成して、シンボリックリンクが貼られていること確認してください。</p><p>※ls -laコマンド結果でblockの箇所がblock -> /sys/dev/blockとなっていることを確認しましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# cd /home/student
+# ln -s /sys/dev/block block
+# ls -la
+合計 40
+drwx------. 15 student student  4096  1月 29 01:34 .
+drwxr-xr-x.  3 root    root       21  1月 21 00:23 ..
+-rw-------.  1 student student   620  1月 21 00:26 .ICEauthority
+-rw-------.  1 student student  3610  1月 28 04:47 .bash_history
+-rw-r--r--.  1 student student    18 11月  8 11:21 .bash_logout
+-rw-r--r--.  1 student student   141 11月  8 11:21 .bash_profile
+-rw-r--r--.  1 student student   337  1月 28 01:55 .bashrc
+drwx------. 10 student student   232  1月 21 00:24 .cache
+drwx------. 11 student student   215  1月 21 00:24 .config
+-rw-------.  1 student student    16  1月 21 00:23 .esd_auth
+drwx------.  3 student student    19  1月 21 00:23 .local
+drwxr-xr-x.  4 student student    39  1月 21 00:11 .mozilla
+drwxrw----.  3 student student    19  1月 21 00:23 .pki
+-rw-------.  1 student student 10007  1月 28 01:55 .viminfo
+lrwxrwxrwx.  1 root    root       14  1月 29 01:34 block -> /sys/dev/block
+drwxr-xr-x.  2 student student     6  1月 21 00:23 ダウンロード
+drwxr-xr-x.  2 student student     6  1月 21 00:23 テンプレート
+drwxr-xr-x.  2 student student     6  1月 21 00:23 デスクトップ
+drwxr-xr-x.  2 student student     6  1月 21 00:23 ドキュメント
+drwxr-xr-x.  2 student student     6  1月 21 00:23 ビデオ
+drwxr-xr-x.  2 student student     6  1月 21 00:23 音楽
+drwxr-xr-x.  2 student student     6  1月 21 00:23 画像
+drwxr-xr-x.  2 student student     6  1月 21 00:23 公開
+</pre></div></details><p>3.「cd /sys/dev/block」と入力せず、作成したシンボリックリンクを利用して、「/sys/dev/block」ディレクトリまで移動してみましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# cd block
+# ls
+11:0  253:0  253:1  8:0  8:1  8:2
+</pre><pre>
+$ cd /sys/dev/block
+# ls
+11:0  253:0  253:1  8:0  8:1  8:2
+</pre></div></details><p>4.「/home/student」ディレクトリに戻って、blockファイルを削除してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# cd /home/student
+# rm block
+rm: シンボリックリンク 'block' を削除しますか? y //yと入力
+# ls
+ダウンロード  デスクトップ  ビデオ  画像
+テンプレート  ドキュメント  音楽    公開
+</pre></div></details><p>5.「exit」コマンドを実行して、studentユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# exit
+$
+</pre></div></details><div class=edit-meta>Last updated on 14 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/ title="Exercise2 Search of file & Command usage"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - Exercise2 Search of file & Command usage</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/ title="Exercise4 Archive & Compress file">Next - Exercise4 Archive & Compress file <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

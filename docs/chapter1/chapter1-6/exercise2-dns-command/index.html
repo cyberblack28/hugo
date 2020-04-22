@@ -1,0 +1,309 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Exercise2 DNS Command - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="Exercise2 DNS Command"><meta property="og:description" content="1.whoisコマンド 1.rootユーザに変更してください。 Answer $ su - パスワード:tokyoec # 2.以下の手順に従ってwhoisコマンドをイ"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-14T14:37:07+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="Exercise2 DNS Command"><meta name=twitter:description content="1.whoisコマンド 1.rootユーザに変更してください。 Answer $ su - パスワード:tokyoec # 2.以下の手順に従ってwhoisコマンドをイ"><meta itemprop=name content="Exercise2 DNS Command"><meta itemprop=description content="1.whoisコマンド 1.rootユーザに変更してください。 Answer $ su - パスワード:tokyoec # 2.以下の手順に従ってwhoisコマンドをイ"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-14T14:37:07+09:00"><meta itemprop=wordCount content="2591"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>Exercise2 DNS Command</h1><h2 id=1whoisコマンド>1.whoisコマンド</h2><p>1.rootユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ su -
+パスワード:tokyoec
+#
+</pre></div></details><p>2.以下の手順に従ってwhoisコマンドをインストールします。</p><pre><code># yum install epel-release
+メタデータの期限切れの最終確認: 0:06:17 時間前の 2020年02月03日 20時19分21秒 に 実施しました。
+依存関係が解決しました。
+================================================================================
+ パッケージ            Arch            バージョン         リポジトリー    サイズ
+================================================================================
+インストール:
+ epel-release          noarch          8-5.el8            extras           22 k
+
+トランザクションの概要
+================================================================================
+インストール  1 パッケージ
+
+ダウンロードサイズの合計: 22 k
+インストール済みのサイズ: 30 k
+これでよろしいですか? [y/N]: y
+パッケージのダウンロード:
+epel-release-8-5.el8.noarch.rpm                  88 kB/s |  22 kB     00:00
+--------------------------------------------------------------------------------
+合計                                             25 kB/s |  22 kB     00:00
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  インストール中   : epel-release-8-5.el8.noarch                            1/1
+  scriptletの実行中: epel-release-8-5.el8.noarch                            1/1
+  検証             : epel-release-8-5.el8.noarch                            1/1
+
+インストール済み:
+  epel-release-8-5.el8.noarch
+
+完了しました!
+</code></pre><pre><code># yum config-manager --set-enabled PowerTools
+# yum repolist
+CentOS-8 - AppStream                            9.3 kB/s | 4.3 kB     00:00
+CentOS-8 - Base                                 5.1 kB/s | 3.8 kB     00:00
+CentOS-8 - Extras                               2.9 kB/s | 1.5 kB     00:00
+CentOS-8 - PowerTools                           198 kB/s | 2.0 MB     00:10
+Extra Packages for Enterprise Linux 8 - x86_64  184 kB/s | 5.5 MB     00:30
+repo id            repo の名前                                             状態
+AppStream          CentOS-8 - AppStream                                    5,001
+BaseOS             CentOS-8 - Base                                         1,784
+PowerTools         CentOS-8 - PowerTools                                   1,499
+*epel              Extra Packages for Enterprise Linux 8 - x86_64          4,643
+extras             CentOS-8 - Extras                                           3
+</code></pre><pre><code># yum search whois
+メタデータの期限切れの最終確認: 0:00:39 時間前の 2020年02月03日 20時26分35秒 に 実施しました。
+=========================== 名前 &amp; 概要 一致: whois ============================
+whois.x86_64 : Improved WHOIS client
+whois-nls.noarch : Gettext catalogs for whois tools
+</code></pre><pre><code># yum info whois
+メタデータの期限切れの最終確認: 0:00:50 時間前の 2020年02月03日 20時26分35秒 に 実施しました。
+利用可能なパッケージ
+名前         : whois
+バージョン   : 5.5.1
+リリース     : 1.el8
+Arch         : x86_64
+サイズ       : 77 k
+ソース       : whois-5.5.1-1.el8.src.rpm
+リポジトリー : epel
+概要         : Improved WHOIS client
+URL          : http://www.linux.it/~md/software/
+ライセンス   : GPLv2+
+説明         : Searches for an object in a RFC 3912 database.
+             :
+             : This version of the WHOIS client tries to guess the right server
+             : to ask for the specified object. If no guess can be made it will
+             : connect to whois.networksolutions.com for NIC handles or
+             : whois.arin.net for IPv4 addresses and network names.
+</code></pre><pre><code># yum -y install whois
+メタデータの期限切れの最終確認: 0:01:13 時間前の 2020年02月03日 20時26分35秒 に 実施しました。
+依存関係が解決しました。
+================================================================================
+ パッケージ         Arch            バージョン              リポジトリー  サイズ
+================================================================================
+インストール:
+ whois              x86_64          5.5.1-1.el8             epel           77 k
+依存関係のインストール:
+ whois-nls          noarch          5.5.1-1.el8             epel           37 k
+
+トランザクションの概要
+================================================================================
+インストール  2 パッケージ
+
+ダウンロードサイズの合計: 114 k
+インストール済みのサイズ: 343 k
+パッケージのダウンロード:
+(1/2): whois-nls-5.5.1-1.el8.noarch.rpm         120 kB/s |  37 kB     00:00
+(2/2): whois-5.5.1-1.el8.x86_64.rpm             202 kB/s |  77 kB     00:00
+--------------------------------------------------------------------------------
+合計                                             59 kB/s | 114 kB     00:01
+警告: /var/cache/dnf/epel-6519ee669354a484/packages/whois-5.5.1-1.el8.x86_64.rpm: ヘッダー V3 RSA/SHA256 Signature、鍵 ID 2f86d6a1: NOKEY
+Extra Packages for Enterprise Linux 8 - x86_64  1.6 MB/s | 1.6 kB     00:00
+GPG 鍵 0x2F86D6A1 をインポート中:
+ Userid     : &quot;Fedora EPEL (8) &lt;epel@fedoraproject.org&gt;&quot;
+ Fingerprint: 94E2 79EB 8D8F 25B2 1810 ADF1 21EA 45AB 2F86 D6A1
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+鍵のインポートに成功しました
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  インストール中   : whois-nls-5.5.1-1.el8.noarch                           1/2
+  インストール中   : whois-5.5.1-1.el8.x86_64                               2/2
+  scriptletの実行中: whois-5.5.1-1.el8.x86_64                               2/2
+  検証             : whois-5.5.1-1.el8.x86_64                               1/2
+  検証             : whois-nls-5.5.1-1.el8.noarch                           2/2
+
+インストール済み:
+  whois-5.5.1-1.el8.x86_64             whois-nls-5.5.1-1.el8.noarch
+
+完了しました!
+</code></pre><pre><code># rpm -qa | grep whois
+whois-nls-5.5.1-1.el8.noarch
+whois-5.5.1-1.el8.x86_64
+</code></pre><p>3.whoisコマンドでtokyo-ec.ac.jpドメインを確認してください。</p><pre><code># whois tokyo-ec.ac.jp
+  [ JPRS database provides information on network administration. Its use is    ]
+  [ restricted to network administration purposes. For further information,     ]
+  [ use 'whois -h whois.jprs.jp help'. To suppress Japanese output, add'/e'     ]
+  [ at the end of command, e.g. 'whois -h whois.jprs.jp xxx/e'.                 ]
+  
+  Domain Information: [ドメイン情報]
+  a. [ドメイン名]                 TOKYO-EC.AC.JP
+  e. [そしきめい]                 がっこうほうじん でんぱがくえん
+  f. [組織名]                     学校法人 電波学園
+  g. [Organization]               EDUCATIONAL FOUNDATION DENPA GAKUEN
+  k. [組織種別]                   学校法人
+  l. [Organization Type]          EDUCATIONAL FOUNDATION
+  m. [登録担当者]                 MY54761JP
+  n. [技術連絡担当者]             MA27235JP
+  p. [ネームサーバ]               dns-b.iij.ad.jp
+  p. [ネームサーバ]               dns-c.iij.ad.jp
+  s. [署名鍵]
+  [状態]                          Connected (2021/01/31)
+  [登録年月日]                    1997/01/24
+  [接続年月日]                    1997/01/24
+  [最終更新]                      2020/02/01 01:01:34 (JST)
+</code></pre><p>4.studentユーザに戻ってください。</p><pre><code># exit
+ログアウト
+$
+</code></pre><hr><h2 id=2nslookupコマンド>2.nslookupコマンド</h2><p>1.nslookupコマンドを利用して、tokyo-ec.ac.jpのグローバルIPアドレスを調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ nslookup tokyo-ec.ac.jp
+Server:         192.168.84.41
+Address:        192.168.84.41#53
+
+Non-authoritative answer:
+Name:   tokyo-ec.ac.jp
+Address: 103.4.43.184
+</pre></div></details><p>2.nslookupコマンドの対話形式で、tokyo-ec.ac.jpのグローバルIPアドレスを調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ nslookup //[Enter]キー
+> tokyo-ec.ac.jp
+Server:         192.168.84.41
+Address:        192.168.84.41#53
+
+Non-authoritative answer:
+Name:   tokyo-ec.ac.jp
+Address: 103.4.43.184
+> exit
+$
+</pre></div></details><hr><h2 id=3digコマンド>3.digコマンド</h2><p>1.digコマンドを利用して、tokyo-ec.ac.jpのaレコード情報を調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ dig tokyo-ec.ac.jp a
+
+; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el8 <<>> tokyo-ec.ac.jp a
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 58746
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4000
+;; QUESTION SECTION:
+;tokyo-ec.ac.jp.                        IN      A
+
+;; ANSWER SECTION:
+tokyo-ec.ac.jp.         21288   IN      A       103.4.43.184
+
+;; Query time: 4 msec
+;; SERVER: 192.168.84.41#53(192.168.84.41)
+;; WHEN: 月  2月 03 21:00:27 EST 2020
+;; MSG SIZE  rcvd: 59
+</pre></div></details><p>2.digコマンドを利用して、tokyo-ec.ac.jpのmxレコード情報を調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ dig tokyo-ec.ac.jp mx
+
+; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el8 <<>> tokyo-ec.ac.jp mx
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21880
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 9
+  
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4000
+;; QUESTION SECTION:
+;tokyo-ec.ac.jp.                        IN      MX
+  
+;; ANSWER SECTION:
+tokyo-ec.ac.jp.         21599   IN      MX      120 mx6.securemx.jp.
+tokyo-ec.ac.jp.         21599   IN      MX      100 mx.securemx.jp.
+  
+;; ADDITIONAL SECTION:
+mx6.securemx.jp.        18      IN      AAAA    2001:240:bb81::4:501
+mx6.securemx.jp.        18      IN      AAAA    2001:240:bb81::4:521
+mx6.securemx.jp.        18      IN      AAAA    2001:240:bb81::4:500
+mx6.securemx.jp.        18      IN      AAAA    2001:240:bb81::4:520
+mx.securemx.jp.         348     IN      A       210.130.202.98
+mx.securemx.jp.         348     IN      A       210.130.202.123
+mx.securemx.jp.         348     IN      A       210.130.202.122
+mx.securemx.jp.         348     IN      A       210.130.202.97
+  
+;; Query time: 29 msec
+;; SERVER: 192.168.84.41#53(192.168.84.41)
+;; WHEN: 月  2月 03 21:02:50 EST 2020
+;; MSG SIZE  rcvd: 267
+</pre></div></details><p>3.digコマンドを利用して、tokyo-ec.ac.jpのnsレコード情報を調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ dig tokyo-ec.ac.jp ns
+
+; <<>> DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el8 <<>> tokyo-ec.ac.jp ns
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 10797
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 5
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4000
+;; QUESTION SECTION:
+;tokyo-ec.ac.jp.                        IN      NS
+
+;; ANSWER SECTION:
+tokyo-ec.ac.jp.         21599   IN      NS      dns-c.iij.ad.jp.
+tokyo-ec.ac.jp.         21599   IN      NS      dns-b.iij.ad.jp.
+
+;; ADDITIONAL SECTION:
+dns-c.iij.ad.jp.        19795   IN      A       210.130.1.15
+dns-c.iij.ad.jp.        8239    IN      AAAA    2001:240:bb81::2:15
+dns-b.iij.ad.jp.        21303   IN      A       202.232.2.14
+dns-b.iij.ad.jp.        21433   IN      AAAA    2001:240:bb81::2:14
+
+;; Query time: 28 msec
+;; SERVER: 192.168.84.41#53(192.168.84.41)
+;; WHEN: 月  2月 03 21:07:20 EST 2020
+;; MSG SIZE  rcvd: 178
+</pre></div></details><p>4.digコマンドを利用して、tokyo-ec.ac.jpのsoaレコード情報を調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# ip r
+default via 10.0.2.2 dev enp0s3 proto dhcp metric 102
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 102
+192.168.56.0/24 dev enp0s8 proto kernel scope link src 192.168.56.18 metric 101
+192.168.122.0/24 dev virbr0 proto kernel scope link src 192.168.122.1 linkdown
+</pre><pre>
+# ip route
+default via 10.0.2.2 dev enp0s3 proto dhcp metric 102
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 102
+192.168.56.0/24 dev enp0s8 proto kernel scope link src 192.168.56.18 metric 101
+192.168.122.0/24 dev virbr0 proto kernel scope link src 192.168.122.1 linkdown
+</pre><pre>
+# ip route show
+default via 10.0.2.2 dev enp0s3 proto dhcp metric 102
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 102
+192.168.56.0/24 dev enp0s8 proto kernel scope link src 192.168.56.18 metric 101
+192.168.122.0/24 dev virbr0 proto kernel scope link src 192.168.122.1 linkdown
+</pre><pre>
+# ip route list
+default via 10.0.2.2 dev enp0s3 proto dhcp metric 102
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 102
+192.168.56.0/24 dev enp0s8 proto kernel scope link src 192.168.56.18 metric 101
+192.168.122.0/24 dev virbr0 proto kernel scope link src 192.168.122.1 linkdown
+</pre></div></details><p>5.routeコマンドを使って、ルーティングテーブルを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         _gateway        0.0.0.0         UG    102    0        0 enp0s3
+10.0.2.0        0.0.0.0         255.255.255.0   U     102    0        0 enp0s3
+192.168.56.0    0.0.0.0         255.255.255.0   U     101    0        0 enp0s8
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+</pre></div></details><p>6.studentユーザに戻ってください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# exit
+ログアウト
+$
+</pre></div></details><hr><h2 id=4hostコマンド>4.hostコマンド</h2><p>1.hostコマンドを利用して、tokyo-ec.ac.jpのグローバルIPアドレスを調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ host tokyo-ec.ac.jp
+tokyo-ec.ac.jp has address 103.4.43.184
+tokyo-ec.ac.jp mail is handled by 100 mx.securemx.jp.
+tokyo-ec.ac.jp mail is handled by 120 mx6.securemx.jp.
+</pre></div></details><p>2.hostコマンドを利用して、tokyo-ec.ac.jpのaレコード情報を調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ host -t a tokyo-ec.ac.jp
+host -t a tokyo-ec.ac.jp
+tokyo-ec.ac.jp has address 103.4.43.184
+</pre></div></details><p>3.hostコマンドを利用して、tokyo-ec.ac.jpのmxレコード情報を調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ host -t mx tokyo-ec.ac.jp
+tokyo-ec.ac.jp mail is handled by 120 mx6.securemx.jp.
+tokyo-ec.ac.jp mail is handled by 100 mx.securemx.jp.
+</pre></div></details><p>4.hostコマンドを利用して、tokyo-ec.ac.jpのnsレコード情報を調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ host -t ns tokyo-ec.ac.jp
+tokyo-ec.ac.jp name server dns-b.iij.ad.jp.
+tokyo-ec.ac.jp name server dns-c.iij.ad.jp.
+</pre></div></details><p>5.hostコマンドを利用して、tokyo-ec.ac.jpのsoaレコード情報を調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ host -t soa tokyo-ec.ac.jp
+tokyo-ec.ac.jp has SOA record dns-b.iij.ad.jp. dns-managers.iij.ad.jp. 1553222258 3600 1800 3600000 900
+</pre></div></details><p>6.hostコマンドを利用して、103.4.43.184のptrレコード情報を調べてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ host -t ptr 103.4.43.184
+184.43.4.103.in-addr.arpa domain name pointer h103004043184.mediagalaxy.ne.jp.
+</pre></div></details><div class=edit-meta>Last updated on 14 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/ title="Exercise1 Network Management"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - Exercise1 Network Management</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/ title="Exercise3 Networkmanager">Next - Exercise3 Networkmanager <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

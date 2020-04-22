@@ -1,0 +1,220 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>2.Ansible Environment Construction - Ansible-Server - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="2.Ansible Environment Construction - Ansible-Server"><meta property="og:description" content="ansible-serverの作成手順 ansible-server作業 1.ansibleのインストール # yum -y install ansible Loaded plugins: fastestmirror Determining fastest mirrors epel/x86_64/metalink | 8.8 kB 00:00 * epel: ftp.iij.ad.jp"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-20T15:25:57+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="2.Ansible Environment Construction - Ansible-Server"><meta name=twitter:description content="ansible-serverの作成手順 ansible-server作業 1.ansibleのインストール # yum -y install ansible Loaded plugins: fastestmirror Determining fastest mirrors epel/x86_64/metalink | 8.8 kB 00:00 * epel: ftp.iij.ad.jp"><meta itemprop=name content="2.Ansible Environment Construction - Ansible-Server"><meta itemprop=description content="ansible-serverの作成手順 ansible-server作業 1.ansibleのインストール # yum -y install ansible Loaded plugins: fastestmirror Determining fastest mirrors epel/x86_64/metalink | 8.8 kB 00:00 * epel: ftp.iij.ad.jp"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-20T15:25:57+09:00"><meta itemprop=wordCount content="1577"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>2.Ansible Environment Construction - Ansible-Server</h1><h2 id=ansible-serverの作成手順>ansible-serverの作成手順</h2><p>ansible-server作業</p><p>1.ansibleのインストール</p><pre><code># yum -y install ansible
+Loaded plugins: fastestmirror
+Determining fastest mirrors
+epel/x86_64/metalink                                     | 8.8 kB     00:00
+ * epel: ftp.iij.ad.jp
+base                                                     | 3.6 kB     00:00
+epel                                                     | 5.3 kB     00:00
+extras                                                   | 2.9 kB     00:00
+updates                                                  | 2.9 kB     00:00
+(1/7): epel/x86_64/group_gz                                |  90 kB   00:00
+(2/7): epel/x86_64/updateinfo                              | 1.0 MB   00:00
+(3/7): epel/x86_64/primary_db                              | 6.9 MB   00:00
+(4/7): updates/7/x86_64/primary_db                         | 6.7 MB   00:01
+(5/7): extras/7/x86_64/primary_db                          | 159 kB   00:02
+(6/7): base/7/x86_64/primary_db                            | 6.0 MB   00:03
+(7/7): base/7/x86_64/group_gz                              | 165 kB   00:07
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package ansible.noarch 0:2.9.3-1.el7 will be installed
+--&gt; Processing Dependency: python-httplib2 for package: ansible-2.9.3-1.el7.noarch
+--&gt; Processing Dependency: python-paramiko for package: ansible-2.9.3-1.el7.noarch
+--&gt; Processing Dependency: python2-cryptography for package: ansible-2.9.3-1.el7.noarch
+--&gt; Processing Dependency: python2-jmespath for package: ansible-2.9.3-1.el7.noarch
+--&gt; Processing Dependency: sshpass for package: ansible-2.9.3-1.el7.noarch
+--&gt; Running transaction check
+---&gt; Package python-httplib2.noarch 0:0.9.2-1.el7 will be installed
+---&gt; Package python-paramiko.noarch 0:2.1.1-9.el7 will be installed
+--&gt; Processing Dependency: python2-pyasn1 for package: python-paramiko-2.1.1-9.el7.noarch
+---&gt; Package python2-cryptography.x86_64 0:1.7.2-2.el7 will be installed
+--&gt; Processing Dependency: python-idna &gt;= 2.0 for package: python2-cryptography-1.7.2-2.el7.x86_64
+--&gt; Processing Dependency: python-cffi &gt;= 1.4.1 for package: python2-cryptography-1.7.2-2.el7.x86_64
+--&gt; Processing Dependency: python-enum34 for package: python2-cryptography-1.7.2-2.el7.x86_64
+---&gt; Package python2-jmespath.noarch 0:0.9.0-3.el7 will be installed
+---&gt; Package sshpass.x86_64 0:1.06-2.el7 will be installed
+--&gt; Running transaction check
+---&gt; Package python-cffi.x86_64 0:1.6.0-5.el7 will be installed
+--&gt; Processing Dependency: python-pycparser for package: python-cffi-1.6.0-5.el7.x86_64
+---&gt; Package python-enum34.noarch 0:1.0.4-1.el7 will be installed
+---&gt; Package python-idna.noarch 0:2.4-1.el7 will be installed
+---&gt; Package python2-pyasn1.noarch 0:0.1.9-7.el7 will be installed
+--&gt; Running transaction check
+---&gt; Package python-pycparser.noarch 0:2.14-1.el7 will be installed
+--&gt; Processing Dependency: python-ply for package: python-pycparser-2.14-1.el7.noarch
+--&gt; Running transaction check
+---&gt; Package python-ply.noarch 0:3.4-11.el7 will be installed
+--&gt; Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                    Arch         Version             Repository    Size
+================================================================================
+Installing:
+ ansible                    noarch       2.9.3-1.el7         epel          17 M
+Installing for dependencies:
+ python-cffi                x86_64       1.6.0-5.el7         base         218 k
+ python-enum34              noarch       1.0.4-1.el7         base          52 k
+ python-httplib2            noarch       0.9.2-1.el7         extras       115 k
+ python-idna                noarch       2.4-1.el7           base          94 k
+ python-paramiko            noarch       2.1.1-9.el7         base         269 k
+ python-ply                 noarch       3.4-11.el7          base         123 k
+ python-pycparser           noarch       2.14-1.el7          base         104 k
+ python2-cryptography       x86_64       1.7.2-2.el7         base         502 k
+ python2-jmespath           noarch       0.9.0-3.el7         extras        39 k
+ python2-pyasn1             noarch       0.1.9-7.el7         base         100 k
+ sshpass                    x86_64       1.06-2.el7          extras        21 k
+
+Transaction Summary
+================================================================================
+Install  1 Package (+11 Dependent packages)
+
+Total download size: 19 M
+Installed size: 112 M
+Downloading packages:
+(1/12): ansible-2.9.3-1.el7.noarch.rpm                     |  17 MB   00:01
+(2/12): python-enum34-1.0.4-1.el7.noarch.rpm               |  52 kB   00:01
+(3/12): python-cffi-1.6.0-5.el7.x86_64.rpm                 | 218 kB   00:02
+(4/12): python-idna-2.4-1.el7.noarch.rpm                   |  94 kB   00:00
+(5/12): python-ply-3.4-11.el7.noarch.rpm                   | 123 kB   00:00
+(6/12): python-paramiko-2.1.1-9.el7.noarch.rpm             | 269 kB   00:00
+(7/12): python-httplib2-0.9.2-1.el7.noarch.rpm             | 115 kB   00:03
+(8/12): python-pycparser-2.14-1.el7.noarch.rpm             | 104 kB   00:00
+(9/12): python2-pyasn1-0.1.9-7.el7.noarch.rpm              | 100 kB   00:00
+(10/12): python2-cryptography-1.7.2-2.el7.x86_64.rpm       | 502 kB   00:00
+(11/12): python2-jmespath-0.9.0-3.el7.noarch.rpm           |  39 kB   00:01
+(12/12): sshpass-1.06-2.el7.x86_64.rpm                     |  21 kB   00:01
+--------------------------------------------------------------------------------
+Total                                              4.0 MB/s |  19 MB  00:04
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : python2-pyasn1-0.1.9-7.el7.noarch                           1/12
+  Installing : python-enum34-1.0.4-1.el7.noarch                            2/12
+  Installing : python-httplib2-0.9.2-1.el7.noarch                          3/12
+  Installing : sshpass-1.06-2.el7.x86_64                                   4/12
+  Installing : python2-jmespath-0.9.0-3.el7.noarch                         5/12
+  Installing : python-ply-3.4-11.el7.noarch                                6/12
+  Installing : python-pycparser-2.14-1.el7.noarch                          7/12
+  Installing : python-cffi-1.6.0-5.el7.x86_64                              8/12
+  Installing : python-idna-2.4-1.el7.noarch                                9/12
+  Installing : python2-cryptography-1.7.2-2.el7.x86_64                    10/12
+  Installing : python-paramiko-2.1.1-9.el7.noarch                         11/12
+  Installing : ansible-2.9.3-1.el7.noarch                                 12/12
+  Verifying  : python-idna-2.4-1.el7.noarch                                1/12
+  Verifying  : python-pycparser-2.14-1.el7.noarch                          2/12
+  Verifying  : python-ply-3.4-11.el7.noarch                                3/12
+  Verifying  : python2-jmespath-0.9.0-3.el7.noarch                         4/12
+  Verifying  : python-paramiko-2.1.1-9.el7.noarch                          5/12
+  Verifying  : python-cffi-1.6.0-5.el7.x86_64                              6/12
+  Verifying  : sshpass-1.06-2.el7.x86_64                                   7/12
+  Verifying  : python-httplib2-0.9.2-1.el7.noarch                          8/12
+  Verifying  : python2-pyasn1-0.1.9-7.el7.noarch                           9/12
+  Verifying  : python-enum34-1.0.4-1.el7.noarch                           10/12
+  Verifying  : python2-cryptography-1.7.2-2.el7.x86_64                    11/12
+  Verifying  : ansible-2.9.3-1.el7.noarch                                 12/12
+
+Installed:
+  ansible.noarch 0:2.9.3-1.el7
+
+Dependency Installed:
+  python-cffi.x86_64 0:1.6.0-5.el7
+  python-enum34.noarch 0:1.0.4-1.el7
+  python-httplib2.noarch 0:0.9.2-1.el7
+  python-idna.noarch 0:2.4-1.el7
+  python-paramiko.noarch 0:2.1.1-9.el7
+  python-ply.noarch 0:3.4-11.el7
+  python-pycparser.noarch 0:2.14-1.el7
+  python2-cryptography.x86_64 0:1.7.2-2.el7
+  python2-jmespath.noarch 0:0.9.0-3.el7
+  python2-pyasn1.noarch 0:0.1.9-7.el7
+  sshpass.x86_64 0:1.06-2.el7
+
+Complete!
+</code></pre><p>2.バージョン確認</p><pre><code># ansible --version
+ansible 2.9.3
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible
+  python version = 2.7.5 (default, Jul 13 2018, 13:06:57) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+</code></pre><p>3.ansibleコマンドでansible-hostへpingを実行</p><pre><code># ansible ansible-hostのグローバルIP -m ping
+[WARNING]: provided hosts list is empty, only localhost is available. Note that
+the implicit localhost does not match 'all'
+
+[WARNING]: Could not match supplied host pattern, ignoring: 133.186.208.195
+</code></pre><p>4.ansibleのhostsファイルにansible-hostのグローバルIPを登録</p><pre><code># vim /etc/ansible/hosts
+
+-------------------------------------------------------------------------
+ansible-hostのグローバルIPアドレスを最終行に追記
+---------------------[Esc + :wq]で保存終了します。-------------------------
+</code></pre><p>5.ansibleコマンドでansible-hostへpingを実行</p><div><pre>
+# ansible ansible-hostのグローバルIP -m ping
+The authenticity of host '133.186.208.195 (133.186.208.195)' can't be established.
+ECDSA key fingerprint is SHA256:Tgv/XzC7dZ9c2cpdGPBlVNiXkyZHbRsz0PAJtrRZ/9M.
+ECDSA key fingerprint is MD5:af:fd:3a:14:a9:42:2c:6c:f9:f2:e1:73:17:4d:a3:b8.
+Are you sure you want to continue connecting (yes/no)? yes <font color=Red>//←「yes」と入力</font>
+133.186.208.195 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: Warning: Permanently added '133.186.208.195' (ECDSA) to the list of known hosts.\r\nPlease login as the user \"centos\" rather than the user \"root\".\nPermission denied (publickey,gssapi-keyex,gssapi-with-mic,password).",
+    "unreachable": true
+}
+</pre></div><p>6.「/root/hostlist」ファイルを作成し、ansible-hostのグローバルIPを登録</p><pre><code># vim /root/hostlist
+
+-------------------------------------------------------------------------
+ansible-hostのグローバルIPアドレスを記述
+---------------------[Esc + :wq]で保存終了します。-------------------------
+</code></pre><p>7.ansibleコマンドでansible-hostへpingを実行</p><pre><code># ansible ansible-hostのグローバルIP -m ping -k
+SSH password:tokyoec //←「tokyoec」と入力
+133.186.208.195 | SUCCESS =&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+    },
+    &quot;changed&quot;: false,
+    &quot;ping&quot;: &quot;pong&quot;
+}
+</code></pre><p>8.鍵の作成</p><div><pre>
+# ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): <font color=Red>//← Enterキー</font>
+Enter passphrase (empty for no passphrase): <font color=Red>//← Enterキー</font>
+Enter same passphrase again: <font color=Red>//← Enterキー</font>
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:cLaYnQZSwwRp9cV3uN4tuhuRbSToxYVOGcXW5/RWnas root@ansible-server.novalocal
+The key's randomart image is:
++---[RSA 2048]----+
+|    .*=  .. .Bo.o|
+|    o..o ..o*.+.*|
+|   .. o + .+++.o=|
+|     . O + .o= .+|
+|      o S ..o.+o |
+|       .    .Eo .|
+|            .. . |
+|            ..   |
+|            oo   |
++----[SHA256]-----+
+</pre></div><p>9.ansible-hostに鍵をコピー</p><div><pre>
+# ssh-copy-id 133.186.208.195
+/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/root/.ssh/id_rsa.pub"
+/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+Please login as the user "centos" rather than the user "root".
+root@133.186.208.195's password:tokyoec <font color=Red>//←「tokyoec」と入力</font>
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh '133.186.208.195'"
+and check to make sure that only the key(s) you wanted were added.
+</pre></div><p>10.ansibleコマンドでansible-hostへpingを実行</p><pre><code># ansible ansible-hostのグローバルIP -m ping
+133.186.208.195 | SUCCESS =&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+    },
+    &quot;changed&quot;: false,
+    &quot;ping&quot;: &quot;pong&quot;
+}
+</code></pre><div class=edit-meta>Last updated on 20 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/ title="1.Ansible Environment Construction - SSH"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - 1.Ansible Environment Construction - SSH</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/ title="3.Ansible Environment Construction - Playbook & WordPress">Next - 3.Ansible Environment Construction - Playbook & WordPress <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

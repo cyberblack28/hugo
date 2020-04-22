@@ -1,0 +1,149 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>3.Proxy Server Construction - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="3.Proxy Server Construction"><meta property="og:description" content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # PROXYサーバの構築テキスト"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-15T15:05:30+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="3.Proxy Server Construction"><meta name=twitter:description content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # PROXYサーバの構築テキスト"><meta itemprop=name content="3.Proxy Server Construction"><meta itemprop=description content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # PROXYサーバの構築テキスト"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-15T15:05:30+09:00"><meta itemprop=wordCount content="1152"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>3.Proxy Server Construction</h1><h2 id=事前作業>事前作業</h2><p>1.studentユーザでログインして、rootユーザに変更します。</p><pre><code>$ su -
+パスワード:tokyoec
+#
+</code></pre><hr><h2 id=proxyサーバの構築テキスト>PROXYサーバの構築テキスト</h2><p>CentOS8_PROXY_DNSの仮想マシンで実行すること</p><p>1.Nginxのインストール</p><div><pre>
+# dnf -y install nginx
+メタデータの期限切れの最終確認: 0:00:19 時間前の 2020年02月05日 00時09分34秒 に 実施しました。
+依存関係が解決しました。
+================================================================================
+ パッケージ       Arch   バージョン                             Repo      サイズ
+================================================================================
+インストール:
+ nginx            x86_64 1:1.14.1-9.module_el8.0.0+184+e34fea82 AppStream 570 k
+依存関係のインストール:
+ nginx-all-modules
+                  noarch 1:1.14.1-9.module_el8.0.0+184+e34fea82 AppStream  23 k
+ nginx-filesystem noarch 1:1.14.1-9.module_el8.0.0+184+e34fea82 AppStream  24 k
+ nginx-mod-http-image-filter
+                  x86_64 1:1.14.1-9.module_el8.0.0+184+e34fea82 AppStream  35 k
+ nginx-mod-http-perl
+                  x86_64 1:1.14.1-9.module_el8.0.0+184+e34fea82 AppStream  45 k
+ nginx-mod-http-xslt-filter
+                  x86_64 1:1.14.1-9.module_el8.0.0+184+e34fea82 AppStream  33 k
+ nginx-mod-mail   x86_64 1:1.14.1-9.module_el8.0.0+184+e34fea82 AppStream  64 k
+ nginx-mod-stream x86_64 1:1.14.1-9.module_el8.0.0+184+e34fea82 AppStream  85 k
+モジュールストリームの有効化:
+ nginx                   1.14
+
+トランザクションの概要
+================================================================================
+インストール  8 パッケージ
+
+ダウンロードサイズの合計: 881 k
+インストール済みのサイズ: 2.0 M
+パッケージのダウンロード:
+(1/8): nginx-all-modules-1.14.1-9.module_el8.0. 174 kB/s |  23 kB     00:00
+(2/8): nginx-filesystem-1.14.1-9.module_el8.0.0 180 kB/s |  24 kB     00:00
+(3/8): nginx-mod-http-image-filter-1.14.1-9.mod 604 kB/s |  35 kB     00:00
+(4/8): nginx-mod-http-perl-1.14.1-9.module_el8. 504 kB/s |  45 kB     00:00
+(5/8): nginx-mod-http-xslt-filter-1.14.1-9.modu 677 kB/s |  33 kB     00:00
+(6/8): nginx-mod-mail-1.14.1-9.module_el8.0.0+1 1.0 MB/s |  64 kB     00:00
+(7/8): nginx-1.14.1-9.module_el8.0.0+184+e34fea 1.8 MB/s | 570 kB     00:00
+(8/8): nginx-mod-stream-1.14.1-9.module_el8.0.0 984 kB/s |  85 kB     00:00
+--------------------------------------------------------------------------------
+合計                                            1.2 MB/s | 881 kB     00:00
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  scriptletの実行中: nginx-filesystem-1:1.14.1-9.module_el8.0.0+184+e34fe   1/8
+  インストール中   : nginx-filesystem-1:1.14.1-9.module_el8.0.0+184+e34fe   1/8
+  インストール中   : nginx-mod-http-image-filter-1:1.14.1-9.module_el8.0.   2/8
+  scriptletの実行中: nginx-mod-http-image-filter-1:1.14.1-9.module_el8.0.   2/8
+  インストール中   : nginx-mod-http-perl-1:1.14.1-9.module_el8.0.0+184+e3   3/8
+  scriptletの実行中: nginx-mod-http-perl-1:1.14.1-9.module_el8.0.0+184+e3   3/8
+  インストール中   : nginx-mod-http-xslt-filter-1:1.14.1-9.module_el8.0.0   4/8
+  scriptletの実行中: nginx-mod-http-xslt-filter-1:1.14.1-9.module_el8.0.0   4/8
+  インストール中   : nginx-mod-mail-1:1.14.1-9.module_el8.0.0+184+e34fea8   5/8
+  scriptletの実行中: nginx-mod-mail-1:1.14.1-9.module_el8.0.0+184+e34fea8   5/8
+  インストール中   : nginx-all-modules-1:1.14.1-9.module_el8.0.0+184+e34f   6/8
+  インストール中   : nginx-1:1.14.1-9.module_el8.0.0+184+e34fea82.x86_64    7/8
+  scriptletの実行中: nginx-1:1.14.1-9.module_el8.0.0+184+e34fea82.x86_64    7/8
+  インストール中   : nginx-mod-stream-1:1.14.1-9.module_el8.0.0+184+e34fe   8/8
+  scriptletの実行中: nginx-mod-stream-1:1.14.1-9.module_el8.0.0+184+e34fe   8/8
+  検証             : nginx-1:1.14.1-9.module_el8.0.0+184+e34fea82.x86_64    1/8
+  検証             : nginx-all-modules-1:1.14.1-9.module_el8.0.0+184+e34f   2/8
+  検証             : nginx-filesystem-1:1.14.1-9.module_el8.0.0+184+e34fe   3/8
+  検証             : nginx-mod-http-image-filter-1:1.14.1-9.module_el8.0.   4/8
+  検証             : nginx-mod-http-perl-1:1.14.1-9.module_el8.0.0+184+e3   5/8
+  検証             : nginx-mod-http-xslt-filter-1:1.14.1-9.module_el8.0.0   6/8
+  検証             : nginx-mod-mail-1:1.14.1-9.module_el8.0.0+184+e34fea8   7/8
+  検証             : nginx-mod-stream-1:1.14.1-9.module_el8.0.0+184+e34fe   8/8
+
+インストール済み:
+  nginx-1:1.14.1-9.module_el8.0.0+184+e34fea82.x86_64
+  nginx-all-modules-1:1.14.1-9.module_el8.0.0+184+e34fea82.noarch
+  nginx-filesystem-1:1.14.1-9.module_el8.0.0+184+e34fea82.noarch
+  nginx-mod-http-image-filter-1:1.14.1-9.module_el8.0.0+184+e34fea82.x86_64
+  nginx-mod-http-perl-1:1.14.1-9.module_el8.0.0+184+e34fea82.x86_64
+  nginx-mod-http-xslt-filter-1:1.14.1-9.module_el8.0.0+184+e34fea82.x86_64
+  nginx-mod-mail-1:1.14.1-9.module_el8.0.0+184+e34fea82.x86_64
+  nginx-mod-stream-1:1.14.1-9.module_el8.0.0+184+e34fea82.x86_64
+
+完了しました!
+</pre></div><p>2.Nginxのバージョン確認</p><div><pre>
+# nginx -v
+nginx version: nginx/1.14.1
+</pre></div><p>3.Nginxの自動起動設定</p><div><pre>
+# systemctl enable nginx
+Created symlink /etc/systemd/system/multi-user.target.wants/nginx.service → /usr/lib/systemd/system/nginx.service.
+</pre><pre>
+# systemctl list-unit-files --type=service | grep nginx
+nginx.service                              enabled
+</pre></div><p>4.Nginxの起動</p><div><pre>
+# systemctl start nginx
+</pre><pre>
+# systemctl status nginx
+  ● nginx.service - The nginx HTTP and reverse proxy server
+  Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)
+ Drop-In: /usr/lib/systemd/system/nginx.service.d
+          mqphp-fpm.conf
+  Active: active (running) since Thu 2020-02-06 21:37:01 EST; 9s ago
+ Process: 13132 ExecStart=/usr/sbin/nginx (code=exited, status=0/SUCCESS)
+ Process: 13130 ExecStartPre=/usr/sbin/nginx -t (code=exited, status=0/SUCCESS)
+ Process: 13129 ExecStartPre=/usr/bin/rm -f /run/nginx.pid (code=exited, status=0/SUCCESS)
+Main PID: 13134 (nginx)
+   Tasks: 2 (limit: 23983)
+  Memory: 4.0M
+  CGroup: /system.slice/nginx.service
+          tq13134 nginx: master process /usr/sbin/nginx
+          mq13135 nginx: worker process
+
+2月 06 21:37:01 localhost.localdomain systemd[1]: Starting The nginx HTTP and reverse proxy server...
+2月 06 21:37:01 localhost.localdomain nginx[13130]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+2月 06 21:37:01 localhost.localdomain nginx[13130]: nginx: configuration file /etc/nginx/nginx.conf test is successful
+2月 06 21:37:01 localhost.localdomain systemd[1]: nginx.service: Failed to parse PID from file /run/nginx.pid: Invalid argument
+2月 06 21:37:01 localhost.localdomain systemd[1]: Started The nginx HTTP and reverse proxy server.
+ <font color=Red>//[q]キーを入力して終了</font>
+</pre></div><p>5.リバースプロキシの設定</p><div><pre>
+# vim /etc/nginx/conf.d/proxy.conf
+
+----------------------------------------------------------------------------------------
+server{
+  server_name    *.example.com;
+  server_name    192.168.56.29;
+  server_tokens off;
+            
+  proxy_set_header    Host    $host;
+  proxy_set_header    X-Real-IP    $remote_addr;
+  proxy_set_header    X-Forwarded-Host       $host;
+  proxy_set_header    X-Forwarded-Server    $host;
+  proxy_set_header    X-Forwarded-For    $proxy_add_x_forwarded_for;
+            
+  location / {
+    proxy_pass    http://192.168.56.29/;
+  }
+}
+-----------------------[Esc + :wq]で保存終了します。--------------------------------------
+</pre></div><p>6.Nginxを再起動</p><div><pre>
+# systemctl restart nginx
+</pre></div><p>7.外部からアクセスできるようにfirewalldでhttpを解放</p><div><pre>
+# firewall-cmd --add-service=http --zone=public --permanent
+success
+</pre></div><p>8.設定を反映</p><div><pre>
+# firewall-cmd --reload
+success
+</pre></div><div class=edit-meta>Last updated on 15 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/ title="2.DNS Server Construction"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - 2.DNS Server Construction</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/ title="4.Web Server Construction">Next - 4.Web Server Construction <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

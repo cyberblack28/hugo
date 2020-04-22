@@ -1,0 +1,153 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>6.MariaDB Environment Construction - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="6.MariaDB Environment Construction"><meta property="og:description" content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # 1.mariadbのインストー"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-16T18:38:20+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="6.MariaDB Environment Construction"><meta name=twitter:description content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # 1.mariadbのインストー"><meta itemprop=name content="6.MariaDB Environment Construction"><meta itemprop=description content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # 1.mariadbのインストー"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-16T18:38:20+09:00"><meta itemprop=wordCount content="1203"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>6.MariaDB Environment Construction</h1><h2 id=事前作業>事前作業</h2><p>1.studentユーザでログインして、rootユーザに変更します。</p><pre><code>$ su -
+パスワード:tokyoec
+#
+</code></pre><hr><h2 id=1mariadbのインストール>1.mariadbのインストール</h2><p>CentOS8_WORDPRESSの仮想マシンで実行すること</p><p>1.mariadbのインストール</p><div><pre>
+# dnf -y install mariadb mariadb-server
+メタデータの期限切れの最終確認: 0:27:42 時間前の 2020年02月06日 03時08分52秒 に 実施しました。
+依存関係が解決しました。
+================================================================================
+ パッケージ      Arch   バージョン                              Repo      サイズ
+================================================================================
+インストール:
+ mariadb         x86_64 3:10.3.17-1.module_el8.1.0+257+48736ea6 AppStream 6.1 M
+ mariadb-server  x86_64 3:10.3.17-1.module_el8.1.0+257+48736ea6 AppStream  16 M
+依存関係のインストール:
+ mariadb-common  x86_64 3:10.3.17-1.module_el8.1.0+257+48736ea6 AppStream  62 k
+ mariadb-connector-c
+                 x86_64 3.0.7-1.el8                             AppStream 148 k
+ mariadb-connector-c-config
+                 noarch 3.0.7-1.el8                             AppStream  13 k
+ mariadb-errmsg  x86_64 3:10.3.17-1.module_el8.1.0+257+48736ea6 AppStream 232 k
+ perl-DBD-MySQL  x86_64 4.046-3.module_el8.1.0+203+e45423dc     AppStream 156 k
+弱い依存関係のインストール:
+ mariadb-backup  x86_64 3:10.3.17-1.module_el8.1.0+257+48736ea6 AppStream 6.0 M
+ mariadb-gssapi-server
+                 x86_64 3:10.3.17-1.module_el8.1.0+257+48736ea6 AppStream  49 k
+ mariadb-server-utils
+                 x86_64 3:10.3.17-1.module_el8.1.0+257+48736ea6 AppStream 1.6 M
+モジュールストリームの有効化:
+ mariadb                10.3
+ perl-DBD-MySQL         4.046
+
+トランザクションの概要
+================================================================================
+インストール  10 パッケージ
+
+ダウンロードサイズの合計: 30 M
+インストール済みのサイズ: 171 M
+パッケージのダウンロード:
+(1/10): mariadb-common-10.3.17-1.module_el8.1.0 438 kB/s |  62 kB     00:00
+(2/10): mariadb-connector-c-3.0.7-1.el8.x86_64. 528 kB/s | 148 kB     00:00
+(3/10): mariadb-connector-c-config-3.0.7-1.el8. 165 kB/s |  13 kB     00:00
+(4/10): mariadb-backup-10.3.17-1.module_el8.1.0 4.5 MB/s | 6.0 MB     00:01
+(5/10): mariadb-errmsg-10.3.17-1.module_el8.1.0 279 kB/s | 232 kB     00:00
+(6/10): mariadb-gssapi-server-10.3.17-1.module_ 243 kB/s |  49 kB     00:00
+(7/10): mariadb-10.3.17-1.module_el8.1.0+257+48 1.9 MB/s | 6.1 MB     00:03
+(8/10): perl-DBD-MySQL-4.046-3.module_el8.1.0+2 638 kB/s | 156 kB     00:00
+(9/10): mariadb-server-utils-10.3.17-1.module_e 545 kB/s | 1.6 MB     00:03
+(10/10): mariadb-server-10.3.17-1.module_el8.1. 475 kB/s |  16 MB     00:34
+--------------------------------------------------------------------------------
+合計                                            853 kB/s |  30 MB     00:36
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  scriptletの実行中: mariadb-connector-c-3.0.7-1.el8.x86_64                 1/1
+  準備             :                                                        1/1
+  インストール中   : mariadb-connector-c-config-3.0.7-1.el8.noarch         1/10
+  インストール中   : mariadb-common-3:10.3.17-1.module_el8.1.0+257+4873    2/10
+  インストール中   : mariadb-connector-c-3.0.7-1.el8.x86_64                3/10
+  インストール中   : perl-DBD-MySQL-4.046-3.module_el8.1.0+203+e45423dc    4/10
+  インストール中   : mariadb-errmsg-3:10.3.17-1.module_el8.1.0+257+4873    5/10
+  インストール中   : mariadb-backup-3:10.3.17-1.module_el8.1.0+257+4873    6/10
+  インストール中   : mariadb-gssapi-server-3:10.3.17-1.module_el8.1.0+2    7/10
+  インストール中   : mariadb-server-utils-3:10.3.17-1.module_el8.1.0+25    8/10
+  scriptletの実行中: mariadb-server-3:10.3.17-1.module_el8.1.0+257+4873    9/10
+  インストール中   : mariadb-server-3:10.3.17-1.module_el8.1.0+257+4873    9/10
+  scriptletの実行中: mariadb-server-3:10.3.17-1.module_el8.1.0+257+4873    9/10
+  インストール中   : mariadb-3:10.3.17-1.module_el8.1.0+257+48736ea6.x8   10/10
+  scriptletの実行中: mariadb-3:10.3.17-1.module_el8.1.0+257+48736ea6.x8   10/10
+  検証             : mariadb-3:10.3.17-1.module_el8.1.0+257+48736ea6.x8    1/10
+  検証             : mariadb-backup-3:10.3.17-1.module_el8.1.0+257+4873    2/10
+  検証             : mariadb-common-3:10.3.17-1.module_el8.1.0+257+4873    3/10
+  検証             : mariadb-connector-c-3.0.7-1.el8.x86_64                4/10
+  検証             : mariadb-connector-c-config-3.0.7-1.el8.noarch         5/10
+  検証             : mariadb-errmsg-3:10.3.17-1.module_el8.1.0+257+4873    6/10
+  検証             : mariadb-gssapi-server-3:10.3.17-1.module_el8.1.0+2    7/10
+  検証             : mariadb-server-3:10.3.17-1.module_el8.1.0+257+4873    8/10
+  検証             : mariadb-server-utils-3:10.3.17-1.module_el8.1.0+25    9/10
+  検証             : perl-DBD-MySQL-4.046-3.module_el8.1.0+203+e45423dc   10/10
+
+インストール済み:
+  mariadb-3:10.3.17-1.module_el8.1.0+257+48736ea6.x86_64
+  mariadb-server-3:10.3.17-1.module_el8.1.0+257+48736ea6.x86_64
+  mariadb-backup-3:10.3.17-1.module_el8.1.0+257+48736ea6.x86_64
+  mariadb-gssapi-server-3:10.3.17-1.module_el8.1.0+257+48736ea6.x86_64
+  mariadb-server-utils-3:10.3.17-1.module_el8.1.0+257+48736ea6.x86_64
+  mariadb-common-3:10.3.17-1.module_el8.1.0+257+48736ea6.x86_64
+  mariadb-connector-c-3.0.7-1.el8.x86_64
+  mariadb-connector-c-config-3.0.7-1.el8.noarch
+  mariadb-errmsg-3:10.3.17-1.module_el8.1.0+257+48736ea6.x86_64
+  perl-DBD-MySQL-4.046-3.module_el8.1.0+203+e45423dc.x86_64
+
+完了しました!
+</pre></div><p>2.mariadbの自動起動設定</p><div><pre>
+# systemctl enable mariadb
+Created symlink /etc/systemd/system/mysql.service → /usr/lib/systemd/system/mariadb.service.
+Created symlink /etc/systemd/system/mysqld.service → /usr/lib/systemd/system/mariadb.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/mariadb.service → /usr/lib/systemd/system/mariadb.service.
+</pre></div><p>3.mariadbの起動</p><div><pre>
+# systemctl start mariadb
+</pre><pre>
+# systemctl status mariadb
+● mariadb.service - MariaDB 10.3 database server
+   Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; vendor preset: disabled)
+   Active: active (running) since Thu 2020-02-06 03:44:50 EST; 56s ago
+     Docs: man:mysqld(8)
+           https://mariadb.com/kb/en/library/systemd/
+  Process: 4903 ExecStartPost=/usr/libexec/mysql-check-upgrade (code=exited, status=0/SUCCESS)
+  Process: 4768 ExecStartPre=/usr/libexec/mysql-prepare-db-dir mariadb.service (code=exited, status=0/SUCCESS)
+  Process: 4744 ExecStartPre=/usr/libexec/mysql-check-socket (code=exited, status=0/SUCCESS)
+ Main PID: 4871 (mysqld)
+   Status: "Taking your SQL requests now..."
+    Tasks: 30 (limit: 23983)
+   Memory: 85.9M
+   CGroup: /system.slice/mariadb.service
+           mq4871 /usr/libexec/mysqld --basedir=/usr
+
+ 2月 06 03:44:50 tokyo-ec.com mysql-prepare-db-dir[4768]: Please report any problems at http://mariadb.org/jira
+ 2月 06 03:44:50 tokyo-ec.com mysql-prepare-db-dir[4768]: The latest information about MariaDB is available at http://mariadb.org/.
+ 2月 06 03:44:50 tokyo-ec.com mysql-prepare-db-dir[4768]: You can find additional information about the MySQL part at:
+ 2月 06 03:44:50 tokyo-ec.com mysql-prepare-db-dir[4768]: http://dev.mysql.com
+ 2月 06 03:44:50 tokyo-ec.com mysql-prepare-db-dir[4768]: Consider joining MariaDB's strong and vibrant community:
+ 2月 06 03:44:50 tokyo-ec.com mysql-prepare-db-dir[4768]: https://mariadb.org/get-involved/
+ 2月 06 03:44:50 tokyo-ec.com mysqld[4871]: 2020-02-06  3:44:50 0 [Note] /usr/libexec/mysqld (mysqld 10.3.17-MariaDB) starting as process 4871 ...
+ 2月 06 03:44:50 tokyo-ec.com mysqld[4871]: 2020-02-06  3:44:50 0 [Warning] Could not increase number of max_open_files to more than 1024 (request: 4183)
+ 2月 06 03:44:50 tokyo-ec.com mysqld[4871]: 2020-02-06  3:44:50 0 [Warning] Changed limits: max_open_files: 1024  max_connections: 151 (was 151)  table_cach>
+ 2月 06 03:44:50 tokyo-ec.com systemd[1]: Started MariaDB 10.3 database server.
+ <font color=Red>//[SPACE]キーでスクロールして、[q]キーを入力して終了</font>
+</pre></div><p>4.mariadbのrootユーザのパスワード設定</p><div><pre>
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.3.17-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]>
+</pre><pre>
+MariaDB [(none)]> update mysql.user set password=password('mariadb123') where user = 'root';
+Query OK, 4 rows affected (0.001 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+</pre><pre>
+MariaDB [(none)]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.001 sec)
+</pre><pre>
+MariaDB [(none)]> exit
+Bye
+#
+</pre></div><div class=edit-meta>Last updated on 16 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/ title="5.PHP Environment Construction"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - 5.PHP Environment Construction</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/ title="7.WordPress Environment Construction">Next - 7.WordPress Environment Construction <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

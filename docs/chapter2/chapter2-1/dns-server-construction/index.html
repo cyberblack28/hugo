@@ -1,0 +1,322 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>2.DNS Server Construction - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="2.DNS Server Construction"><meta property="og:description" content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # DNSサーバの構築テキスト Ce"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-15T15:05:30+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="2.DNS Server Construction"><meta name=twitter:description content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # DNSサーバの構築テキスト Ce"><meta itemprop=name content="2.DNS Server Construction"><meta itemprop=description content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # DNSサーバの構築テキスト Ce"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-15T15:05:30+09:00"><meta itemprop=wordCount content="2879"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>2.DNS Server Construction</h1><h2 id=事前作業>事前作業</h2><p>1.studentユーザでログインして、rootユーザに変更します。</p><pre><code>$ su -
+パスワード:tokyoec
+#
+</code></pre><hr><h2 id=dnsサーバの構築テキスト>DNSサーバの構築テキスト</h2><p>CentOS8_PROXY_DNSの仮想マシンで実行すること</p><p>1.dnsmasqの稼働確認</p><div><pre>
+# systemctl status dnsmasq.service
+● dnsmasq.service - DNS caching server.
+   Loaded: loaded (/usr/lib/systemd/system/dnsmasq.service; disabled; vendor pr>
+   Active: inactive (dead)
+<font color=Red>//[SPACE]キーでスクロール、[q]キーを入力して終了</font>
+</pre></div><p>2.dnsmasqの無効化</p><div><pre>
+# systemctl mask dnsmasq.service
+Created symlink /etc/systemd/system/dnsmasq.service → /dev/null.
+</pre><pre>
+# systemctl status dnsmasq.service
+● dnsmasq.service
+   Loaded: masked (Reason: Unit dnsmasq.service is masked.)
+</pre></div><p>3.BINDをインストール</p><div><pre>
+# dnf install -y bind bind-utils
+メタデータの期限切れの最終確認: 0:36:10 時間前の 2020年02月06日 20時47分42秒 に 実施しました。
+パッケージ bind-utils-32:9.11.4-26.P2.el8.x86_64 は既にインストールされています 。
+依存関係が解決しました。
+================================================================================
+ パッケージ  Arch          バージョン                    リポジトリー     サイズ
+================================================================================
+インストール:
+ bind        x86_64        32:9.11.4-26.P2.el8           AppStream        2.1 M
+
+トランザクションの概要
+================================================================================
+インストール  1 パッケージ
+
+ダウンロードサイズの合計: 2.1 M
+インストール済みのサイズ: 4.8 M
+パッケージのダウンロード:
+bind-9.11.4-26.P2.el8.x86_64.rpm                3.5 MB/s | 2.1 MB     00:00
+--------------------------------------------------------------------------------
+合計                                            1.8 MB/s | 2.1 MB     00:01
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  scriptletの実行中: bind-32:9.11.4-26.P2.el8.x86_64                        1/1
+  インストール中   : bind-32:9.11.4-26.P2.el8.x86_64                        1/1
+  scriptletの実行中: bind-32:9.11.4-26.P2.el8.x86_64                        1/1
+  検証             : bind-32:9.11.4-26.P2.el8.x86_64                        1/1
+
+インストール済み:
+  bind-32:9.11.4-26.P2.el8.x86_64
+
+完了しました!
+</pre></div><p>4.BINDの自動起動設定</p><div><pre>
+# systemctl enable named.service
+Created symlink /etc/systemd/system/multi-user.target.wants/named.service → /usr/lib/systemd/system/named.service.
+</pre><pre>
+# systemctl is-enabled named.service
+enabled
+</pre></div><p>5.BINDの起動</p><div><pre>
+# systemctl start named.service
+</pre><pre>
+# systemctl status named.service
+● named.service - Berkeley Internet Name Domain (DNS)
+   Loaded: loaded (/usr/lib/systemd/system/named.service; enabled; vendor preset: disabled)
+   Active: active (running) since Thu 2020-02-06 21:24:42 EST; 8s ago
+  Process: 12136 ExecStart=/usr/sbin/named -u named -c ${NAMEDCONF} $OPTIONS (code=exited, status=0/SUCCESS)
+  Process: 12133 ExecStartPre=/bin/bash -c if [ ! "$DISABLE_ZONE_CHECKING" == "yes" ]; then /usr/sbin/named-checkconf -z "$NAMEDCONF"; else echo "Checking o>
+ Main PID: 12138 (named)
+    Tasks: 4 (limit: 23983)
+   Memory: 54.1M
+   CGroup: /system.slice/named.service
+           mq12138 /usr/sbin/named -u named -c /etc/named.conf
+
+ 2月 06 21:24:42 localhost.localdomain named[12138]: network unreachable resolving './DNSKEY/IN': 2001:500:2f::f#53
+ 2月 06 21:24:42 localhost.localdomain named[12138]: network unreachable resolving './NS/IN': 2001:500:2f::f#53
+ 2月 06 21:24:42 localhost.localdomain named[12138]: network unreachable resolving './DNSKEY/IN': 2001:7fd::1#53
+ 2月 06 21:24:42 localhost.localdomain named[12138]: network unreachable resolving './NS/IN': 2001:7fd::1#53
+ 2月 06 21:24:42 localhost.localdomain named[12138]: network unreachable resolving './DNSKEY/IN': 2001:500:a8::e#53
+ 2月 06 21:24:42 localhost.localdomain named[12138]: network unreachable resolving './NS/IN': 2001:500:a8::e#53
+ 2月 06 21:24:42 localhost.localdomain named[12138]: network unreachable resolving './DNSKEY/IN': 2001:500:9f::42#53
+ 2月 06 21:24:42 localhost.localdomain named[12138]: network unreachable resolving './NS/IN': 2001:500:9f::42#53
+ 2月 06 21:24:42 localhost.localdomain named[12138]: managed-keys-zone: Key 20326 for zone . acceptance timer complete: key now trusted
+ 2月 06 21:24:42 localhost.localdomain named[12138]: resolver priming query complete
+ <font color=Red>//[q]キーを入力して終了</font>
+</pre></div><p>6.「/etc/named.conf」を設定</p><div><pre>
+# cp -p /etc/named.conf /etc/named.conf.org
+</pre><pre>
+# vim /etc/named.conf
+
+--------opsions設定の前に、以下の設定を行い、ネットワークグループの作成します。127.0.0.1と192.168.56.0/24を追加します。-----------------
+//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+
+ <font color=Red>//↓追記箇所</font>
+acl localnet {
+  127.0.0.1;
+  192.168.56.0/24;
+};
+ <font color=Red>//↑追記箇所</font>
+
+options {
+  listen-on port 53 { 127.0.0.1; };
+  listen-on-v6 port 53 { ::1; };
+  directory       "/var/named";
+  dump-file       "/var/named/data/cache_dump.db";
+  statistics-file "/var/named/data/named_stats.txt";
+  memstatistics-file "/var/named/data/named_mem_stats.txt";
+  secroots-file   "/var/named/data/named.secroots";
+  recursing-file  "/var/named/data/named.recursing";
+  allow-query     { localhost; };
+
+・
+・省略
+・
+・
+--------------------------------------------------------------------------------------------------------------------------------
+</pre><pre>
+--------optionsのlisten-on portとallow-queryの設定を変更します。------------------------------------------------------------------
+//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+
+ <font color=Red>//↓追記箇所</font>
+acl localnet {
+  127.0.0.1;
+  192.168.56.0/24;
+};
+ <font color=Red>//↑追記箇所</font>
+
+options {
+  listen-on port 53 { 127.0.0.1; 192.168.56.28; };　//←変更箇所
+  listen-on-v6 port 53 { ::1; };
+  directory       "/var/named";
+  dump-file       "/var/named/data/cache_dump.db";
+  statistics-file "/var/named/data/named_stats.txt";
+  memstatistics-file "/var/named/data/named_mem_stats.txt";
+  secroots-file   "/var/named/data/named.secroots";
+  recursing-file  "/var/named/data/named.recursing";
+  allow-query     { localnet; }; //←変更箇所
+
+・
+・省略
+・
+・
+--------------------------------------------------------------------------------------------------------------------------------
+</pre><pre>
+--------最終行に以下、ゾーンファイルの設定を追加します。------------------------------------------------------------------
+・
+・省略
+・
+・
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+
+ <font color=Red>//↓追記箇所</font>
+zone "example.com" {
+  type master;
+  file "internal.zone";
+};
+
+zone "56.168.192.in-addr.arpa" {
+  type master;
+  file "internal.rev";
+};
+ <font color=Red>//↑追記箇所</font>
+--------------------[Esc + :wq]で保存終了します。-------------------------------------------------------------------------
+</pre></div><p>7.nmcliコマンドで「/etc/resolv.conf」に自身のIPアドレスを設定</p><div><pre>
+# nmcli con mod enp0s8 ipv4.dns 192.168.56.28
+</pre></div><p>8.NetworkManagerを再起動して、設定を反映します。</p><div><pre>
+# systemctl restart NetworkManager
+</pre><pre>
+# systemctl status NetworkManager
+● NetworkManager.service - Network Manager
+   Loaded: loaded (/usr/lib/systemd/system/NetworkManager.service; enabled; vendor preset: enabled)
+   Active: active (running) since Thu 2020-02-06 21:27:29 EST; 8s ago
+     Docs: man:NetworkManager(8)
+ Main PID: 12198 (NetworkManager)
+    Tasks: 4 (limit: 23983)
+   Memory: 6.5M
+   CGroup: /system.slice/NetworkManager.service
+           mq12198 /usr/sbin/NetworkManager --no-daemon
+
+ 2月 06 21:27:29 localhost.localdomain NetworkManager[12198]: <info>  [1581042449.9974] device (enp0s3): state change: secondaries -> activated (reason 'non>
+ 2月 06 21:27:29 localhost.localdomain NetworkManager[12198]: <info>  [1581042449.9980] manager: NetworkManager state is now CONNECTED_SITE
+ 2月 06 21:27:30 localhost.localdomain NetworkManager[12198]: <info>  [1581042450.0315] device (enp0s3): Activation: successful, device activated.
+ 2月 06 21:27:30 localhost.localdomain NetworkManager[12198]: <info>  [1581042450.0322] manager: NetworkManager state is now CONNECTED_GLOBAL
+ 2月 06 21:27:30 localhost.localdomain NetworkManager[12198]: <info>  [1581042450.0327] device (enp0s8): state change: config -> ip-config (reason 'none', s>
+ 2月 06 21:27:30 localhost.localdomain NetworkManager[12198]: <info>  [1581042450.0337] device (enp0s8): state change: ip-config -> ip-check (reason 'none',>
+ 2月 06 21:27:30 localhost.localdomain NetworkManager[12198]: <info>  [1581042450.0821] device (enp0s8): state change: ip-check -> secondaries (reason 'none>
+ 2月 06 21:27:30 localhost.localdomain NetworkManager[12198]: <info>  [1581042450.0823] device (enp0s8): state change: secondaries -> activated (reason 'non>
+ 2月 06 21:27:30 localhost.localdomain NetworkManager[12198]: <info>  [1581042450.0874] device (enp0s8): Activation: successful, device activated.
+ 2月 06 21:27:30 localhost.localdomain NetworkManager[12198]: <info>  [1581042450.0880] manager: startup complete
+<font color=Red>//[q]キーを入力して終了</font>
+</pre></div><p>9.「/etc/resolv.conf」を確認</p><div><pre>
+# cat /etc/resolv.conf
+# Generated by NetworkManager
+search sied.local com
+nameserver 192.168.84.41
+nameserver 192.168.84.1
+nameserver 8.8.8.8
+# NOTE: the libc resolver may not support more than 3 nameservers.
+# The nameservers listed below may not be recognized.
+nameserver 192.168.230.254
+nameserver 163.139.230.164
+nameserver 192.168.56.28
+</pre></div><p>10.192.168.56.28以外のIPアドレスがある場合はコメントアウト</p><div><pre>
+# vim /etc/resolv.conf
+
+--------------------192.168.56.28以外のIPアドレスがある場合はコメントアウト-------------------------------------------------
+# Generated by NetworkManager
+search sied.local com
+#nameserver 192.168.84.41 <font color=Red>//←#を付けてコメントアウト</font>
+#nameserver 192.168.84.1 <font color=Red>//←#を付けてコメントアウト</font>
+#nameserver 8.8.8.8 <font color=Red>//←#を付けてコメントアウト</font>
+# NOTE: the libc resolver may not support more than 3 nameservers.
+# The nameservers listed below may not be recognized.
+#nameserver 192.168.230.254 <font color=Red>//←#を付けてコメントアウト</font>
+#nameserver 163.139.230.164 <font color=Red>//←#を付けてコメントアウト</font>
+nameserver 192.168.56.28
+--------------------[Esc + :wq]で保存終了します。-------------------------------------------------------------------------
+</pre></div><p>11.ゾーンファイルの作成</p><div><pre>
+# vim /var/named/internal.zone
+
+------------------------------------------------------------------------------------------------------------------------
+$TTL 86400
+@       IN  SOA  ns.example.com.  root.example.com.( 
+          2016072601  ; serial              
+          21600       ; refresh after 6 hours
+          3600        ; retry after 1 hour
+          604800      ; expire after 1 week
+          86400 )     ; minimum TTL of 1 day
+;
+        IN  NS    ns
+;
+ns      IN  A     192.168.56.28
+www     IN  A     192.168.56.28
+ftp     IN  A     192.168.56.29
+--------------------[Esc + :wq]で保存終了します。-------------------------------------------------------------------------
+</pre></div><p>12.ゾーンファイル(逆引き)の作成</p><div><pre>
+# vim /var/named/internal.rev
+
+-------------------------------------------------------------------------------------------------------------------------
+$TTL 86400
+@         IN  SOA  ns.example.com.  root.example.com. (
+            2016072601  ; serial
+            21600       ; refresh after 6 hours
+            3600        ; retry after 1 hour
+            604800      ; expire after 1 week
+            86400 )     ; minimum TTL of 1 day
+; 
+    IN  NS    ns.example.com.
+28	IN  PTR  www.example.com.
+29	IN  PTR  ftp.example.com.
+--------------------[Esc + :wq]で保存終了します。-------------------------------------------------------------------------
+</pre></div><p>13.BINDの再起動</p><div><pre>
+# systemctl restart named.service
+</pre><pre>
+# systemctl status named.service
+● named.service - Berkeley Internet Name Domain (DNS)
+   Loaded: loaded (/usr/lib/systemd/system/named.service; enabled; vendor preset: disabled)
+   Active: active (running) since Thu 2020-02-06 21:29:51 EST; 7s ago
+  Process: 12319 ExecStop=/bin/sh -c /usr/sbin/rndc stop > /dev/null 2>&1 || /bin/kill -TERM $MAINPID (code=exited, status=0/SUCCESS)
+  Process: 12334 ExecStart=/usr/sbin/named -u named -c ${NAMEDCONF} $OPTIONS (code=exited, status=0/SUCCESS)
+  Process: 12331 ExecStartPre=/bin/bash -c if [ ! "$DISABLE_ZONE_CHECKING" == "yes" ]; then /usr/sbin/named-checkconf -z "$NAMEDCONF"; else echo "Checking o>
+ Main PID: 12336 (named)
+    Tasks: 4 (limit: 23983)
+   Memory: 53.7M
+   CGroup: /system.slice/named.service
+           mq12336 /usr/sbin/named -u named -c /etc/named.conf
+
+ 2月 06 21:29:51 localhost.localdomain named[12336]: network unreachable resolving './DNSKEY/IN': 2001:500:2f::f#53
+ 2月 06 21:29:51 localhost.localdomain named[12336]: network unreachable resolving './NS/IN': 2001:500:2f::f#53
+ 2月 06 21:29:51 localhost.localdomain named[12336]: network unreachable resolving './DNSKEY/IN': 2001:500:1::53#53
+ 2月 06 21:29:51 localhost.localdomain named[12336]: network unreachable resolving './NS/IN': 2001:500:1::53#53
+ 2月 06 21:29:51 localhost.localdomain named[12336]: network unreachable resolving './DNSKEY/IN': 2001:503:c27::2:30#53
+ 2月 06 21:29:51 localhost.localdomain named[12336]: network unreachable resolving './NS/IN': 2001:503:c27::2:30#53
+ 2月 06 21:29:51 localhost.localdomain named[12336]: network unreachable resolving './DNSKEY/IN': 2001:503:ba3e::2:30#53
+ 2月 06 21:29:51 localhost.localdomain named[12336]: network unreachable resolving './NS/IN': 2001:503:ba3e::2:30#53
+ 2月 06 21:29:51 localhost.localdomain named[12336]: managed-keys-zone: Key 20326 for zone . acceptance timer complete: key now trusted
+ 2月 06 21:29:51 localhost.localdomain named[12336]: resolver priming query complete
+<font color=Red>//[q]キーを入力して終了</font>
+</pre></div><p>14.nslookupコマンドで確認（正引）</p><div><pre>
+# nslookup
+> server 192.168.56.28
+Default server: 192.168.56.28
+Address: 192.168.56.28#53
+> www.example.com
+Server:         192.168.56.18
+Address:        192.168.56.18#53
+
+Name:   www.example.com
+Address: 192.168.56.28
+> exit
+</pre></div><p>15.nslookupコマンドで確認（逆引）</p><div><pre>
+# nslookup
+> server 192.168.56.28
+Default server: 192.168.56.28
+Address: 192.168.56.28#53
+> 192.168.56.28
+28.56.168.192.in-addr.arpa      name = www.example.com.
+> 192.168.56.29
+29.56.168.192.in-addr.arpa      name = ftp.example.com.
+> exit
+</pre></div><p>16.外部からも名前解決できるようにfirewalldでdnsを解放</p><div><pre>
+# firewall-cmd --add-service=dns --zone=public --permanent
+success
+</pre></div><p>17.設定を反映</p><div><pre>
+# firewall-cmd --reload
+success
+</pre></div><div class=edit-meta>Last updated on 15 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/ title="1.Exercise1 systemd"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - 1.Exercise1 systemd</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/ title="3.Proxy Server Construction">Next - 3.Proxy Server Construction <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

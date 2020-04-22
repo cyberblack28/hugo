@@ -1,0 +1,122 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Exercise1 Prosess & Job Management - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="Exercise1 Prosess & Job Management"><meta property="og:description" content="1.stressコマンドを用いたジョブの操作 stressコマンドを利用して、フォアグラウンドとバックグラウンドのジョブの切替を確認します。 1"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-13T15:27:44+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="Exercise1 Prosess & Job Management"><meta name=twitter:description content="1.stressコマンドを用いたジョブの操作 stressコマンドを利用して、フォアグラウンドとバックグラウンドのジョブの切替を確認します。 1"><meta itemprop=name content="Exercise1 Prosess & Job Management"><meta itemprop=description content="1.stressコマンドを用いたジョブの操作 stressコマンドを利用して、フォアグラウンドとバックグラウンドのジョブの切替を確認します。 1"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-13T15:27:44+09:00"><meta itemprop=wordCount content="2000"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>Exercise1 Prosess & Job Management</h1><h2 id=1stressコマンドを用いたジョブの操作>1.stressコマンドを用いたジョブの操作</h2><p>stressコマンドを利用して、フォアグラウンドとバックグラウンドのジョブの切替を確認します。</p><p>1.rootユーザに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ su -
+パスワード:tokyoec
+#
+</pre></div></details><p>2.stressのRPMパッケージをインストールします。</p><p>※ダウンロード:https://www.cyberblack.net/practice/linux/zip/stress-1.0.4-23.el8.x86_64.rpm</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# wget https://www.cyberblack.net/practice/linux/zip/stress-1.0.4-23.el8.x86_64.rpm
+--2020-02-02 20:23:05--  https://www.cyberblack.net/practice/linux/zip/stress-1.0.4-23.el8.x86_64.rpm
+www.cyberblack.net (www.cyberblack.net) をDNSに問いあわせています... 185.199.108.153, 185.199.109.153, 185.199.110.153, ...
+www.cyberblack.net (www.cyberblack.net)|185.199.108.153|:443 に接続して います... 接続しました。
+HTTP による接続要求を送信しました、応答を待っています... 200 OK
+長さ: 39652 (39K) [application/x-redhat-package-manager]
+`stress-1.0.4-23.el8.x86_64.rpm' に保存中
+  
+stress-1.0.4-23.el8 100%[===================>]  38.72K  77.5KB/s 時間 0.5s
+  
+2020-02-02 20:23:06 (77.5 KB/s) - `stress-1.0.4-23.el8.x86_64.rpm' へ保存完了 [39652/39652]
+# rpm -Uvh stress-1.0.4-23.el8.x86_64.rpm
+警告: stress-1.0.4-23.el8.x86_64.rpm: ヘッダー V4 RSA/SHA256 Signature、鍵 ID e755cc63: NOKEY
+Verifying...                          ##############################[100%]
+準備しています...              ##############################[100%]
+更新中 / インストール中...
+   1:stress-1.0.4-23.el8              ##############################[100%]
+# rpm -qa | grep stress
+stress-1.0.4-23.el8.x86_64
+</pre></div></details><p>3.4つのstressのプロセスを動かして、仮想マシンにで負荷をかけます。以下のstressコマンドを実行します。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# stress --cpu 3
+stress: info: [30808] dispatching hogs: 3 cpu, 0 io, 0 vm, 0 hdd
+</pre></div></details><p>4.3.で実行したstressコマンドが、フォアグラウンドジョブとして実行されているため、端末ウインドウではほかのコマンドが入力できません。キー入力を行えるようにするため、バックグラウンドジョブに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# stress --cpu 3
+stress: info: [30808] dispatching hogs: 3 cpu, 0 io, 0 vm, 0 hdd
+<font color=Red>//[Ctrl]+[z]キーを入力</font>
+^Z
+[1]+  停止                  stress --cpu 3
+</pre><pre>
+# jobs
+# bg %1
+[1]+ stress --cpu 3 &
+</pre></div></details><p>5.バックグラウンドジョブになっていること確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# jobs
+[1]+  実行中               stress --cpu 3 &
+</pre></div></details><p>6.stressコマンドを終了させます。一度、フォアグラウンドジョブに戻した後、[Ctrl] + [c]で終了させて下さい。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# fg %1
+<font color=Red>//[Ctrl]+[c]を入力</font>
+stress --cpu 3
+^C
+#
+</pre></div></details><p>7.stressコマンドが終了したことを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# jobs <font color=Red>//何も表示されなければ正常に終了しています。</font>
+</pre></div></details><hr><h2 id=2ジョブとプロセスの確認>2.ジョブとプロセスの確認</h2><p>stressコマンドを使って、ジョブとプロセスの違い、psコマンドやkillコマンドについて確認します。</p><p>1.バックグラウンドジョブとして、「stress &ndash;cpu 3」コマンドを実行し、確認してください。</p><p>※プロンプトが戻らない場合は、[Enter]キー何度か押してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# stress --cpu 3 &
+[1] 31056
+# stress: info: [31056] dispatching hogs: 3 cpu, 0 io, 0 vm, 0 hdd
+<font color=Red>//[Enter]キーを押してプロンプトをfgにします。</font>
+#
+</pre><pre>
+# jobs
+[1]+  実行中               stress --cpu 3 &
+</pre></div></details><p>2.stress &ndash;cpu 3は、ジョブとしては1つです。psコマンドで、プロセス単位でみたときのstress &ndash;cpu 3を確認します。</p><p>オプション無しで、psコマンドを実行し、stressのプロセス数を確認してみましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# ps
+  PID TTY          TIME CMD
+ 2424 pts/0    00:00:00 su
+ 2430 pts/0    00:00:00 bash
+31056 pts/0    00:00:00 stress
+31057 pts/0    00:02:17 stress
+31058 pts/0    00:02:17 stress
+31059 pts/0    00:02:17 stress
+31119 pts/0    00:00:00 ps
+
+<font color=Red>//psコマンドを実行すると、右端にstressと表示されている行が4行表示されるはずです。これは、stressのプロセスとしては4つ動作していることを表しています。
+「stress --cpu 3」は、stressのプロセスを3つ起動するコマンドですが、プロセスが1つ多くあります。内訳は、親プロセス1 + 子プロセス3になります。</font>
+</pre></div></details><p>3.pstreeコマンドにpオプションを付けて、ツリー構造でstressプロセスの親子関係を確認してみましょう。「pstree -p | grep stress」</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# pstree -p | grep stress
+  |                                                                           `-stress(31395)-+-stress(31396)
+  |                                                                                           |-stress(31397)
+  |                                                                                           `-stress(31398)
+</pre></div></details><p>4.killコマンドを使って、すべてのstressのプロセスを強制終了してください。</p><p>pstreeコマンドで確認した結果の内、31395が親プロセスそれ以外が子プロセス（31396,31397,31398）になります。まず、3個の子プロセスの内どれか1個を強制終了してください。</p><p>※プロセスIDは固定ではないので本内容とは異なる場合があります。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# kill 31397
+stress: FAIL: [31395] (415) <-- worker 31397 got signal 15
+stress: WARN: [31395] (417) now reaping child worker processes
+stress: FAIL: [31395] (451) failed run completed in 429s
+<font color=Red>//[Enter]キーを入力</font>
+[1]+  終了 1                stress --cpu 3
+
+<font color=Red>//子プロセスを強制終了させることによる忠告が出て、親プロセスと他の子プロセスと共に終了となります。</font>
+</pre><pre>
+# ps
+PID TTY          TIME CMD
+2424 pts/0    00:00:00 su
+2430 pts/0    00:00:00 bash
+31459 pts/0    00:00:00 ps
+</pre></div></details><p>5.もう一度、「stress &ndash;cpu 3 &」を実行、「pstree -p | grep stress」で親プロセスIDを確認して、今度は親プロセスから強制終了してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+# stress --cpu 3 &
+[1] 31546
+# stress: info: [31546] dispatching hogs: 3 cpu, 0 io, 0 vm, 0 hdd
+<font color=Red>//[Enter]キーを入力</font>
+</pre><pre>
+# pstree -p | grep stress
+|                                                                           `-stress(31546)-+-stress(31547)
+|                                                                                           |-stress(31548)
+|                                                                                           `-stress(31549)
+# kill 31546
+# ps
+  PID TTY          TIME CMD
+ 2424 pts/0    00:00:00 su
+ 2430 pts/0    00:00:00 bash
+31547 pts/0    00:01:17 stress
+31548 pts/0    00:01:17 stress
+31549 pts/0    00:01:17 stress
+31579 pts/0    00:00:00 ps
+
+<font color=Red>//親プロセスを強制終了すると、子プロセスも含めて強制終了されません。子プロセスは親プロセスがなくなると、子プロセス自体が単体のプロセスに変わります。以前はこういう仕組みがなく、子プロセスがゾンビプロセスとして残ってしまうことがありました。</font>
+</pre><pre>
+<font color=Red>//全プロセスを終了する場合は、各プロセスIDでkillコマンドを実行します。</font>
+# kill 31547 31548 31549
+# pstree -p | grep stress
+# ps
+PID TTY          TIME CMD
+2424 pts/0    00:00:00 su
+2430 pts/0    00:00:00 bash
+31617 pts/0    00:00:00 ps
+</pre></div></details><div class=edit-meta>Last updated on 13 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/ title="3.Prosess & Job Management"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - 3.Prosess & Job Management</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/ title=4.Shell>Next - 4.Shell <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li class=active><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

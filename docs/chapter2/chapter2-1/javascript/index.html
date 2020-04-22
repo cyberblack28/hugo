@@ -1,0 +1,401 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>11.Javascript - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="11.Javascript"><meta property="og:description" content="1.都道府県のドロップボックス作成 for文と配列を組み合わせて右のような都道府県ドロップボックスを作成してみましょう。 1.模範解答 <!DOCTYPE html> <html lang=&#34;ja&#34;> <head>"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-17T17:26:30+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="11.Javascript"><meta name=twitter:description content="1.都道府県のドロップボックス作成 for文と配列を組み合わせて右のような都道府県ドロップボックスを作成してみましょう。 1.模範解答 <!DOCTYPE html> <html lang=&#34;ja&#34;> <head>"><meta itemprop=name content="11.Javascript"><meta itemprop=description content="1.都道府県のドロップボックス作成 for文と配列を組み合わせて右のような都道府県ドロップボックスを作成してみましょう。 1.模範解答 <!DOCTYPE html> <html lang=&#34;ja&#34;> <head>"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-17T17:26:30+09:00"><meta itemprop=wordCount content="3445"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>11.Javascript</h1><h2 id=1都道府県のドロップボックス作成>1.都道府県のドロップボックス作成</h2><p>for文と配列を組み合わせて右のような都道府県ドロップボックスを作成してみましょう。</p><p>1.模範解答</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+    <span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+    <span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+        <span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;</span>都道府県<span class=p>&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+
+        <span class=p>&lt;</span><span class=nt>select</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;pref&#34;</span><span class=p>&gt;</span>
+            <span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+                <span class=kd>var</span> <span class=nx>prefs</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Array</span><span class=p>(</span><span class=s1>&#39;北海道&#39;</span><span class=p>,</span> <span class=s1>&#39;青森県&#39;</span><span class=p>,</span> <span class=s1>&#39;岩手県&#39;</span><span class=p>,</span> <span class=s1>&#39;宮城県&#39;</span><span class=p>,</span> <span class=s1>&#39;秋田県&#39;</span><span class=p>,</span> <span class=s1>&#39;山形県&#39;</span><span class=p>,</span> <span class=s1>&#39;福島県&#39;</span><span class=p>,</span> <span class=s1>&#39;茨城県&#39;</span><span class=p>,</span> <span class=s1>&#39;栃木県&#39;</span><span class=p>,</span> <span class=s1>&#39;群馬県&#39;</span><span class=p>,</span> <span class=s1>&#39;埼玉県&#39;</span><span class=p>,</span> <span class=s1>&#39;千葉県&#39;</span><span class=p>,</span> <span class=s1>&#39;東京都&#39;</span><span class=p>,</span> <span class=s1>&#39;神奈川県&#39;</span><span class=p>,</span> <span class=s1>&#39;新潟県&#39;</span><span class=p>,</span> <span class=s1>&#39;富山県&#39;</span><span class=p>,</span> <span class=s1>&#39;石川県&#39;</span><span class=p>,</span> <span class=s1>&#39;福井県&#39;</span><span class=p>,</span> <span class=s1>&#39;山梨県&#39;</span><span class=p>,</span> <span class=s1>&#39;長野県&#39;</span><span class=p>,</span> <span class=s1>&#39;岐阜県&#39;</span><span class=p>,</span> <span class=s1>&#39;静岡県&#39;</span><span class=p>,</span> <span class=s1>&#39;愛知県&#39;</span><span class=p>,</span> <span class=s1>&#39;三重県&#39;</span><span class=p>,</span> <span class=s1>&#39;滋賀県&#39;</span><span class=p>,</span> <span class=s1>&#39;京都府&#39;</span><span class=p>,</span> <span class=s1>&#39;大阪府&#39;</span><span class=p>,</span> <span class=s1>&#39;兵庫県&#39;</span><span class=p>,</span> <span class=s1>&#39;奈良県&#39;</span><span class=p>,</span> <span class=s1>&#39;和歌山県&#39;</span><span class=p>,</span> <span class=s1>&#39;鳥取県&#39;</span><span class=p>,</span> <span class=s1>&#39;島根県&#39;</span><span class=p>,</span> <span class=s1>&#39;岡山県&#39;</span><span class=p>,</span> <span class=s1>&#39;広島県&#39;</span><span class=p>,</span> <span class=s1>&#39;山口県&#39;</span><span class=p>,</span> <span class=s1>&#39;徳島県&#39;</span><span class=p>,</span> <span class=s1>&#39;香川県&#39;</span><span class=p>,</span> <span class=s1>&#39;愛媛県&#39;</span><span class=p>,</span> <span class=s1>&#39;高知県&#39;</span><span class=p>,</span> <span class=s1>&#39;福岡県&#39;</span><span class=p>,</span> <span class=s1>&#39;佐賀県&#39;</span><span class=p>,</span> <span class=s1>&#39;長崎県&#39;</span><span class=p>,</span> <span class=s1>&#39;熊本県&#39;</span><span class=p>,</span> <span class=s1>&#39;大分県&#39;</span><span class=p>,</span> <span class=s1>&#39;宮崎県&#39;</span><span class=p>,</span> <span class=s1>&#39;鹿児島県&#39;</span><span class=p>,</span> <span class=s1>&#39;沖縄県&#39;</span><span class=p>);</span>
+
+                <span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=nx>i</span><span class=o>&lt;</span><span class=nx>prefs</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+                    <span class=nb>document</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=s1>&#39;&lt;option value=&#34;&#39;</span> <span class=o>+</span> <span class=nx>prefs</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39;&#34;&gt;&#39;</span> <span class=o>+</span> <span class=nx>prefs</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39;&lt;/option&gt;&#39;</span><span class=p>);</span>
+                <span class=p>}</span>
+            <span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+        <span class=p>&lt;/</span><span class=nt>select</span><span class=p>&gt;</span>
+
+    <span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><hr><h2 id=2おみくじプログラムの作成>2.おみくじプログラムの作成</h2><p>Mathオブジェクト、alertメソッド、switch文を使ってプログラミングしてみよう。
+大吉、中吉、末吉、小吉、大凶でそれぞれメッセージも入れましょう。</p><p>1.模範解答</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+    <span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+    <span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+ 
+            <span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+                    <span class=kd>var</span> <span class=nx>a</span> <span class=o>=</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>random</span><span class=p>()</span> <span class=o>*</span> <span class=mi>5</span><span class=p>;</span>
+                    <span class=nx>a</span> <span class=o>=</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>floor</span><span class=p>(</span><span class=nx>a</span><span class=p>);</span>
+    
+                    <span class=k>switch</span> <span class=p>(</span><span class=nx>a</span><span class=p>)</span> <span class=p>{</span>
+                        <span class=k>case</span> <span class=mi>0</span><span class=o>:</span>
+                            <span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;大吉　成功あるのみ&#39;</span><span class=p>);</span>
+                            <span class=k>break</span><span class=p>;</span>
+                        <span class=k>case</span> <span class=mi>1</span><span class=o>:</span>
+                            <span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;中吉　幸せはすぐそこ&#39;</span><span class=p>);</span>
+                            <span class=k>break</span><span class=p>;</span>
+                        <span class=k>case</span> <span class=mi>3</span><span class=o>:</span>
+                            <span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;小吉　ささやかな喜びに感謝&#39;</span><span class=p>);</span>
+                            <span class=k>break</span><span class=p>;</span>
+                        <span class=k>case</span> <span class=mi>4</span><span class=o>:</span>
+                            <span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;末吉　明日頑張ろう&#39;</span><span class=p>);</span>
+                            <span class=k>break</span><span class=p>;</span>
+                        <span class=k>case</span> <span class=mi>5</span><span class=o>:</span>
+                            <span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;凶　今はじっと我慢&#39;</span><span class=p>);</span>
+                            <span class=k>break</span><span class=p>;</span>
+                    <span class=p>}</span>
+            <span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+    <span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><hr><h2 id=3カウントアッププログラムの作成>3.カウントアッププログラムの作成</h2><p>カウントアップというボタンをクリックすると数値が上がっていくアプリを作ってみよう。リセットボタンを押すと0に戻るようにしてみよう。</p><p>1.模範解答</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+    <span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+        <span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+    <span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+    <span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+        
+            <span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+            <span class=kd>var</span> <span class=nx>count</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+            <span class=kd>function</span> <span class=nx>countup</span><span class=p>()</span> <span class=p>{</span>
+                <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span> <span class=s2>&#34;output&#34;</span> <span class=p>).</span><span class=nx>innerHTML</span> <span class=o>=</span> <span class=o>++</span><span class=nx>count</span><span class=p>;</span>
+            <span class=p>}</span>
+
+            <span class=kd>function</span> <span class=nx>reset</span><span class=p>()</span> <span class=p>{</span>
+                <span class=nx>location</span><span class=p>.</span><span class=nx>reload</span><span class=p>()</span>
+            <span class=p>}</span>
+            <span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+            
+            <span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;&lt;</span><span class=nt>button</span> <span class=na>onclick</span><span class=o>=</span><span class=s>&#34;countup();&#34;</span><span class=p>&gt;</span>カウントアップ<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span> <span class=p>&lt;</span><span class=nt>button</span> <span class=na>onclick</span><span class=o>=</span><span class=s>&#34;reset();&#34;</span><span class=p>&gt;</span>リセット<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;&lt;</span><span class=nt>br</span><span class=p>&gt;&lt;</span><span class=nt>span</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;output&#34;</span><span class=p>&gt;</span>0<span class=p>&lt;/</span><span class=nt>span</span><span class=p>&gt;&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+
+    <span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</code></pre></div><hr><h2 id=4サンプルプログラム>4.サンプルプログラム</h2><p>1.アラートボックス表示</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+		<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+			<span class=nb>window</span><span class=p>.</span><span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;初めてのJavaScript&#39;</span><span class=p>);</span>
+		<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>2.if分</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+		<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+			<span class=k>if</span> <span class=p>(</span> <span class=nx>confirm</span> <span class=p>(</span><span class=s1>&#39;保存しますか？&#39;</span><span class=p>)</span> <span class=p>)</span> <span class=p>{</span>
+				<span class=nx>alert</span> <span class=p>(</span><span class=s1>&#39;保存しました。&#39;</span><span class=p>);</span>
+			<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+				<span class=nx>alert</span> <span class=p>(</span><span class=s1>&#39;キャンセルしました。&#39;</span><span class=p>);</span>
+			<span class=p>}</span>
+		<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>3.変数</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+		<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+			<span class=kd>var</span> <span class=nx>answer</span> <span class=o>=</span> <span class=nx>confirm</span> <span class=p>(</span><span class=s1>&#39;保存しますか？&#39;</span><span class=p>);</span>
+
+			<span class=k>if</span> <span class=p>(</span><span class=nx>answer</span><span class=p>)</span> <span class=p>{</span>
+				<span class=nx>alert</span> <span class=p>(</span><span class=s1>&#39;保存しました。&#39;</span><span class=p>);</span>
+			<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+				<span class=nx>alert</span> <span class=p>(</span><span class=s1>&#39;キャンセルしました。&#39;</span><span class=p>);</span>
+			<span class=p>}</span>
+		<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>4.四則演算</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+		<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+			<span class=nb>document</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=s1>&#39;&lt;p&gt;1年を365日とした場合&lt;/p&gt;&#39;</span><span class=p>);</span>
+			<span class=nb>document</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=s1>&#39;&lt;p&gt;1年は&#39;</span> <span class=o>+</span> <span class=p>(</span><span class=mi>365</span><span class=o>*</span><span class=mi>24</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;時間です。&lt;/p&gt;&#39;</span><span class=p>);</span>
+			<span class=nb>document</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=s1>&#39;&lt;p&gt;1年は&#39;</span> <span class=o>+</span> <span class=p>(</span><span class=mi>365</span><span class=o>*</span><span class=mi>24</span><span class=o>*</span><span class=mi>60</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;分です。&lt;/p&gt;&#39;</span><span class=p>);</span>
+			<span class=nb>document</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=s1>&#39;&lt;p&gt;1年は&#39;</span> <span class=o>+</span> <span class=p>(</span><span class=mi>365</span><span class=o>*</span><span class=mi>24</span><span class=o>*</span><span class=mi>60</span><span class=o>*</span><span class=mi>60</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;秒です。&lt;/p&gt;&#39;</span><span class=p>);</span>
+		<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>5.比較演算子</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+		<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+			<span class=kd>var</span> <span class=nx>now</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>();</span>
+			<span class=kd>var</span> <span class=nx>hour</span> <span class=o>=</span> <span class=nx>now</span><span class=p>.</span><span class=nx>getHours</span><span class=p>();</span>
+
+			<span class=k>if</span> <span class=p>(</span><span class=nx>hour</span> <span class=o>&lt;</span> <span class=mi>12</span><span class=p>)</span> <span class=p>{</span>
+				<span class=nb>window</span><span class=p>.</span><span class=nx>alert</span> <span class=p>(</span><span class=s1>&#39;今は午前&#39;</span> <span class=o>+</span> <span class=nx>hour</span> <span class=o>+</span> <span class=s1>&#39;時です&#39;</span><span class=p>);</span>
+			<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+				<span class=nb>window</span><span class=p>.</span><span class=nx>alert</span> <span class=p>(</span><span class=s1>&#39;今は午後&#39;</span> <span class=o>+</span> <span class=nx>hour</span> <span class=o>+</span> <span class=s1>&#39;時です&#39;</span><span class=p>);</span>
+			<span class=p>}</span>
+		<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>6.論理演算子</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+		<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+			<span class=kd>var</span> <span class=nx>now</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>();</span>
+			<span class=kd>var</span> <span class=nx>hour</span> <span class=o>=</span> <span class=nx>now</span><span class=p>.</span><span class=nx>getHours</span><span class=p>();</span>
+
+			<span class=k>if</span> <span class=p>(</span><span class=nx>hour</span> <span class=o>&gt;=</span> <span class=mi>14</span> <span class=o>&amp;&amp;</span> <span class=nx>hour</span> <span class=o>&lt;</span> <span class=mi>16</span><span class=p>)</span> <span class=p>{</span>
+				<span class=nb>window</span><span class=p>.</span><span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;タイムセール中です。&#39;</span><span class=p>);</span>
+			<span class=p>}</span>
+		<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>7.while文</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>select</span><span class=p>&gt;</span>
+
+ 	<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+ 		<span class=kd>var</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>10</span><span class=p>;</span>
+
+                <span class=k>while</span> <span class=p>(</span><span class=nx>i</span><span class=o>&lt;=</span><span class=mi>80</span><span class=p>){</span>
+			<span class=nb>document</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=s1>&#39;&lt;option value=&#34;&#39;</span> <span class=o>+</span> <span class=nx>i</span> <span class=o>+</span> <span class=s1>&#39;&#34;&gt;&#39;</span> <span class=o>+</span> <span class=nx>i</span> <span class=o>+</span> <span class=s1>&#39;歳&lt;/option&gt;&#39;</span><span class=p>);</span>
+			<span class=nx>i</span><span class=o>++</span><span class=p>;</span>
+		<span class=p>}</span>
+	<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>select</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>8.for文</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>select</span><span class=p>&gt;</span>
+
+ 	<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+
+		<span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>i</span><span class=o>=</span><span class=mi>10</span><span class=p>;</span> <span class=nx>i</span><span class=o>&lt;=</span><span class=mi>80</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>){</span>
+			<span class=nb>document</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=s1>&#39;&lt;option value=&#34;&#39;</span> <span class=o>+</span> <span class=nx>i</span> <span class=o>+</span> <span class=s1>&#39;&#34;&gt;&#39;</span> <span class=o>+</span> <span class=nx>i</span> <span class=o>+</span> <span class=s1>&#39;歳&lt;/option&gt;&#39;</span><span class=p>);</span>
+                	<span class=p>}</span>
+
+	<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>select</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>9.配列</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>ul</span><span class=p>&gt;</span>
+
+ 	<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+		<span class=kd>var</span> <span class=nx>menus</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Array</span><span class=p>(</span><span class=s1>&#39;AWS&#39;</span><span class=p>,</span><span class=s1>&#39;GCP&#39;</span><span class=p>,</span><span class=s1>&#39;Azure&#39;</span><span class=p>,</span><span class=s1>&#39;IBM cloud&#39;</span><span class=p>);</span>
+
+		<span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=nx>i</span><span class=o>&lt;</span><span class=nx>menus</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>){</span>
+			<span class=nb>document</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=s1>&#39;&lt;li&gt;&#39;</span> <span class=o>+</span> <span class=nx>menus</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39;&lt;/li&gt;&#39;</span><span class=p>);</span>
+		<span class=p>}</span>
+	<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>ul</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>10.連想配列</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>ul</span><span class=p>&gt;</span>
+
+ 	<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+ 		<span class=kd>var</span> <span class=nx>menus</span> <span class=o>=</span> <span class=p>{</span>
+                        		<span class=s1>&#39;https://aws.amazon.com/jp/&#39;</span><span class=o>:</span><span class=s1>&#39;AWS&#39;</span><span class=p>,</span>
+                        		<span class=s1>&#39;https://cloud.google.com/?hl=ja&#39;</span><span class=o>:</span><span class=s1>&#39;GCP&#39;</span><span class=p>,</span>
+                        		<span class=s1>&#39;https://azure.microsoft.com/ja-jp/&#39;</span><span class=o>:</span><span class=s1>&#39;Azure&#39;</span><span class=p>,</span>
+                        		<span class=s1>&#39;https://www.ibm.com/cloud-computing/&#39;</span><span class=o>:</span><span class=s1>&#39;IBM Cloud&#39;</span>
+		<span class=p>}</span>
+
+		<span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>m</span> <span class=k>in</span> <span class=nx>menus</span><span class=p>)</span> <span class=p>{</span>
+			<span class=nb>document</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=s1>&#39;&lt;li&gt;&lt;a href=&#34;&#39;</span> <span class=o>+</span> <span class=nx>m</span> <span class=o>+</span> <span class=s1>&#39;&#34; title=&#34;&#39;</span> <span class=o>+</span> <span class=nx>m</span> <span class=o>+</span> <span class=s1>&#39;に移動します&#34; target=&#34;_blank&#34;&gt;&#39;</span> <span class=o>+</span> <span class=nx>menus</span><span class=p>[</span><span class=nx>m</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39;&lt;/a&gt;&lt;/li&gt;&#39;</span><span class=p>);</span>
+		<span class=p>}</span>
+	<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>ul</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>11.イベント</p><p>open.html</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+		<span class=nb>window</span><span class=p>.</span><span class=nx>open</span><span class=p>(</span><span class=s1>&#39;index.html&#39;</span><span class=p>);</span>
+	<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>index.html</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;js/onclick.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;&lt;</span><span class=nt>input</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;button&#34;</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;とじる&#34;</span> <span class=na>onclick</span><span class=o>=</span><span class=s>&#34;closebt();&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><p>onclick.js</p><div class=highlight><pre class=chroma><code class=language-Javascript data-lang=Javascript><span class=kd>function</span> <span class=nx>closebt</span><span class=p>()</span> <span class=p>{</span>
+	<span class=k>if</span><span class=p>(</span><span class=nx>confirm</span><span class=p>(</span><span class=s1>&#39;閉じてよろしいですか？&#39;</span><span class=p>)){</span>
+		<span class=nb>window</span><span class=p>.</span><span class=nx>close</span><span class=p>();</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><p>12.switchとif else</p><div class=highlight><pre class=chroma><code class=language-HTML data-lang=HTML><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;ja&#34;</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>初めてのJavaScript<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+	<span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+
+ 		<span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;</span>年齢<span class=p>&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+
+        	<span class=p>&lt;</span><span class=nt>select</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;age&#34;</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;age&#34;</span><span class=p>&gt;</span>
+            		<span class=p>&lt;</span><span class=nt>option</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;&#34;</span><span class=p>&gt;</span>お選びください<span class=p>&lt;/</span><span class=nt>option</span><span class=p>&gt;</span>
+            		<span class=p>&lt;</span><span class=nt>option</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;10&#34;</span><span class=p>&gt;</span>10歳以下<span class=p>&lt;/</span><span class=nt>option</span><span class=p>&gt;</span>
+            		<span class=p>&lt;</span><span class=nt>option</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;30&#34;</span><span class=p>&gt;</span>11-30歳<span class=p>&lt;/</span><span class=nt>option</span><span class=p>&gt;</span>
+            		<span class=p>&lt;</span><span class=nt>option</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;50&#34;</span><span class=p>&gt;</span>31-50歳<span class=p>&lt;/</span><span class=nt>option</span><span class=p>&gt;</span>
+            		<span class=p>&lt;</span><span class=nt>option</span> <span class=na>value</span><span class=o>=</span><span class=s>&#34;51&#34;</span><span class=p>&gt;</span>51歳以上<span class=p>&lt;/</span><span class=nt>option</span><span class=p>&gt;</span>
+        	<span class=p>&lt;/</span><span class=nt>select</span><span class=p>&gt;</span>
+
+        	<span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+            		<span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s1>&#39;age&#39;</span><span class=p>).</span><span class=nx>onchange</span> <span class=o>=</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span> <span class=kd>var</span> <span class=nx>age</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s1>&#39;age&#39;</span><span class=p>).</span><span class=nx>value</span><span class=p>;</span>
+        
+            		<span class=k>switch</span> <span class=p>(</span><span class=nx>age</span><span class=p>)</span> <span class=p>{</span>
+            			<span class=k>case</span> <span class=s1>&#39;10&#39;</span><span class=o>:</span>
+                			<span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;10歳以下の方は、半額です&#39;</span><span class=p>);</span>
+                			<span class=k>break</span><span class=p>;</span>
+           			<span class=k>case</span> <span class=s1>&#39;30&#39;</span><span class=o>:</span>
+                			<span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;11-30歳以下の方は割引はありません&#39;</span><span class=p>);</span>
+                			<span class=k>break</span><span class=p>;</span>
+            			<span class=k>case</span> <span class=s1>&#39;50&#39;</span><span class=o>:</span>
+                			<span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;31-50歳の方は10%の割引です&#39;</span><span class=p>);</span>
+                			<span class=k>break</span><span class=p>;</span>
+            			<span class=k>case</span> <span class=s1>&#39;51&#39;</span><span class=o>:</span>
+                			<span class=nx>alert</span><span class=p>(</span><span class=s1>&#39;51歳の方は30%の割引です&#39;</span><span class=p>);</span>
+                			<span class=k>break</span><span class=p>;</span>
+            			<span class=p>}</span>
+        		<span class=p>}</span>
+        	<span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+
+	<span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+
+<span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></div><div class=edit-meta>Last updated on 17 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/ title="10.HTML & CSS"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - 10.HTML & CSS</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/ title="12.Infrastructure as Code">Next - 12.Infrastructure as Code <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

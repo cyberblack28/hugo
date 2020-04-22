@@ -1,0 +1,157 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Exercise2 About Bash - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="Exercise2 About Bash"><meta property="og:description" content="1.環境変数とシェル変数 1.カレントディレクトリをホームディレクトリに変更してください。 Answer $ cd $ pwd /home/student 2.「training/linux」構成"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-13T15:27:44+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="Exercise2 About Bash"><meta name=twitter:description content="1.環境変数とシェル変数 1.カレントディレクトリをホームディレクトリに変更してください。 Answer $ cd $ pwd /home/student 2.「training/linux」構成"><meta itemprop=name content="Exercise2 About Bash"><meta itemprop=description content="1.環境変数とシェル変数 1.カレントディレクトリをホームディレクトリに変更してください。 Answer $ cd $ pwd /home/student 2.「training/linux」構成"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-13T15:27:44+09:00"><meta itemprop=wordCount content="2392"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>Exercise2 About Bash</h1><h2 id=1環境変数とシェル変数>1.環境変数とシェル変数</h2><p>1.カレントディレクトリをホームディレクトリに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+</pre></div></details><p>2.「training/linux」構成でディレクトリを作成してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ mkdir -p training/linux
+$ ls training/
+linux
+</pre></div></details><p>3.環境変数trainを作成します。trainの値には、/home/student/training/linuxディレクトリを絶対指定で指定してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ train='/home/student/training/linux/'
+$ export train='/home/student/training/linux/'
+</pre></div></details><p>4.現在のユーザが、各種コマンドで環境変数$trainをディレクトリ名のかわりに指定すると、常に/home/student/training/linuxが指定されたものと同じ動作をします。</p><p>たとえば、カレントディレクトリに関係なく、touch $train/sample.txtで、sample.txtという空のファイルが/home/studnet/training/linuxに作成されます。
+ls $trainで、/home/student/training/linuxのファイルが表示されます。
+実際にこれらのコマンドを実行し、確認してみましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd /
+$ touch $train/sample.txt
+$ ls $train
+sample.txt
+</pre></div></details><p>上記のように、シェル変数や環境変数に、ディレクトリを登録しておくと、長いディレクトリパスを指定しなくても、シェル変数や環境変数を指定すれば、簡単に目的のディレクトリを利用できます。
+また、コンピュータによって、ディレクトリパスが異なる場合でも、ディレクトリパスを直接指定せずに、シェル変数や環境変数を指定するようにプログラムやシェルスクリプトを記述することで、汎用性を高めることができます。</p><p>5.usetコマンドで環境変数$trainを削除します。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ unset train
+</pre></div></details><p>6.ホームディレクトリに移動し、applicationという名前のディレクトリを作成してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+$ mkdir application
+application     sample_web.zip  ダウンロード  デスクトップ  ビデオ  画像
+sample_web.log  training        テンプレート  ドキュメント  音楽    公開
+</pre></div></details><p>7.シェル変数PATHに、applicationディレクトリを追加してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ PATH=$PATH:/home/student/application
+</pre></div></details><p>8.echoコマンドでPATHにapplicationが追加されていることを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ echo $PATH
+/home/student/.local/bin:/home/student/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/student/application
+</pre></div></details><p>9.環境変数trainや、シェル変数PATHとして指定したapplicationの設定は、端末を閉じると消えます。</p><p>別の端末を開いても、その端末には設定が引き継がれません。</p><p>永続化するためには、.bashrcに追加する必要があります。</p><p>実際に.bashrcに設定してみましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ vim ~/.bashrc
+
+----------------[Shift]+[g]で最終行にカーソルを移動して追記------------------------
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# User specific environment
+PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+PATH=$PATH:~/application
+----------------[Esc + :wq]で保存終了---------------------------------------------
+</pre></div></details><p>端末を新規に開いて、変数trainやPATHが利用できるようになったことを確認します。単純にprintenvコマンドで確認してみましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ printenv PATH
+/home/student/.local/bin:/home/student/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/student/application
+</pre></div></details><hr><h2 id=2エイリアスの登録>2.エイリアスの登録</h2><p>1.登録済みのエイリアスを一覧表示してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ alias
+/home/student/.local/bin:/home/student/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/student/application
+[student@localhost ~]$ alias
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias vi='vim'
+alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
+alias xzegrep='xzegrep --color=auto'
+alias xzfgrep='xzfgrep --color=auto'
+alias xzgrep='xzgrep --color=auto'
+alias zegrep='zegrep --color=auto'
+alias zfgrep='zfgrep --color=auto'
+alias zgrep='zgrep --color=auto'
+</pre></div></details><p>2.1.を確認すると、いままで私たちが実行していたlsコマンドは、ls &ndash;color=autoのエイリアスであることが分かります。エイリアスではない本来のlsコマンドを、現在のエイリアスを削除、変更せずに実行してください。カレントディレクトリをホームディレクトリに変更して実行してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+$ ls
+//TeraTerm上では色がつきます。
+application     sample_web.zip  ダウンロード  デスクトップ  ビデオ  画像
+sample_web.log  training        テンプレート  ドキュメント  音楽    公開
+</pre><pre>
+$ /bin/ls
+//TeraTerm上では色がつきません。
+application     sample_web.zip  ダウンロード  デスクトップ  ビデオ  画像
+sample_web.log  training        テンプレート  ドキュメント  音楽    公開
+</pre><pre>
+$ command ls
+//TeraTerm上では色がつきません。
+application     sample_web.zip  ダウンロード  デスクトップ  ビデオ  画像
+sample_web.log  training        テンプレート  ドキュメント  音楽    公開
+</pre><pre>
+$ \ls
+//TeraTerm上では色がつきません。
+application     sample_web.zip  ダウンロード  デスクトップ  ビデオ  画像
+sample_web.log  training        テンプレート  ドキュメント  音楽    公開
+</pre></div></details><p>3.カレントディレクトリをホームディレクトリに変更して、touchコマンドでalias_testというファイルを作成してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+$ touch alias_test
+$ ls
+alias_test      sample_web.zip  テンプレート  ビデオ  公開
+application     training        デスクトップ  音楽
+sample_web.log  ダウンロード    ドキュメント  画像
+</pre></div></details><p>4.rmコマンドでalias_testを削除して、何もメッセージが表示されずに削除できることを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ rm alias_test
+</pre></div></details><p>5.もう一度、alias_testファイルを作成し、rmに-iオプションを付けてalias_testファイルを削除してください。-iは、誤削除を防ぐため確認メッセージに対して y とタイプしないと削除できないようにするオプションです。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ touch alias_test
+$ rm -i alias_test
+//yと入力
+rm: 通常の空ファイル 'alias_test' を削除しますか?
+</pre></div></details><p>6.rm -iをエイリアス rmとして登録してください。登録後、実際に登録できていることを確認します。alias_testファイルを作成して、rmコマンドでiオプション無しで実行してもメッセージが表示されることを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ alias rm='rm -i'
+$ alias
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias rm='rm -i'
+alias vi='vim'
+alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
+alias xzegrep='xzegrep --color=auto'
+alias xzfgrep='xzfgrep --color=auto'
+alias xzgrep='xzgrep --color=auto'
+alias zegrep='zegrep --color=auto'
+alias zfgrep='zfgrep --color=auto'
+alias zgrep='zgrep --color=auto'
+$ touch alias_test
+$ rm alias_test
+//yと入力
+rm: 通常の空ファイル 'alias_test' を削除しますか?
+</pre></div></details><p>7.エイリアスを削除する場合は「unalias エイリアス名」となります。「unalias rm」で元に戻してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ unalias rm
+$ alias
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias vi='vim'
+alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
+alias xzegrep='xzegrep --color=auto'
+alias xzfgrep='xzfgrep --color=auto'
+alias xzgrep='xzgrep --color=auto'
+alias zegrep='zegrep --color=auto'
+alias zfgrep='zfgrep --color=auto'
+alias zgrep='zgrep --color=auto'
+$ touch alias_test
+$ rm alias_test
+</pre></div></details><div class=edit-meta>Last updated on 13 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/ title="Exercise1 Standard input/output & Pipeline"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - Exercise1 Standard input/output & Pipeline</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/ title="Exercise3 grep command & regular expression">Next - Exercise3 grep command & regular expression <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

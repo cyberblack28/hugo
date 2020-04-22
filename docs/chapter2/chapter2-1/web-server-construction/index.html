@@ -1,0 +1,409 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>4.Web Server Construction - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="4.Web Server Construction"><meta property="og:description" content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # 1.Apacheのインストール"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-16T18:38:20+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="4.Web Server Construction"><meta name=twitter:description content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # 1.Apacheのインストール"><meta itemprop=name content="4.Web Server Construction"><meta itemprop=description content="事前作業 1.studentユーザでログインして、rootユーザに変更します。 $ su - パスワード:tokyoec # 1.Apacheのインストール"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-16T18:38:20+09:00"><meta itemprop=wordCount content="4268"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>4.Web Server Construction</h1><h2 id=事前作業>事前作業</h2><p>1.studentユーザでログインして、rootユーザに変更します。</p><pre><code>$ su -
+パスワード:tokyoec
+#
+</code></pre><hr><h2 id=1apacheのインストール>1.Apacheのインストール</h2><p>CentOS8_WORDPRESSの仮想マシンで実行すること</p><p>1.httpdのインストール</p><div><pre>
+# dnf -y install httpd
+メタデータの期限切れの最終確認: 0:14:25 時間前の 2020年02月05日 00時58分25秒 に 実施しました。
+依存関係が解決しました。
+================================================================================
+ パッケージ        Arch   バージョン                            Repo      サイズ
+================================================================================
+インストール:
+ httpd             x86_64 2.4.37-16.module_el8.1.0+256+ae790463 AppStream 1.7 M
+依存関係のインストール:
+ apr               x86_64 1.6.3-9.el8                           AppStream 125 k
+ apr-util          x86_64 1.6.1-6.el8                           AppStream 105 k
+ centos-logos-httpd
+                   noarch 80.5-2.el8                            AppStream  24 k
+ httpd-filesystem  noarch 2.4.37-16.module_el8.1.0+256+ae790463 AppStream  35 k
+ httpd-tools       x86_64 2.4.37-16.module_el8.1.0+256+ae790463 AppStream 103 k
+ mod_http2         x86_64 1.11.3-3.module_el8.1.0+213+acce2796  AppStream 158 k
+弱い依存関係のインストール:
+ apr-util-bdb      x86_64 1.6.1-6.el8                           AppStream  25 k
+ apr-util-openssl  x86_64 1.6.1-6.el8                           AppStream  27 k
+モジュールストリームの有効化:
+ httpd                    2.4
+
+トランザクションの概要
+================================================================================
+インストール  9 パッケージ
+
+ダウンロードサイズの合計: 2.3 M
+インストール済みのサイズ: 6.6 M
+パッケージのダウンロード:
+(1/9): apr-util-bdb-1.6.1-6.el8.x86_64.rpm      135 kB/s |  25 kB     00:00
+(2/9): apr-util-openssl-1.6.1-6.el8.x86_64.rpm  258 kB/s |  27 kB     00:00
+(3/9): centos-logos-httpd-80.5-2.el8.noarch.rpm 334 kB/s |  24 kB     00:00
+(4/9): apr-util-1.6.1-6.el8.x86_64.rpm          266 kB/s | 105 kB     00:00
+(5/9): apr-1.6.3-9.el8.x86_64.rpm               281 kB/s | 125 kB     00:00
+(6/9): httpd-filesystem-2.4.37-16.module_el8.1. 419 kB/s |  35 kB     00:00
+(7/9): httpd-tools-2.4.37-16.module_el8.1.0+256 652 kB/s | 103 kB     00:00
+(8/9): mod_http2-1.11.3-3.module_el8.1.0+213+ac 571 kB/s | 158 kB     00:00
+(9/9): httpd-2.4.37-16.module_el8.1.0+256+ae790 842 kB/s | 1.7 MB     00:02
+--------------------------------------------------------------------------------
+合計                                            760 kB/s | 2.3 MB     00:03
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  インストール中   : apr-1.6.3-9.el8.x86_64                                 1/9
+  scriptletの実行中: apr-1.6.3-9.el8.x86_64                                 1/9
+  インストール中   : apr-util-bdb-1.6.1-6.el8.x86_64                        2/9
+  インストール中   : apr-util-openssl-1.6.1-6.el8.x86_64                    3/9
+  インストール中   : apr-util-1.6.1-6.el8.x86_64                            4/9
+  scriptletの実行中: apr-util-1.6.1-6.el8.x86_64                            4/9
+  インストール中   : httpd-tools-2.4.37-16.module_el8.1.0+256+ae790463.x8   5/9
+  scriptletの実行中: httpd-filesystem-2.4.37-16.module_el8.1.0+256+ae7904   6/9
+  インストール中   : httpd-filesystem-2.4.37-16.module_el8.1.0+256+ae7904   6/9
+  インストール中   : centos-logos-httpd-80.5-2.el8.noarch                   7/9
+  インストール中   : mod_http2-1.11.3-3.module_el8.1.0+213+acce2796.x86_6   8/9
+  インストール中   : httpd-2.4.37-16.module_el8.1.0+256+ae790463.x86_64     9/9
+  scriptletの実行中: httpd-2.4.37-16.module_el8.1.0+256+ae790463.x86_64     9/9
+  検証             : apr-1.6.3-9.el8.x86_64                                 1/9
+  検証             : apr-util-1.6.1-6.el8.x86_64                            2/9
+  検証             : apr-util-bdb-1.6.1-6.el8.x86_64                        3/9
+  検証             : apr-util-openssl-1.6.1-6.el8.x86_64                    4/9
+  検証             : centos-logos-httpd-80.5-2.el8.noarch                   5/9
+  検証             : httpd-2.4.37-16.module_el8.1.0+256+ae790463.x86_64     6/9
+  検証             : httpd-filesystem-2.4.37-16.module_el8.1.0+256+ae7904   7/9
+  検証             : httpd-tools-2.4.37-16.module_el8.1.0+256+ae790463.x8   8/9
+  検証             : mod_http2-1.11.3-3.module_el8.1.0+213+acce2796.x86_6   9/9
+
+インストール済み:
+  httpd-2.4.37-16.module_el8.1.0+256+ae790463.x86_64
+  apr-util-bdb-1.6.1-6.el8.x86_64
+  apr-util-openssl-1.6.1-6.el8.x86_64
+  apr-1.6.3-9.el8.x86_64
+  apr-util-1.6.1-6.el8.x86_64
+  centos-logos-httpd-80.5-2.el8.noarch
+  httpd-filesystem-2.4.37-16.module_el8.1.0+256+ae790463.noarch
+  httpd-tools-2.4.37-16.module_el8.1.0+256+ae790463.x86_64
+  mod_http2-1.11.3-3.module_el8.1.0+213+acce2796.x86_64
+
+完了しました!
+</pre></div><p>2.httpdのバージョン確認</p><div><pre>
+# httpd -v
+Server version: Apache/2.4.37 (centos)
+Server built:   Dec 23 2019 20:45:34
+</pre></div><p>3.httpdの自動起動設定</p><div><pre>
+# systemctl enable httpd
+Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service → /usr/lib/systemd/system/httpd.service.
+</pre><pre>
+# systemctl list-unit-files --type=service | grep httpd
+httpd.service                              enabled
+httpd@.service                             disabled
+</pre></div><p>4.httpdの起動</p><div><pre>
+# systemctl start httpd
+</pre><pre>
+# systemctl status httpd
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Thu 2020-02-06 05:23:53 EST; 6s ago
+     Docs: man:httpd.service(8)
+ Main PID: 6763 (httpd)
+   Status: "Started, listening on: port 80"
+    Tasks: 213 (limit: 23984)
+   Memory: 34.8M
+   CGroup: /system.slice/httpd.service
+           tq6763 /usr/sbin/httpd -DFOREGROUND
+           tq6764 /usr/sbin/httpd -DFOREGROUND
+           tq6765 /usr/sbin/httpd -DFOREGROUND
+           tq6766 /usr/sbin/httpd -DFOREGROUND
+           mq6767 /usr/sbin/httpd -DFOREGROUND
+
+ 2月 06 05:23:53 localhost.localdomain systemd[1]: Starting The Apache HTTP Server...
+ 2月 06 05:23:53 localhost.localdomain httpd[6763]: AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using localhost.l>
+ 2月 06 05:23:53 localhost.localdomain systemd[1]: Started The Apache HTTP Server.
+ 2月 06 05:23:53 localhost.localdomain httpd[6763]: Server configured, listening on: port 80
+ <font color=Red>//[q]キーを入力して終了</font>
+</pre></div><p>5.外部からアクセスできるようにfirewalldでhttpを解放</p><div><pre>
+# firewall-cmd --add-service=http --zone=public --permanent
+success
+</pre></div><p>6.設定を反映</p><div><pre>
+# firewall-cmd --reload
+success
+</pre></div><hr><h2 id=2apacheのセキュリティ設定welcomeページの非表示>2.Apacheのセキュリティ設定～Welcomeページの非表示～</h2><p>1.welcome.confの設定変更</p><div><pre>
+# vim /etc/httpd/conf.d/welcome.conf
+
+-----------------------------------以下赤字の設定を行います。---------------------------------------------
+#
+# This configuration file enables the default "Welcome" page if there
+# is no default index page present for the root URL.  To disable the
+# Welcome page, comment out all the lines below.
+#
+# NOTE: if this file is removed, it will be restored on upgrades.
+#
+#<locationmatch "^/+$"> //←#を付けてコメントアウト
+#  Options -Indexes //←#を付けてコメントアウト
+# ErrorDocument 403 /noindex/index.html //←#を付けてコメントアウト
+#</locationmatch> //←#を付けてコメントアウト
+
+Alias /noindex /usr/share/httpd/noindex
+
+<directory /usr/share/httpd/noindex>
+  Options MultiViews
+  DirectoryIndex index.html
+
+  AddLanguage en-US .en-US
+  AddLanguage es-ES .es-ES
+  AddLanguage zh-CN .zh-CN
+  AddLanguage zh-HK .zh-HK
+  AddLanguage zh-TW .zh-TW
+
+  LanguagePriority en
+  ForceLanguagePriority Fallback
+
+  AllowOverride None
+  Require all granted
+</directory>
+-----------------------[Esc + :wq]で保存終了します。----------------------------------------------------
+</pre></div><p>2.httpdをリロード</p><div><pre>
+# systemctl reload httpd
+</pre></div><h2 id=3apacheのセキュリティ設定ディレクトリリスティングの無効>3.Apacheのセキュリティ設定～ディレクトリリスティングの無効～</h2><p>1.DocumentRootディレクトリに移動</p><div><pre>
+# cd /var/www/html
+</pre></div><p>2.任意のディレクトリとファイルを作成</p><div><pre>
+# mkdir test
+</pre><pre>
+# touch test.html
+</pre><pre>
+# ls
+test  test.html
+</pre></div><hr><p>1.httpd.confファイルのバックアップ</p><div><pre>
+# cp -p /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.org
+</pre></div><p>2.httpd.confファイルの設定変更</p><div><pre>
+# vim /etc/httpd/conf/httpd.conf
+
+--------------------------------以下の赤字の変更を行います。----------------------------------------------
+・
+・省略
+・
+# Further relax access to the default document root:
+<directory "/var/www/html">
+    #
+    # Possible values for the Options directive are "None", "All",
+    # or any combination of:
+    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+    #
+    # Note that "MultiViews" must be named *explicitly* --- "Options All"
+    # doesn't give it to you.
+    #
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.4/mod/core.html#options
+    # for more information.
+    #
+    Options FollowSymLinks //←「Options Indexes FollowSymLinks 変更⇒ Options FollowSymLinks」
+
+    #
+    # AllowOverride controls what directives may be placed in .htaccess files.
+    # It can be "All", "None", or any combination of the keywords:
+    #   Options FileInfo AuthConfig Limit
+    #
+    AllowOverride None
+
+    #
+    # Controls who can get stuff from this server.
+    #
+    Require all granted
+</directory>
+・
+・省略
+・
+-----------------------[Esc + :wq]で保存終了します。----------------------------------------------------
+</pre></div><p>3.httpdをリロード</p><div><pre>
+# systemctl reload httpd
+</pre></div><h2 id=4apacheのセキュリティ設定traceメソッドの無効化とレスポンスヘッダのバージョン表示無効化>4.Apacheのセキュリティ設定～Traceメソッドの無効化とレスポンスヘッダのバージョン表示無効化～</h2><p>1.DocumentRootディレクトリに移動</p><div><pre>
+# cd /var/www/html
+</pre></div><p>2.任意のhtmlファイルの作成</p><div><pre>
+# vim index.html
+
+--------------以下の内容をコピー&ペーストします。-------
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;test page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello World !!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+---------------[Esc + :wq]で保存終了します。----------
+</pre></div><p>3.Google Chromeのデバッグツールで確認</p><p>Chrome起動後右クリック[検証]、192.168.56.28にアクセス、[Network]-[192.168.56.28]アイコンをクリック、Response Headersを確認。</p><div><img src=/hugo/images/web-server-construction-01.png></div><hr><p>1.ディレクトリ移動</p><div><pre>
+# cd /etc/httpd/conf.d
+</pre></div><p>2.「security.conf」の作成</p><div><pre>
+# vim security.conf
+
+--------------以下の内容をコピー&ペーストします。-------
+# Trace Method off
+TraceEnable Off
+    
+# Hide Response Header Version information
+ServerTokens Prod
+---------------[Esc + :wq]で保存終了します。----------
+</pre></div><p>3.httpdをリロード</p><div><pre>
+# systemctl reload httpd
+</pre></div><hr><h2 id=5https通信>5.HTTPS通信</h2><p>1.Openssl、mod_sslをインストール</p><div><pre>
+# dnf -y install openssl mod_ssl
+CentOS-8 - AppStream                            9.5 kB/s | 4.3 kB     00:00
+CentOS-8 - Base                                 8.6 kB/s | 3.8 kB     00:00
+CentOS-8 - Extras                               2.2 kB/s | 1.5 kB     00:00
+CentOS-8 - PowerTools                           6.0 kB/s | 4.3 kB     00:00
+Extra Packages for Enterprise Linux 8 - x86_64  9.1 kB/s | 6.2 kB     00:00
+パッケージ openssl-1:1.1.1c-2.el8.x86_64 は既にインストールされています。
+依存関係が解決しました。
+================================================================================
+ パッケージ
+           Arch     バージョン                                Repo        サイズ
+================================================================================
+インストール:
+ mod_ssl   x86_64   1:2.4.37-16.module_el8.1.0+256+ae790463   AppStream   131 k
+
+トランザクションの概要
+================================================================================
+インストール  1 パッケージ
+
+ダウンロードサイズの合計: 131 k
+インストール済みのサイズ: 308 k
+パッケージのダウンロード:
+mod_ssl-2.4.37-16.module_el8.1.0+256+ae790463.x 551 kB/s | 131 kB     00:00
+--------------------------------------------------------------------------------
+合計                                            217 kB/s | 131 kB     00:00
+トランザクションの確認を実行中
+トランザクションの確認に成功しました。
+トランザクションのテストを実行中
+トランザクションのテストに成功しました。
+トランザクションを実行中
+  準備             :                                                        1/1
+  インストール中   : mod_ssl-1:2.4.37-16.module_el8.1.0+256+ae790463.x86_   1/1
+  scriptletの実行中: mod_ssl-1:2.4.37-16.module_el8.1.0+256+ae790463.x86_   1/1
+  検証             : mod_ssl-1:2.4.37-16.module_el8.1.0+256+ae790463.x86_   1/1
+
+インストール済み:
+  mod_ssl-1:2.4.37-16.module_el8.1.0+256+ae790463.x86_64
+
+完了しました!
+</pre></div><p>2.秘密鍵を作成</p><div><pre>
+# cd /etc/httpd/conf
+</pre><pre>
+# openssl genrsa -aes128 1024 > server.key
+Generating RSA private key, 1024 bit long modulus (2 primes)
+......................+++++
+...+++++
+e is 65537 (0x010001)
+Enter pass phrase:tokyoec <font color=Red>//←「tokyoec」と入力して[Enter]キー</font>
+Verifying - Enter pass phrase:tokyoec <font color=Red>//←「tokyoec」と入力して[Enter]キー</font>
+</pre></div><p>3.公開鍵を作成</p><div><pre>
+# openssl req -new -key server.key > server.csr
+Generating RSA private key, 1024 bit long modulus (2 primes)
+......................+++++
+...+++++
+e is 65537 (0x010001)
+Enter pass phrase:tokyoec <font color=Red>//←「tokyoec」と入力して[Enter]キー</font>
+Verifying - Enter pass phrase:tokyoec <font color=Red>//←「tokyoec」と入力して[Enter]キー</font>
+[root@tokyo-ec ~]# openssl req -new -key server.key > server.csr
+Enter pass phrase for server.key:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:JP <font color=Red>//←「JP」と入力して[Enter]キー</font>
+State or Province Name (full name) []:Tokyo <font color=Red>//←「Tokyo」と入力して[Enter]キー</font>
+Locality Name (eg, city) [Default City]:Toshimaku <font color=Red>//←「Toshimaku」と入力して[Enter]キー</font>
+Organization Name (eg, company) [Default Company Ltd]: <font color=Red>//←[Enter]キー</font>
+Organizational Unit Name (eg, section) []:192.168.56.28 <font color=Red>//←「192.168.56.28」と入力して[Enter]キー</font>
+Common Name (eg, your name or your server's hostname) []: <font color=Red>//←[Enter]キー</font>
+Email Address []: <font color=Red>//←[Enter]キー</font>
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []: <font color=Red>//←[Enter]キー</font>
+An optional company name []: <font color=Red>//←[Enter]キー</font>
+</pre></div><p>4.秘密鍵と公開鍵で証明書を作成</p><div><pre>
+# openssl x509 -in server.csr -days 36500 -req -signkey server.key > server.crt
+Signature ok
+subject=C = JP, ST = Tokyo, L = Toshimaku, O = Default Company Ltd, OU = 192.168.56.28
+Getting Private key
+Enter pass phrase for server.key: <font color=Red>//←「tokyoec」と入力して[Enter]キー</font>
+</pre></div><p>5.パスフレーズの解除</p><div><pre>
+# mv server.key server.key.bak
+</pre><pre>
+# openssl rsa -in server.key.bak > server.key
+Enter pass phrase for server.key.bak:tokyoec <font color=Red>//←「tokyoec」と入力して[Enter]キー</font>
+writing RSA key
+</pre></div><p>6.ssl.confのバックアップ</p><div><pre>
+# cp -p /etc/httpd/conf.d/ssl.conf /etc/httpd/conf.d/ssl.conf.org
+</pre></div><p>7.ssl.confに設定</p><div><pre>
+# vim /etc/httpd/conf.d/ssl.conf
+
+-------------------------以下の赤字の変更を行います。----------------------------------------------------------------------------------
+・
+・省略
+・
+#   Point SSLCertificateFile at a PEM encoded certificate.  If
+#   the certificate is encrypted, then you will be prompted for a
+#   pass phrase.  Note that restarting httpd will prompt again.  Keep
+#   in mind that if you have both an RSA and a DSA certificate you
+#   can configure both in parallel (to also allow the use of DSA
+#   ciphers, etc.)
+#   Some ECC cipher suites (http://www.ietf.org/rfc/rfc4492.txt)
+#   require an ECC certificate which can also be configured in
+#   parallel.
+SSLCertificateFile /etc/httpd/conf/server.crt <font color=Red>//←「SSLCertificateFile /etc/pki/tls/certs/localhost.crt 変更⇒ SSLCertificateFile /etc/httpd/conf/server.crt」</font>
+
+#   Server Private Key:
+#   If the key is not combined with the certificate, use this
+#   directive to point at the key file.  Keep in mind that if
+#   you've both a RSA and a DSA private key you can configure
+#   both in parallel (to also allow the use of DSA ciphers, etc.)
+#   ECC keys, when in use, can also be configured in parallel
+SSLCertificateKeyFile /etc/httpd/conf/server.key <font color=Red>//←「SSLCertificateKeyFile /etc/pki/tls/private/localhost.key 変更⇒ SSLCertificateKeyFile /etc/httpd/conf/server.key」</font>
+・
+・省略
+・
+---------------------------------[Esc + :wq]で保存終了します。----------------------------------------------------------------------
+</pre></div><p>8.SECLEVELの設定変更</p><div><pre>
+# cp -p /etc/crypto-policies/config /etc/crypto-policies/config.org
+</pre><pre>
+# vim /etc/crypto-policies/config
+
+---------------------------以下の赤字の変更を行います。--------------------------------------------------------------------------------
+# This file should contain a single keyword, the crypto policy to
+# be applied by default to applications. The available policies are
+# restricted to the following profiles.
+#
+# * LEGACY: Ensures maximum compatibility with legacy systems (64-bit
+#   security)
+#
+# * DEFAULT: A reasonable default for today's standards (112-bit security).
+#
+# * FUTURE: A level that will provide security on a conservative level that is
+#   believed to withstand any near-term future attacks (128-bit security).
+#
+# * FIPS: Policy that enables only FIPS 140-2 approved or allowed algorithms.
+#
+# After modifying this file, you need to run update-crypto-policies
+# for the changes to propagate.
+#
+LEGACY <font color=Red>//←「DEFAULT 変更⇒ LEGACY」</font>
+---------------------------------[Esc + :wq]で保存終了します。----------------------------------------------------------------------
+</pre><pre>
+# update-crypto-policies
+Setting system policy to LEGACY
+Note: System-wide crypto policies are applied on application start-up.
+It is recommended to restart the system for the change of policies
+to fully take place.
+</pre></div><p>9.httpdの再起動</p><div><pre>
+# systemctl restart httpd
+</pre></div><p>10.外部からアクセスできるようにfirewalldでhttpsを解放</p><div><pre>
+# firewall-cmd --add-service=https --zone=public --permanent
+success
+</pre></div><p>11.設定を反映</p><div><pre>
+# firewall-cmd --reload
+success
+</pre></div><div class=edit-meta>Last updated on 16 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/ title="3.Proxy Server Construction"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - 3.Proxy Server Construction</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/ title="5.PHP Environment Construction">Next - 5.PHP Environment Construction <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

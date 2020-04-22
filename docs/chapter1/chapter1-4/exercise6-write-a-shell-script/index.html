@@ -1,0 +1,376 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Exercise6 Write a Shell Script - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="Exercise6 Write a Shell Script"><meta property="og:description" content="1.シェル変数の演習 1.カレントディレクトリをホームディレクトリに変更してください。これまでの演習で使用したsample_web.logがあ"><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-13T15:27:44+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="Exercise6 Write a Shell Script"><meta name=twitter:description content="1.シェル変数の演習 1.カレントディレクトリをホームディレクトリに変更してください。これまでの演習で使用したsample_web.logがあ"><meta itemprop=name content="Exercise6 Write a Shell Script"><meta itemprop=description content="1.シェル変数の演習 1.カレントディレクトリをホームディレクトリに変更してください。これまでの演習で使用したsample_web.logがあ"><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-13T15:27:44+09:00"><meta itemprop=wordCount content="4008"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>Exercise6 Write a Shell Script</h1><h2 id=1シェル変数の演習>1.シェル変数の演習</h2><p>1.カレントディレクトリをホームディレクトリに変更してください。これまでの演習で使用したsample_web.logがあることを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+$ ls
+sample_web.log  ダウンロード  デスクトップ  ビデオ  画像
+sample_web.zip  テンプレート  ドキュメント  音楽    公開
+</pre></div></details><p>2.training06_1.shというファイル名でシェルスクリプトファイルを作成し、iPadまたはiPhoneを使ってアクセスしてきたユーザ数（iPadまたはiPhoneという文字列を含む行の行数）が次のメッセージとともに表示されるようにしてください。〇〇には件数が入ります。</p><strong>＜表示結果＞</strong><br><strong>iPadからのアクセス数は○○件です。※スクリプトが正しければ、○○には592と表示</strong><br><strong>iPhoneからのアクセス数は○○件です。※スクリプトが正しければ、○○には647と表示</strong>
+<details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ vim training06_1.sh
+
+----------------以下を右クリックコピーしてTeraTerm上でペースト----------------------
+#!/bin/bash
+
+iPad=$(grep iPad ~/sample_web.log | wc -l)
+iPhone=$(grep iPhone ~/sample_web.log | wc -l)
+
+echo iPadからのアクセス数は $iPad件です。
+echo iPhoneからのアクセス数は $iPhone件です。
+----------------[Esc + :wq]で保存終了---------------------------------------------
+</pre><pre>
+$ chmod +x training06_1.sh
+$ bash training06_1.sh
+iPadからのアクセス数は 592件です。
+iPhoneからのアクセス数は 647件です。
+</pre></div></details><hr><h2 id=2位置パラメータの演習>2.位置パラメータの演習</h2><p>1.カレントディレクトリをホームディレクトリに変更してください。これまでの演習で使用したsample_web.logがあることを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+$ ls
+sample_web.log  training06_1.sh  テンプレート  ドキュメント  音楽  公開
+sample_web.zip  ダウンロード     デスクトップ  ビデオ        画像
+</pre></div></details><p>2.training06_1.shをtraining06_2.shとしてコピーしてください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cp -p training06_1.sh training06_2.sh
+$ ls
+sample_web.log  training06_1.sh  ダウンロード  デスクトップ  ビデオ  画像
+sample_web.zip  training06_2.sh  テンプレート  ドキュメント  音楽    公開
+</pre></div></details><p>3.training06_1.shの2箇所を位置パラメータ$1に変更して、「bash training06_2.sh ~/sample_web.log」を実行して、training06_1.shと同じ結果になることを確認してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ vim training06_2.sh
+
+----------------以下を右クリックコピーしてTeraTerm上でペースト----------------------
+#!/bin/bash
+  
+iPad=$(grep iPad $1 | wc -l)
+iPhone=$(grep iPhone $1 | wc -l)
+  
+echo iPadからのアクセス数は $iPad件です。
+echo iPhoneからのアクセス数は $iPhone件です。
+----------------[Esc + :wq]で保存終了---------------------------------------------
+</pre><pre>
+$ bash training06_2.sh ~/sample_web.log
+iPadからのアクセス数は 592件です。
+iPhoneからのアクセス数は 647件です。
+</pre></div></details><hr><h2 id=3if文の演習>3.if文の演習</h2><p>1.カレントディレクトリをホームディレクトリに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+</pre></div></details><p>2.training06_3.shという名前のシェルスクリプトファイルを作成し、本日が2020年1月27日なら、2020-01-27.txtのように、年-月-日.txtのファイルを作成、すでに同じ名前のファイルが存在する場合はファイルは作成せずに、かわりに「ファイルは既に存在します。」というメッセージを表示させるスクリプトを作成してください。1回目はファイルの作成、2回目はメッセージ表示となるので、スクリプトを2回実行しましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ vim training06_3.sh
+
+----------------以下を右クリックコピーしてTeraTerm上でペースト----------------------
+#!/bin/bash
+
+today=$(date '+%Y-%m-%d')
+
+if [ -e $today.txt ] ; then
+  echo "ファイルは既に存在します。"
+else
+  touch ~/$today.txt
+fi
+----------------[Esc + :wq]で保存終了---------------------------------------------
+</pre><pre>
+$ chmod +x training06_3.sh
+$ bash training06_3.sh
+$ ls -l
+合計 4724
+-rw-rw-r--. 1 student student       0  1月 27 21:44 2020-01-27.txt
+-rw-rw-r--. 1 student student 4398816  3月 17  2016 sample_web.log
+-rw-rw-r--. 1 student student  425285  1月 27 02:05 sample_web.zip
+-rw-rw-r--. 1 student student     212  1月 27 21:35 training06_1.sh
+-rw-rw-r--. 1 student student     184  1月 27 21:35 training06_2.sh
+-rwxrwxr-x. 1 student student     146  1月 27 21:44 training06_3.sh
+drwxr-xr-x. 2 student student       6  1月 21 00:23 ダウンロード
+drwxr-xr-x. 2 student student       6  1月 21 00:23 テンプレート
+drwxr-xr-x. 2 student student       6  1月 21 00:23 デスクトップ
+drwxr-xr-x. 2 student student       6  1月 21 00:23 ドキュメント
+drwxr-xr-x. 2 student student       6  1月 21 00:23 ビデオ
+drwxr-xr-x. 2 student student       6  1月 21 00:23 音楽
+drwxr-xr-x. 2 student student       6  1月 21 00:23 画像
+drwxr-xr-x. 2 student student       6  1月 21 00:23 公開
+</pre><pre>
+$ bash training06_3.sh
+ファイルは既に存在します。
+</pre></div></details><hr><h2 id=4for文の演習>4.for文の演習</h2><p>1.カレントディレクトリをホームディレクトリに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+</pre></div></details><p>2.training06_4.shという名前のシェルスクリプトファイルを作成し、前回の日付ファイルの名前に-1から-5の連番を付与し、5個のファイルが作成されるスクリプトを作成しましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ vim training06_4.sh
+
+----------------以下を右クリックコピーしてTeraTerm上でペースト----------------------
+#!/bin/bash
+
+today=$(date '+%Y-%m-%d')
+
+for i in $(seq 1 5)
+  do
+    touch $today-$i.txt
+  done
+----------------[Esc + :wq]で保存終了---------------------------------------------
+</pre><pre>
+$ chmod +x training06_4.sh
+$ bash training06_4.sh
+$ ls -l
+合計 4728
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-1.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-2.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-3.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-4.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-5.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:44 2020-01-27.txt
+-rw-rw-r--. 1 student student 4398816  3月 17  2016 sample_web.log
+-rw-rw-r--. 1 student student  425285  1月 27 02:05 sample_web.zip
+-rw-rw-r--. 1 student student     212  1月 27 21:35 training06_1.sh
+-rw-rw-r--. 1 student student     184  1月 27 21:35 training06_2.sh
+-rwxrwxr-x. 1 student student     146  1月 27 21:44 training06_3.sh
+-rwxrwxr-x. 1 student student      96  1月 27 21:59 training06_4.sh
+drwxr-xr-x. 2 student student       6  1月 21 00:23 ダウンロード
+drwxr-xr-x. 2 student student       6  1月 21 00:23 テンプレート
+drwxr-xr-x. 2 student student       6  1月 21 00:23 デスクトップ
+drwxr-xr-x. 2 student student       6  1月 21 00:23 ドキュメント
+drwxr-xr-x. 2 student student       6  1月 21 00:23 ビデオ
+drwxr-xr-x. 2 student student       6  1月 21 00:23 音楽
+drwxr-xr-x. 2 student student       6  1月 21 00:23 画像
+drwxr-xr-x. 2 student student       6  1月 21 00:23 公開
+</pre></div></details><hr><h2 id=5while文の演習>5.while文の演習</h2><p>1.カレントディレクトリをホームディレクトリに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+</pre></div></details><p>2.training06_5.shという名前のシェルスクリプトファイルを作成し、file1.txt、file2.txt・・・file10.txtのように、fileの後ろに1から10の連番を付けて10個のファイルが作成できるスクリプトを作成及び実行してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ vim training06_5.sh
+
+----------------以下を右クリックコピーしてTeraTerm上でペースト----------------------
+#!/bin/bash
+
+i=1
+
+while [ $i -le 10 ]
+  do
+    touch file$i.txt
+    i=$((i+1))
+  done
+----------------[Esc + :wq]で保存終了---------------------------------------------
+</pre><pre>
+$ chmod +x training06_5.sh
+$ bash training06_5.sh
+$ ls -l
+合計 4732
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-1.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-2.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-3.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-4.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:59 2020-01-27-5.txt
+-rw-rw-r--. 1 student student       0  1月 27 21:44 2020-01-27.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file1.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file10.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file2.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file3.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file4.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file5.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file6.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file7.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file8.txt
+-rw-rw-r--. 1 student student       0  1月 27 22:07 file9.txt
+-rw-rw-r--. 1 student student 4398816  3月 17  2016 sample_web.log
+-rw-rw-r--. 1 student student  425285  1月 27 02:05 sample_web.zip
+-rw-rw-r--. 1 student student     212  1月 27 21:35 training06_1.sh
+-rw-rw-r--. 1 student student     184  1月 27 21:35 training06_2.sh
+-rwxrwxr-x. 1 student student     146  1月 27 21:44 training06_3.sh
+-rwxrwxr-x. 1 student student      96  1月 27 21:59 training06_4.sh
+-rwxrwxr-x. 1 student student      86  1月 27 22:06 training06_5.sh
+drwxr-xr-x. 2 student student       6  1月 21 00:23 ダウンロード
+drwxr-xr-x. 2 student student       6  1月 21 00:23 テンプレート
+drwxr-xr-x. 2 student student       6  1月 21 00:23 デスクトップ
+drwxr-xr-x. 2 student student       6  1月 21 00:23 ドキュメント
+drwxr-xr-x. 2 student student       6  1月 21 00:23 ビデオ
+drwxr-xr-x. 2 student student       6  1月 21 00:23 音楽
+drwxr-xr-x. 2 student student       6  1月 21 00:23 画像
+drwxr-xr-x. 2 student student       6  1月 21 00:23 公開
+</pre></div></details><hr><h2 id=6while文の演習>6.while文の演習</h2><p>1.カレントディレクトリをホームディレクトリに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+</pre></div></details><p>2.training06_6.shという名前のシェルスクリプトファイルを作成し、位置パラメータを利用して、引数が01の場合はGoogle、02の場合はMicrosoft、03の場合はAmazon、それ以外はNo matchと表示されるスクリプトをcase文を用いて作成してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ vim training06_6.sh
+
+----------------以下を右クリックコピーしてTeraTerm上でペースト----------------------
+#!/bin/bash
+
+case $1 in
+  01)
+    echo "Google";;
+  02)
+    echo "Microsoft";;
+  03)
+    echo "Amazon";;
+  *)
+    echo "No match";;
+esac
+----------------[Esc + :wq]で保存終了---------------------------------------------
+</pre><pre>
+$ chmod +x training06_6.sh
+$ bash training06_6.sh 01
+Google
+$ bash training06_6.sh 02
+Microsoft
+$ bash training06_6.sh 03
+Amazon
+$ bash training06_6.sh 04
+No match
+</pre></div></details><hr><h2 id=7シェル関数の演習>7.シェル関数の演習</h2><p>1.カレントディレクトリをホームディレクトリに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+</pre></div></details><p>2.training06_7.shという名前のシェルスクリプトファイルを作成し、todayというシェル関数を作成して、日付とカレンダーが表示されるスクリプトを作成してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ vim training06_7.sh
+
+----------------以下を右クリックコピーしてTeraTerm上でペースト----------------------
+#!/bin/bash
+
+function today(){
+  date
+  cal
+}
+  
+today
+----------------[Esc + :wq]で保存終了---------------------------------------------
+</pre><pre>
+$ chmod +x training06_7.sh
+$ bash training06_7.sh
+2020年  1月 27日 月曜日 22:22:28 EST
+      1月 2020
+日 月 火 水 木 金 土
+          1  2  3  4
+ 5  6  7  8  9 10 11
+12 13 14 15 16 17 18
+19 20 21 22 23 24 25
+26 27 28 29 30 31
+</pre></div></details><hr><h2 id=8シェルスクリプトでfizzbuzz応用演習>8.シェルスクリプトでfizzbuzz（応用演習）</h2><p>1.カレントディレクトリをホームディレクトリに変更してください。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ cd
+$ pwd
+/home/student
+</pre></div></details><p>2.100までを基準に、3で割り切れる場合はfizzと表示、5で割り切れる場合はbuzzと表示、両方割り切れる場合はfizzbuzzと表示されるシェルスクリプトファイルを作成してください。ファイル名はfizzbuzz.shとします。for文とif文を利用してみましょう。</p><details style=margin-top:10px><summary>Answer</summary><div><pre>
+$ vim fizzbuzz.sh
+
+----------------以下を右クリックコピーしてTeraTerm上でペースト----------------------
+#!/bin/bash
+  
+for ((i=1;i<=100; i++))
+do
+  if (($i % 15 == 0)); then
+    echo fizzbuzz
+  elif (($i % 3 == 0)); then
+    echo fizz
+  elif (($i % 5 == 0)); then
+    echo buzz
+  else
+    echo $i
+  fi
+done
+----------------[Esc + :wq]で保存終了---------------------------------------------
+</pre><pre>
+$ chmod +x fizzbuzz.sh
+$ bash fizzbuzz.sh
+1
+2
+fizz
+4
+buzz
+fizz
+7
+8
+fizz
+buzz
+11
+fizz
+13
+14
+fizzbuzz
+16
+17
+fizz
+19
+buzz
+fizz
+22
+23
+fizz
+buzz
+26
+fizz
+28
+29
+fizzbuzz
+31
+32
+fizz
+34
+buzz
+fizz
+37
+38
+fizz
+buzz
+41
+fizz
+43
+44
+fizzbuzz
+46
+47
+fizz
+49
+buzz
+fizz
+52
+53
+fizz
+buzz
+56
+fizz
+58
+59
+fizzbuzz
+61
+62
+fizz
+64
+buzz
+fizz
+67
+68
+fizz
+buzz
+71
+fizz
+73
+74
+fizzbuzz
+76
+77
+fizz
+79
+buzz
+fizz
+82
+83
+fizz
+buzz
+86
+fizz
+88
+89
+fizzbuzz
+91
+92
+fizz
+94
+buzz
+fizz
+97
+98
+fizz
+buzz
+</pre></div></details><div class=edit-meta>Last updated on 13 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/ title="Exercise5 Creation and automatic execution of Shell Script"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - Exercise5 Creation and automatic execution of Shell Script</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/ title="5.Package Management">Next - 5.Package Management <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>

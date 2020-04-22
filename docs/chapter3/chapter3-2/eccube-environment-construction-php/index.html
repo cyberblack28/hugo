@@ -1,0 +1,235 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>1.ECCUBE Environment Construction - PHP - Cyberblack.net</title><meta name=description content="Training Contents"><meta name=generator content="Hugo 0.68.3"><link href=https://cyberblack28.github.io/hugo/index.xml rel=alternate type=application/rss+xml><link rel=canonical href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/theme.min.css><script src=https://use.fontawesome.com/releases/v5.0.6/js/all.js></script><link rel=stylesheet href=https://cyberblack28.github.io/hugo/css/chroma.min.css><script src=https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js></script><script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script><script src=https://cyberblack28.github.io/hugo/js/bundle.js></script><style>:root{}</style><meta property="og:title" content="1.ECCUBE Environment Construction - PHP"><meta property="og:description" content="PHPのインストール手順 1.epelリポジトリの設定 # yum -y install epel-release Loaded plugins: fastestmirror Loading mirror speeds from cached hostfile * epel: nrt.edge.kernel.org Package epel-release-7-12.noarch already installed and latest version Nothing to do # rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm Retrieving http://rpms.famillecollet.com/enterprise/remi-release-7.rpm warning: /var/tmp/rpm-tmp.X8785e: Header V4 DSA/SHA1 Signature, key ID 00f97f56: NOKEY Preparing..."><meta property="og:type" content="article"><meta property="og:url" content="https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/"><meta property="og:image" content="https://cyberblack28.github.io/hugo/og-image.png"><meta property="article:published_time" content="2017-10-17T15:26:15+00:00"><meta property="article:modified_time" content="2020-04-20T15:25:57+09:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cyberblack28.github.io/hugo/og-image.png"><meta name=twitter:title content="1.ECCUBE Environment Construction - PHP"><meta name=twitter:description content="PHPのインストール手順 1.epelリポジトリの設定 # yum -y install epel-release Loaded plugins: fastestmirror Loading mirror speeds from cached hostfile * epel: nrt.edge.kernel.org Package epel-release-7-12.noarch already installed and latest version Nothing to do # rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm Retrieving http://rpms.famillecollet.com/enterprise/remi-release-7.rpm warning: /var/tmp/rpm-tmp.X8785e: Header V4 DSA/SHA1 Signature, key ID 00f97f56: NOKEY Preparing..."><meta itemprop=name content="1.ECCUBE Environment Construction - PHP"><meta itemprop=description content="PHPのインストール手順 1.epelリポジトリの設定 # yum -y install epel-release Loaded plugins: fastestmirror Loading mirror speeds from cached hostfile * epel: nrt.edge.kernel.org Package epel-release-7-12.noarch already installed and latest version Nothing to do # rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm Retrieving http://rpms.famillecollet.com/enterprise/remi-release-7.rpm warning: /var/tmp/rpm-tmp.X8785e: Header V4 DSA/SHA1 Signature, key ID 00f97f56: NOKEY Preparing..."><meta itemprop=datePublished content="2017-10-17T15:26:15+00:00"><meta itemprop=dateModified content="2020-04-20T15:25:57+09:00"><meta itemprop=wordCount content="1192"><meta itemprop=image content="https://cyberblack28.github.io/hugo/og-image.png"><meta itemprop=keywords content></head><body><div class=container><header><h1>Cyberblack.net</h1><p class=description>Training Contents</p></header><div class=global-menu><nav><ul><li><a href=/hugo/>Home</a></li><li><a href=https://twitter.com/cyberblack28>Twitter</a></li></ul></nav></div><div class=content-container><main><h1>1.ECCUBE Environment Construction - PHP</h1><h2 id=phpのインストール手順>PHPのインストール手順</h2><p>1.epelリポジトリの設定</p><pre><code># yum -y install epel-release
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * epel: nrt.edge.kernel.org
+Package epel-release-7-12.noarch already installed and latest version
+Nothing to do
+</code></pre><pre><code># rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+Retrieving http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+warning: /var/tmp/rpm-tmp.X8785e: Header V4 DSA/SHA1 Signature, key ID 00f97f56: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:remi-release-7.7-2.el7.remi      ################################# [100%]
+</code></pre><p>2.phpのインストール</p><pre><code># yum -y install --enablerepo=epel,remi-php72 php php-mbstring php-pear php-fpm php-mcrypt php-mysql php-intl php-zip php-pecl-apc
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * epel: nrt.edge.kernel.org
+ * remi-php72: ftp.riken.jp
+ * remi-safe: ftp.riken.jp
+remi-php72                                               | 3.0 kB     00:00
+remi-safe                                                | 3.0 kB     00:00
+(1/2): remi-php72/primary_db                               | 234 kB   00:00
+(2/2): remi-safe/primary_db                                | 1.7 MB   00:00
+Package php-mcrypt is obsoleted by php-pecl-mcrypt, trying to install php-pecl-mcrypt-1.0.3-1.el7.remi.7.2.x86_64 instead
+Package php-mysql is obsoleted by php-mysqlnd, trying to install php-mysqlnd-7.2.29-1.el7.remi.x86_64 instead
+Resolving Dependencies
+--&gt; Running transaction check
+---&gt; Package php.x86_64 0:7.2.29-1.el7.remi will be installed
+--&gt; Processing Dependency: php-cli(x86-64) = 7.2.29-1.el7.remi for package: php-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: php-common(x86-64) = 7.2.29-1.el7.remi for package: php-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libargon2.so.0()(64bit) for package: php-7.2.29-1.el7.remi.x86_64
+---&gt; Package php-fpm.x86_64 0:7.2.29-1.el7.remi will be installed
+---&gt; Package php-intl.x86_64 0:7.2.29-1.el7.remi will be installed
+--&gt; Processing Dependency: libicudata.so.62()(64bit) for package: php-intl-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libicui18n.so.62()(64bit) for package: php-intl-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libicuio.so.62()(64bit) for package: php-intl-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libicuuc.so.62()(64bit) for package: php-intl-7.2.29-1.el7.remi.x86_64
+---&gt; Package php-mbstring.x86_64 0:7.2.29-1.el7.remi will be installed
+--&gt; Processing Dependency: libonig.so.5()(64bit) for package: php-mbstring-7.2.29-1.el7.remi.x86_64
+---&gt; Package php-mysqlnd.x86_64 0:7.2.29-1.el7.remi will be installed
+--&gt; Processing Dependency: php-pdo(x86-64) = 7.2.29-1.el7.remi for package: php-mysqlnd-7.2.29-1.el7.remi.x86_64
+---&gt; Package php-pear.noarch 1:1.10.10-7.el7.remi will be installed
+--&gt; Processing Dependency: php-composer(fedora/autoloader) for package: 1:php-pear-1.10.10-7.el7.remi.noarch
+--&gt; Processing Dependency: php-posix for package: 1:php-pear-1.10.10-7.el7.remi.noarch
+--&gt; Processing Dependency: php-xml for package: 1:php-pear-1.10.10-7.el7.remi.noarch
+---&gt; Package php-pecl-apcu-bc.x86_64 0:1.0.5-1.el7.remi.7.2 will be installed
+--&gt; Processing Dependency: php-pecl-apcu(x86-64) &gt;= 5.1.2 for package: php-pecl-apcu-bc-1.0.5-1.el7.remi.7.2.x86_64
+---&gt; Package php-pecl-mcrypt.x86_64 0:1.0.3-1.el7.remi.7.2 will be installed
+--&gt; Processing Dependency: libmcrypt.so.4()(64bit) for package: php-pecl-mcrypt-1.0.3-1.el7.remi.7.2.x86_64
+---&gt; Package php-pecl-zip.x86_64 0:1.18.2-1.el7.remi.7.2 will be installed
+--&gt; Processing Dependency: libzip5(x86-64) &gt;= 1.6.1 for package: php-pecl-zip-1.18.2-1.el7.remi.7.2.x86_64
+--&gt; Processing Dependency: libzip.so.5()(64bit) for package: php-pecl-zip-1.18.2-1.el7.remi.7.2.x86_64
+--&gt; Running transaction check
+---&gt; Package libargon2.x86_64 0:20161029-3.el7 will be installed
+---&gt; Package libicu62.x86_64 0:62.1-3.el7.remi will be installed
+---&gt; Package libmcrypt.x86_64 0:2.5.8-13.el7 will be installed
+---&gt; Package libzip5.x86_64 0:1.6.1-1.el7.remi will be installed
+---&gt; Package oniguruma5.x86_64 0:6.9.4-1.el7.remi will be installed
+---&gt; Package php-cli.x86_64 0:7.2.29-1.el7.remi will be installed
+---&gt; Package php-common.x86_64 0:7.2.29-1.el7.remi will be installed
+--&gt; Processing Dependency: php-json(x86-64) = 7.2.29-1.el7.remi for package: php-common-7.2.29-1.el7.remi.x86_64
+---&gt; Package php-fedora-autoloader.noarch 0:1.0.1-2.el7 will be installed
+---&gt; Package php-pdo.x86_64 0:7.2.29-1.el7.remi will be installed
+---&gt; Package php-pecl-apcu.x86_64 0:5.1.18-1.el7.remi.7.2 will be installed
+---&gt; Package php-process.x86_64 0:7.2.29-1.el7.remi will be installed
+---&gt; Package php-xml.x86_64 0:7.2.29-1.el7.remi will be installed
+--&gt; Processing Dependency: libxslt.so.1(LIBXML2_1.0.11)(64bit) for package: php-xml-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libxslt.so.1(LIBXML2_1.0.13)(64bit) for package: php-xml-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libxslt.so.1(LIBXML2_1.0.18)(64bit) for package: php-xml-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libxslt.so.1(LIBXML2_1.0.22)(64bit) for package: php-xml-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libxslt.so.1(LIBXML2_1.0.24)(64bit) for package: php-xml-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libexslt.so.0()(64bit) for package: php-xml-7.2.29-1.el7.remi.x86_64
+--&gt; Processing Dependency: libxslt.so.1()(64bit) for package: php-xml-7.2.29-1.el7.remi.x86_64
+--&gt; Running transaction check
+---&gt; Package libxslt.x86_64 0:1.1.28-5.el7 will be installed
+---&gt; Package php-json.x86_64 0:7.2.29-1.el7.remi will be installed
+--&gt; Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                 Arch     Version                    Repository    Size
+================================================================================
+Installing:
+ php                     x86_64   7.2.29-1.el7.remi          remi-php72   3.2 M
+ php-fpm                 x86_64   7.2.29-1.el7.remi          remi-php72   1.7 M
+ php-intl                x86_64   7.2.29-1.el7.remi          remi-php72   223 k
+ php-mbstring            x86_64   7.2.29-1.el7.remi          remi-php72   496 k
+ php-mysqlnd             x86_64   7.2.29-1.el7.remi          remi-php72   237 k
+ php-pear                noarch   1:1.10.10-7.el7.remi       remi-php72   361 k
+ php-pecl-apcu-bc        x86_64   1.0.5-1.el7.remi.7.2       remi-php72    18 k
+ php-pecl-mcrypt         x86_64   1.0.3-1.el7.remi.7.2       remi-php72    30 k
+ php-pecl-zip            x86_64   1.18.2-1.el7.remi.7.2      remi-php72    57 k
+Installing for dependencies:
+ libargon2               x86_64   20161029-3.el7             epel          23 k
+ libicu62                x86_64   62.1-3.el7.remi            remi-safe    8.8 M
+ libmcrypt               x86_64   2.5.8-13.el7               epel          99 k
+ libxslt                 x86_64   1.1.28-5.el7               base         242 k
+ libzip5                 x86_64   1.6.1-1.el7.remi           remi-safe     57 k
+ oniguruma5              x86_64   6.9.4-1.el7.remi           remi-safe    197 k
+ php-cli                 x86_64   7.2.29-1.el7.remi          remi-php72   4.8 M
+ php-common              x86_64   7.2.29-1.el7.remi          remi-php72   1.1 M
+ php-fedora-autoloader   noarch   1.0.1-2.el7                epel          11 k
+ php-json                x86_64   7.2.29-1.el7.remi          remi-php72    67 k
+ php-pdo                 x86_64   7.2.29-1.el7.remi          remi-php72   128 k
+ php-pecl-apcu           x86_64   5.1.18-1.el7.remi.7.2      remi-php72    75 k
+ php-process             x86_64   7.2.29-1.el7.remi          remi-php72    84 k
+ php-xml                 x86_64   7.2.29-1.el7.remi          remi-php72   209 k
+
+Transaction Summary
+================================================================================
+Install  9 Packages (+14 Dependent packages)
+
+Total download size: 22 M
+Installed size: 82 M
+Downloading packages:
+(1/23): libargon2-20161029-3.el7.x86_64.rpm                |  23 kB   00:00
+(2/23): libmcrypt-2.5.8-13.el7.x86_64.rpm                  |  99 kB   00:00
+warning: /var/cache/yum/x86_64/7/remi-safe/packages/libzip5-1.6.1-1.el7.remi.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID 00f97f56: NOKEY
+Public key for libzip5-1.6.1-1.el7.remi.x86_64.rpm is not installed
+(3/23): libzip5-1.6.1-1.el7.remi.x86_64.rpm                |  57 kB   00:00
+(4/23): oniguruma5-6.9.4-1.el7.remi.x86_64.rpm             | 197 kB   00:00
+Public key for php-7.2.29-1.el7.remi.x86_64.rpm is not installed MB   --:-- ETA
+(5/23): php-7.2.29-1.el7.remi.x86_64.rpm                   | 3.2 MB   00:00
+(6/23): php-fedora-autoloader-1.0.1-2.el7.noarch.rpm       |  11 kB   00:00
+(7/23): libicu62-62.1-3.el7.remi.x86_64.rpm                | 8.8 MB   00:00
+(8/23): php-cli-7.2.29-1.el7.remi.x86_64.rpm               | 4.8 MB   00:00
+(9/23): php-common-7.2.29-1.el7.remi.x86_64.rpm            | 1.1 MB   00:00
+(10/23): php-fpm-7.2.29-1.el7.remi.x86_64.rpm              | 1.7 MB   00:00
+(11/23): php-json-7.2.29-1.el7.remi.x86_64.rpm             |  67 kB   00:00
+(12/23): php-intl-7.2.29-1.el7.remi.x86_64.rpm             | 223 kB   00:00
+(13/23): php-mbstring-7.2.29-1.el7.remi.x86_64.rpm         | 496 kB   00:00
+(14/23): php-mysqlnd-7.2.29-1.el7.remi.x86_64.rpm          | 237 kB   00:00
+(15/23): php-pdo-7.2.29-1.el7.remi.x86_64.rpm              | 128 kB   00:00
+(16/23): php-pear-1.10.10-7.el7.remi.noarch.rpm            | 361 kB   00:00
+(17/23): php-pecl-apcu-5.1.18-1.el7.remi.7.2.x86_64.rpm    |  75 kB   00:00
+(18/23): php-pecl-apcu-bc-1.0.5-1.el7.remi.7.2.x86_64.rpm  |  18 kB   00:00
+(19/23): php-pecl-mcrypt-1.0.3-1.el7.remi.7.2.x86_64.rpm   |  30 kB   00:00
+(20/23): php-pecl-zip-1.18.2-1.el7.remi.7.2.x86_64.rpm     |  57 kB   00:00
+(21/23): php-process-7.2.29-1.el7.remi.x86_64.rpm          |  84 kB   00:00
+(22/23): php-xml-7.2.29-1.el7.remi.x86_64.rpm              | 209 kB   00:00
+(23/23): libxslt-1.1.28-5.el7.x86_64.rpm                   | 242 kB   00:02
+--------------------------------------------------------------------------------
+Total                                              9.5 MB/s |  22 MB  00:02
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+Importing GPG key 0x00F97F56:
+ Userid     : &quot;Remi Collet &quot;
+ Fingerprint: 1ee0 4cce 88a4 ae4a a29a 5df5 004e 6f47 00f9 7f56
+ Package    : remi-release-7.7-2.el7.remi.noarch (installed)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+Warning: RPMDB altered outside of yum.
+  Installing : libargon2-20161029-3.el7.x86_64                             1/23
+  Installing : php-common-7.2.29-1.el7.remi.x86_64                         2/23
+  Installing : php-json-7.2.29-1.el7.remi.x86_64                           3/23
+  Installing : php-cli-7.2.29-1.el7.remi.x86_64                            4/23
+  Installing : php-fedora-autoloader-1.0.1-2.el7.noarch                    5/23
+  Installing : php-process-7.2.29-1.el7.remi.x86_64                        6/23
+  Installing : php-pecl-apcu-5.1.18-1.el7.remi.7.2.x86_64                  7/23
+  Installing : php-pdo-7.2.29-1.el7.remi.x86_64                            8/23
+  Installing : libxslt-1.1.28-5.el7.x86_64                                 9/23
+  Installing : php-xml-7.2.29-1.el7.remi.x86_64                           10/23
+  Installing : libzip5-1.6.1-1.el7.remi.x86_64                            11/23
+  Installing : libicu62-62.1-3.el7.remi.x86_64                            12/23
+  Installing : libmcrypt-2.5.8-13.el7.x86_64                              13/23
+  Installing : oniguruma5-6.9.4-1.el7.remi.x86_64                         14/23
+  Installing : php-mbstring-7.2.29-1.el7.remi.x86_64                      15/23
+  Installing : php-pecl-mcrypt-1.0.3-1.el7.remi.7.2.x86_64                16/23
+  Installing : php-intl-7.2.29-1.el7.remi.x86_64                          17/23
+  Installing : php-pecl-zip-1.18.2-1.el7.remi.7.2.x86_64                  18/23
+  Installing : 1:php-pear-1.10.10-7.el7.remi.noarch                       19/23
+  Installing : php-mysqlnd-7.2.29-1.el7.remi.x86_64                       20/23
+  Installing : php-pecl-apcu-bc-1.0.5-1.el7.remi.7.2.x86_64               21/23
+  Installing : php-7.2.29-1.el7.remi.x86_64                               22/23
+  Installing : php-fpm-7.2.29-1.el7.remi.x86_64                           23/23
+  Verifying  : 1:php-pear-1.10.10-7.el7.remi.noarch                        1/23
+  Verifying  : oniguruma5-6.9.4-1.el7.remi.x86_64                          2/23
+  Verifying  : libargon2-20161029-3.el7.x86_64                             3/23
+  Verifying  : libmcrypt-2.5.8-13.el7.x86_64                               4/23
+  Verifying  : libicu62-62.1-3.el7.remi.x86_64                             5/23
+  Verifying  : php-xml-7.2.29-1.el7.remi.x86_64                            6/23
+  Verifying  : libzip5-1.6.1-1.el7.remi.x86_64                             7/23
+  Verifying  : php-cli-7.2.29-1.el7.remi.x86_64                            8/23
+  Verifying  : php-fpm-7.2.29-1.el7.remi.x86_64                            9/23
+  Verifying  : php-intl-7.2.29-1.el7.remi.x86_64                          10/23
+  Verifying  : php-pecl-apcu-bc-1.0.5-1.el7.remi.7.2.x86_64               11/23
+  Verifying  : php-mbstring-7.2.29-1.el7.remi.x86_64                      12/23
+  Verifying  : libxslt-1.1.28-5.el7.x86_64                                13/23
+  Verifying  : php-pecl-mcrypt-1.0.3-1.el7.remi.7.2.x86_64                14/23
+  Verifying  : php-json-7.2.29-1.el7.remi.x86_64                          15/23
+  Verifying  : php-fedora-autoloader-1.0.1-2.el7.noarch                   16/23
+  Verifying  : php-common-7.2.29-1.el7.remi.x86_64                        17/23
+  Verifying  : php-process-7.2.29-1.el7.remi.x86_64                       18/23
+  Verifying  : php-pecl-apcu-5.1.18-1.el7.remi.7.2.x86_64                 19/23
+  Verifying  : php-pecl-zip-1.18.2-1.el7.remi.7.2.x86_64                  20/23
+  Verifying  : php-mysqlnd-7.2.29-1.el7.remi.x86_64                       21/23
+  Verifying  : php-pdo-7.2.29-1.el7.remi.x86_64                           22/23
+  Verifying  : php-7.2.29-1.el7.remi.x86_64                               23/23
+
+Installed:
+  php.x86_64 0:7.2.29-1.el7.remi
+  php-fpm.x86_64 0:7.2.29-1.el7.remi
+  php-intl.x86_64 0:7.2.29-1.el7.remi
+  php-mbstring.x86_64 0:7.2.29-1.el7.remi
+  php-mysqlnd.x86_64 0:7.2.29-1.el7.remi
+  php-pear.noarch 1:1.10.10-7.el7.remi
+  php-pecl-apcu-bc.x86_64 0:1.0.5-1.el7.remi.7.2
+  php-pecl-mcrypt.x86_64 0:1.0.3-1.el7.remi.7.2
+  php-pecl-zip.x86_64 0:1.18.2-1.el7.remi.7.2
+
+Dependency Installed:
+  libargon2.x86_64 0:20161029-3.el7
+  libicu62.x86_64 0:62.1-3.el7.remi
+  libmcrypt.x86_64 0:2.5.8-13.el7
+  libxslt.x86_64 0:1.1.28-5.el7
+  libzip5.x86_64 0:1.6.1-1.el7.remi
+  oniguruma5.x86_64 0:6.9.4-1.el7.remi
+  php-cli.x86_64 0:7.2.29-1.el7.remi
+  php-common.x86_64 0:7.2.29-1.el7.remi
+  php-fedora-autoloader.noarch 0:1.0.1-2.el7
+  php-json.x86_64 0:7.2.29-1.el7.remi
+  php-pdo.x86_64 0:7.2.29-1.el7.remi
+  php-pecl-apcu.x86_64 0:5.1.18-1.el7.remi.7.2
+  php-process.x86_64 0:7.2.29-1.el7.remi
+  php-xml.x86_64 0:7.2.29-1.el7.remi
+
+Complete!
+</code></pre><p>3.phpのバージョン確認</p><pre><code># php -v
+PHP 7.2.29 (cli) (built: Mar 17 2020 11:36:18) ( NTS )
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
+</code></pre><div class=edit-meta>Last updated on 20 Apr 2020<br>Published on 17 Oct 2017<br></div><nav class=pagination><a class="nav nav-prev" href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/ title="1.ECCUBE Environment Construction - MariaDB"><i class="fas fa-arrow-left" aria-hidden=true></i>Prev - 1.ECCUBE Environment Construction - MariaDB</a>
+<a class="nav nav-next" href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/ title="4.ECCUBE Environment Construction - ECCUBE">Next - 4.ECCUBE Environment Construction - ECCUBE <i class="fas fa-arrow-right" aria-hidden=true></i></a></nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p></footer></main><div class=sidebar><nav class=open-menu><ul><li><a href=https://cyberblack28.github.io/hugo/>Home</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/>1.Linux Training Contents of Previous Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/>1.File & Directory Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise1-file-directory/>Exercise1 File & Directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise2-search-of-file-command-usage/>Exercise2 Search of file & Command usage</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise3-file-basic-operation-of-directory/>Exercise3 File & Basic operation of directory</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise4-archive-compress-file/>Exercise4 Archive & Compress file</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-1/exercise5-text-editor/>Exercise5 Text editor</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/>2.User,Group & Permission</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-2/exercise1-file-permission-user-group/>Exercise1 File,Permission,User,Group</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/>3.Prosess & Job Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-3/exercise1-prosess-job-management/>Exercise1 Prosess & Job Management</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/>4.Shell</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise1-standard-input-output-pipeline/>Exercise1 Standard input/output & Pipeline</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise2-about-bash/>Exercise2 About Bash</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise3-grep-command-regular-expression/>Exercise3 grep command & regular expression</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise4-advanced-text-processing/>Exercise4 Advanced Text Processing</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise5-creation-automatic-execution-of-shell-script/>Exercise5 Creation and automatic execution of Shell Script</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-4/exercise6-write-a-shell-script/>Exercise6 Write a Shell Script</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/>5.Package Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-5/exercise1-rpm-dnf/>Exercise1 rpm & dnf</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/>6.Network Management</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise1-network-management/>Exercise1 Network Management</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise2-dns-command/>Exercise2 DNS Command</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter1/chapter1-6/exercise3-networkmanager/>Exercise3 Networkmanager</a></li></ul></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/>2.Linux Training Contents of Latter Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/>Exercise & Construction</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise1-systemd/>1.Exercise1 systemd</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/dns-server-construction/>2.DNS Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/proxy-server-construction/>3.Proxy Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/web-server-construction/>4.Web Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/php-environment-construction/>5.PHP Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/mariadb-environment-construction/>6.MariaDB Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/wp-environment-construction/>7.WordPress Environment Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/exercise2-firewalld/>8.Exercise2 firewalld</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/ftp-server-construction/>9.FTP Server Construction</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/html-css/>10.HTML & CSS</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/javascript/>11.Javascript</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/infrastructure-as-code/>12.Infrastructure as Code</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker/>13.Docker</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/docker-compose/>14.Docker Compose</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-kubectl/>15.Kubernetes kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter2/chapter2-1/kubernetes-wordpress/>16.Kubernetes WordPress</a></li></ul></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter3/>3.Cloud Computing of All Term</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/>1.WordPress</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-nginx/>1.WordPress Environment Construction - Nginx</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-php/>2.WordPress Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-mariadb/>3.WordPress Environment Construction - MariaDB</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-1/wp-environment-construction-wordpress/>4.WordPress Environment Construction - WordPress</a></li></ul></li><li class=parent><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/>2.ECCUBE</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-httpd/>1.ECCUBE Environment Construction - Apache Web Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-mariadb/>1.ECCUBE Environment Construction - MariaDB</a></li><li class=active><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-php/>1.ECCUBE Environment Construction - PHP</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-2/eccube-environment-construction-eccube/>4.ECCUBE Environment Construction - ECCUBE</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/>3.Ansible</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-sshd/>1.Ansible Environment Construction - SSH</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-ansible-server/>2.Ansible Environment Construction - Ansible-Server</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-3/ansible-environment-construction-playbook-wp/>3.Ansible Environment Construction - Playbook & WordPress</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/>4.Docker</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-4/docker-environment-construction-docker/>1.Docker Environment Construction - Docker</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/>5.Docker Compose</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-5/docker-environment-construction-docker-compose/>1.Docker Environment Construction - Docker Compose</a></li></ul></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/>6.Kubernetes</a><ul class=sub-menu><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes/>1.Kubernetes Environment Construction - Kubernetes</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubectl/>2.Kubernetes Environment Construction - kubectl</a></li><li><a href=https://cyberblack28.github.io/hugo/chapter3/chapter3-6/kubernetes-environment-construction-kubernetes-wp/>3.Kubernetes Environment Construction - Kubernetes & WordPress</a></li></ul></li></ul></li></ul></nav><div class=sidebar-footer></div></div></div><a href=# id=backtothetop-fixed class=backtothetop data-backtothetop-duration=600 data-backtothetop-easing=easeOutQuart data-backtothetop-fixed-fadein=1000 data-backtothetop-fixed-fadeout=1000 data-backtothetop-fixed-bottom=10 data-backtothetop-fixed-right=20><span class="fa-layers fa-fw"><i class="fas fa-circle"></i><i class="fas fa-arrow-circle-up"></i></span></a></div></body></html>
