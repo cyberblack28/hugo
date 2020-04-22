@@ -33,7 +33,7 @@ Linuxユーザとして「student」を作成してから始めてください�
 * [2.DNS Server Construction](chapter2-1/dns-server-construction)
 * [3.Proxy Server Construction](chapter2-1/proxy-server-construction)
 * [4.Web Server Construction](chapter2-1/web-server-construction)
-* [5.PHP Server Construction](chapter2-1/php-server-construction)
+* [5.PHP Server Construction](chapter2-1/php-environment-construction)
 * [6.MariaDB Server Construction](chapter2-1/mariadb-server-construction)
 * [7.WordPress Server Construction](chapter2-1/wp-server-construction)
 * [8.Exercise2 firewalld](chapter2-1/exercise2-firewalld)
