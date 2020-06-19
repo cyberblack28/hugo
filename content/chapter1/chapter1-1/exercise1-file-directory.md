@@ -979,7 +979,7 @@ $ pwd
 <summary>Answer</summary>
 <div>
 <pre>
-$ cd /
+$ cd ../../
 </pre>
 </div>
 </details>

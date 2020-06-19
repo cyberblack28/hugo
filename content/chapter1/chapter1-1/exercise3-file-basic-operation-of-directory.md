@@ -98,7 +98,7 @@ $ ls
 <div>
 <pre>
 $ mkdir -p training/linux training/unix training/windows
-$ ls
+$ ls training/
 linux  unix  windows
 </pre>
 </div>

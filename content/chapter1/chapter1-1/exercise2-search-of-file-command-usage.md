@@ -60,9 +60,8 @@ $ su -
 <div>
 <pre>
 # cd /
-# find ./ -name messages
+# find ./var/log -name messages
 ./var/log/messages
-./usr/share/open-vm-tools/messages
 </pre>
 </div>
 </details>
